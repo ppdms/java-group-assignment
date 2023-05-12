@@ -7,7 +7,7 @@ class PrintedAdvertisement extends Advertisement{
     }
 
     //Getters
-    int getWords(){
+    public int getWords(){
         return words;
     }   
 }

@@ -1,8 +1,17 @@
 package AdvertisementTypes;
-abstract class AdvertisementType {
+public abstract class AdvertisementType {
+    
+    // We connect classes AdvertisementType and Advertisement
+    // adCode of AdvertisementType == typeCode of Advertisement
+    
     private String adCode;
-    private String description;
+    
+    // We connect classes AdvertisementType and AdvertisingAgency 
+    // agencyTIN of AdvertisementType == TIN of AdvertisingAgency
+
     private String agencyTIN;
+    
+    private String description;
 
     public AdvertisementType(String adCode, String description, String agencyTIN){
         this.adCode = adCode;
@@ -10,15 +19,18 @@ abstract class AdvertisementType {
         this.agencyTIN = agencyTIN;
     }
 
+    // Go to subclasses to see what param1 and param2 mean for a specific type of advertisement
+    public abstract float Cost(String param1, int param2, int durationInDays);
+
     //Getters
 
-    String getAdCode(){
+    public String getAdCode(){
         return this.adCode;
     }
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
-    String getagencyTIN() {
+    public String getAgencyTIN() {
         return agencyTIN;
     }
 }

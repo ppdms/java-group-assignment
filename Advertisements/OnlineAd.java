@@ -1,14 +1,14 @@
 package Advertisements;
 class OnlineAdvertisement extends Advertisement{
-    boolean autoShow;
+    private int autoShow;
 
-    public OnlineAdvertisement(String typeCode, String productCode, int durationInDays, String details, boolean autoShow){
+    public OnlineAdvertisement(String typeCode, String productCode, int durationInDays, String details, int autoShow){
         super(typeCode, productCode, durationInDays, details);
         this.autoShow = autoShow;
     }
     
     //Getters
-    boolean getAutoShow() {
+    public int getAutoShow() {
         return autoShow;
     }
 }

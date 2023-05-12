@@ -1,7 +1,17 @@
 package Advertisements;
-abstract class Advertisement{
+public abstract class Advertisement{
+    
+    // We connect classes Advertisement and AdvertisementType
+    // typeCode of Advertisement == adCode of AdvertisementType
+
     private String typeCode; 
+
+    // We also connect classes Advertisement and Product
+    // productCode in Advertisement == productCode in Product
+
     private String productCode;
+
+    
     private int durationInDays;
     private String details;
 
@@ -13,16 +23,16 @@ abstract class Advertisement{
     }
 
     //Getters
-    String getTypeCode(){
+    public String getTypeCode(){
         return typeCode;
     }
-    String getProductCode(){
+    public String getProductCode(){
         return productCode;
     }
-    int getDurationInDays(){
+    public int getDurationInDays(){
         return durationInDays;
     }
-    String getDetails(){
+    public String getDetails(){
         return details;
     }
 

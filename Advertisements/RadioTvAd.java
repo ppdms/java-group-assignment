@@ -8,7 +8,7 @@ class RadioTVAdvertisement extends Advertisement{
     }
     
     //Getters
-    int getDuration(){
+    public int getDuration(){
         return duration;
     }
 }
