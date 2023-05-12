@@ -1,18 +1,18 @@
 package ComplimentaryClasses;
-class AdvertisingAgencie {
-    int afm;
+class AdvertisingAgency {
+    int TIN;
     String brandName;
 
-    AdvertisingAgencie(int afm, String brandName){
-        this.afm = afm;
+    AdvertisingAgency(int TIN, String brandName){
+        this.TIN = TIN;
         this.brandName = brandName;
     }
 
-    AdvertisingAgencie(){}
+    AdvertisingAgency(){}
 
     //Getters
-    int getAFM(){
-        return this.afm;
+    int getTIN(){
+        return this.TIN;
     }
 
     String getBrandName(){

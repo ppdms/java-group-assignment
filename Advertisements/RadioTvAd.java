@@ -1,8 +1,8 @@
-package Advertisments;
-class RadioTVAdvertisment extends Advertisment{
+package Advertisements;
+class RadioTVAdvertisement extends Advertisement{
     private int duration; //in seconds
 
-    public RadioTVAdvertisment(String typeCode, String productCode, int durationInDays, String details, int duration){
+    public RadioTVAdvertisement(String typeCode, String productCode, int durationInDays, String details, int duration){
         super(typeCode, productCode, durationInDays, details);
         this.duration = duration;
     }

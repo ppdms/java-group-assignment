@@ -1,11 +1,11 @@
-package Advertisments;
-abstract class Advertisment{
+package Advertisements;
+abstract class Advertisement{
     private String typeCode; 
     private String productCode;
     private int durationInDays;
     private String details;
 
-    public Advertisment(String typeCode, String productCode, int durationInDays, String details){
+    public Advertisement(String typeCode, String productCode, int durationInDays, String details){
         this.typeCode = typeCode;
         this.productCode = productCode;
         this.durationInDays = durationInDays;

@@ -1,7 +1,7 @@
-package Advertisments;
-class PrintedAdvertisment extends Advertisment{
+package Advertisements;
+class PrintedAdvertisement extends Advertisement{
     private int words;
-    public PrintedAdvertisment(String typeCode, String productCode, int durationInDays, String details, int words){
+    public PrintedAdvertisement(String typeCode, String productCode, int durationInDays, String details, int words){
         super(typeCode, productCode, durationInDays, details);
         this.words = words;
     }

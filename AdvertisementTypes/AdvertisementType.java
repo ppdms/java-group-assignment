@@ -1,13 +1,13 @@
-package AdvertismentTypes;
-abstract class AdvertismentType {
+package AdvertisementTypes;
+abstract class AdvertisementType {
     private String adCode;
     private String description;
-    private String agencieAFM;
+    private String agencyTIN;
 
-    public AdvertismentType(String adCode, String description, String agencieAFM){
+    public AdvertisementType(String adCode, String description, String agencyTIN){
         this.adCode = adCode;
         this.description = description;
-        this.agencieAFM = agencieAFM;
+        this.agencyTIN = agencyTIN;
     }
 
     //Getters
@@ -18,7 +18,7 @@ abstract class AdvertismentType {
     String getDescription() {
         return description;
     }
-    String getAgencieAFM() {
-        return agencieAFM;
+    String getagencyTIN() {
+        return agencyTIN;
     }
 }

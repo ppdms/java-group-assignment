@@ -2,12 +2,12 @@ package ComplimentaryClasses;
 class Product {
     private int productCode;
     private String description;
-    private int supplierAFM;
+    private int supplierTIN;
 
-    public Product(int productCode, String description, int supplierAFM){
+    public Product(int productCode, String description, int supplierTIN){
         this.productCode = productCode;
         this.description = description;
-        this.supplierAFM = supplierAFM;
+        this.supplierTIN = supplierTIN;
     }
 
     //Getters
@@ -19,7 +19,7 @@ class Product {
         return this.description;
     }
 
-    int getSupplierAFM(){
-        return this.supplierAFM;
+    int getSupplierTIN(){
+        return this.supplierTIN;
     }
 }
