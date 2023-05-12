@@ -11,7 +11,7 @@ public abstract class Advertisement{
 
     private String productCode;
 
-    
+
     private int durationInDays;
     private String details;
 
@@ -35,5 +35,7 @@ public abstract class Advertisement{
     public String getDetails(){
         return details;
     }
+
+    public abstract int getExtraCharacteristic();
 
 }
