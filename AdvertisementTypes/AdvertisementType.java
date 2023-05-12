@@ -19,8 +19,8 @@ public abstract class AdvertisementType {
         this.agencyTIN = agencyTIN;
     }
 
-    // Go to subclasses to see what param1 and param2 mean for a specific type of advertisement
-    public abstract float Cost(String param1, int param2, int durationInDays);
+    // Go to subclasses to see what extraCharacteristic mean for a specific type of advertisement
+    public abstract float cost(String details, int extraCharacteristic, int durationInDays);
 
     //Getters
 

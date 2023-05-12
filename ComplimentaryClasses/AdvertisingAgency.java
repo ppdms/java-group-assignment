@@ -1,9 +1,13 @@
 package ComplimentaryClasses;
-class AdvertisingAgency {
-    int TIN;
+public class AdvertisingAgency {
+
+    // We connect classes AdvertisingAgency and AdvertisementType
+    // TIN of AdvertisingAgency == agencyTIN of AdvertisementType
+
+    String TIN;
     String brandName;
 
-    AdvertisingAgency(int TIN, String brandName){
+    public AdvertisingAgency(String TIN, String brandName){
         this.TIN = TIN;
         this.brandName = brandName;
     }
@@ -11,11 +15,11 @@ class AdvertisingAgency {
     AdvertisingAgency(){}
 
     //Getters
-    int getTIN(){
+    public String getTIN(){
         return this.TIN;
     }
 
-    String getBrandName(){
+    public String getBrandName(){
         return this.brandName;
     }
 }

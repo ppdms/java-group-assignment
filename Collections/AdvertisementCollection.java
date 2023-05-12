@@ -45,7 +45,7 @@ public class AdvertisementCollection {
     // AdvertisingAgency -TIN-> AdvetisementType -adCode-> Advertisement
     // We have to do 2 matchings
 
-    private AdvertisementCollection FindAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads) {
+    private AdvertisementCollection findAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes) {
 
         AdvertisementCollection adsOfAgency = new AdvertisementCollection();
 
@@ -57,9 +57,9 @@ public class AdvertisementCollection {
                 // If we find an adType published by our target agency we search in what advertisement
                 // the advertisementType links to
 
-                for(int j = 0; j < ads.getLength(); j++) {
+                for(int j = 0; j < this.getLength(); j++) {
 
-                    Advertisement curAd = ads.get(j);
+                    Advertisement curAd = this.get(j);
 
                     if(curType.getAdCode().equals(curAd.getTypeCode())) {
                         // We have found an agency's ad
@@ -72,14 +72,44 @@ public class AdvertisementCollection {
         return adsOfAgency;
     }
 
-    public void PrintAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public void printAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes)
     {
-        AdvertisementCollection adsToPrint = this.FindAdvertisementsOf(agency, adTypes, ads);
+        AdvertisementCollection adsToPrint = this.findAdvertisementsOf(agency, adTypes);
         
         for (int i = 0; i < adsToPrint.getLength(); i++) {
             System.out.println(adsToPrint.get(i));
         }
     }
 
-    private 
+    private int calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
+    {
+        int totalCost = 0;
+
+        for(int i = 0; i < ads.getLength(); i++)
+        {
+            Advertisement curAd = ads.get(i);
+
+            for(int j = 0; j < adTypes.getLength(); j++)
+            {
+                AdvertisementType curType = adTypes.get(j);
+
+                if(curAd.getTypeCode().equals(curType.getAdCode()))
+                {
+                    totalCost += curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
+                }
+            }
+        }
+
+        return totalCost;
+    }
+
+    public int calculateCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes)
+    {
+
+        AdvertisementCollection adsToCalculateCost = this.findAdvertisementsOf(agency, adTypes);
+
+        return this.calculateTotalCostOf(adsToCalculateCost, adTypes);
+    }
+
+    
 }

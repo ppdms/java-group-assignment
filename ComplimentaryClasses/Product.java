@@ -1,5 +1,5 @@
 package ComplimentaryClasses;
-class Product {
+public class Product {
     private int productCode;
     private String description;
     private int supplierTIN;
@@ -11,15 +11,15 @@ class Product {
     }
 
     //Getters
-    int getProductCode(){
+    public int getProductCode(){
         return this.productCode;
     }
 
-    String getDescription(){
+    public String getDescription(){
         return this.description;
     }
 
-    int getSupplierTIN(){
+    public int getSupplierTIN(){
         return this.supplierTIN;
     }
 }

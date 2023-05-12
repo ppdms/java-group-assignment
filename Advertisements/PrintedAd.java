@@ -10,4 +10,9 @@ class PrintedAdvertisement extends Advertisement{
     public int getWords(){
         return words;
     }   
+
+    public int getExtraCharacteristic()
+    {
+        return words;
+    }
 }

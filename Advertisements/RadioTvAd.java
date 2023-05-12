@@ -11,4 +11,9 @@ class RadioTVAdvertisement extends Advertisement{
     public int getDuration(){
         return duration;
     }
+
+    public int getExtraCharacteristic()
+    {
+        return duration;
+    }
 }

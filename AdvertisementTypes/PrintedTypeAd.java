@@ -17,12 +17,10 @@ class PrintedTypeAd extends AdvertisementType{
         this.euroPwLast = euroPwLast;
     }
 
-    public float Cost(String pageShowcase, int numWords, int durationInDays)
-    {
+    public float cost(String pageShowcase, int numWords, int durationInDays) {
         int euroPw;
 
-        switch(pageShowcase)
-        {
+        switch(pageShowcase) {
             case PrintedTypeAd.FIRST_PAGE:
                 euroPw = euroPwFirst;
                 break;

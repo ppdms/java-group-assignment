@@ -20,12 +20,10 @@ class RadioTVTypeAd extends AdvertisementType{
         this.euroPsEvening = euroPsEvening;
     }
 
-    public float Cost(String dayTime , int adDuration, int numDaysPlayed)
-    {
+    public float cost(String dayTime , int adDuration, int numDaysPlayed) {
         int pricePs;
 
-        switch(dayTime)
-        {
+        switch(dayTime) {
             case RadioTVTypeAd.MORNING:
                 pricePs = euroPsMorning;
                 break;

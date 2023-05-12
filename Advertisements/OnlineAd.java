@@ -11,4 +11,9 @@ class OnlineAdvertisement extends Advertisement{
     public int getAutoShow() {
         return autoShow;
     }
+
+    public int getExtraCharacteristic()
+    {
+        return autoShow;
+    }
 }
