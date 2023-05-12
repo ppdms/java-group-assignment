@@ -17,6 +17,14 @@ public class ProductCollection {
         products.add(type);
     }
 
+    public Product get(int index)
+    {
+        if(index < 0 || index > this.getLength() - 1)
+            return null;
+
+        return products.get(index);
+    }
+
     public int getLength()
     {
         return products.size();

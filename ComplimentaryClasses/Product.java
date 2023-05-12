@@ -1,17 +1,17 @@
 package ComplimentaryClasses;
 public class Product {
-    private int productCode;
+    private String productCode;
     private String description;
     private int supplierTIN;
 
-    public Product(int productCode, String description, int supplierTIN){
+    public Product(String productCode, String description, int supplierTIN){
         this.productCode = productCode;
         this.description = description;
         this.supplierTIN = supplierTIN;
     }
 
     //Getters
-    public int getProductCode(){
+    public String getProductCode(){
         return this.productCode;
     }
 

@@ -3,8 +3,11 @@ package Collections;
 import Advertisements.Advertisement;
 import AdvertisementTypes.AdvertisementType;
 import ComplimentaryClasses.AdvertisingAgency;
+import ComplimentaryClasses.Product;
 
 import java.util.ArrayList;
+
+import java.util.Arrays; // Sort algorithm
 
 public class AdvertisementCollection {
     
@@ -111,5 +114,50 @@ public class AdvertisementCollection {
         return this.calculateTotalCostOf(adsToCalculateCost, adTypes);
     }
 
-    
+    public void printNumberOfAdsPerProduct(ProductCollection products)
+    {
+        int countsOfAdsPerProduct[] = new int[products.getLength()];
+
+
+        for(int i = 0; i < products.getLength(); i++)
+        {
+            countsOfAdsPerProduct[i] = 0;
+        }
+
+
+        // Find number of ads per product
+
+        for(int i = 0; i < products.getLength(); i++)
+        {
+            Product curProduct = products.get(i);
+
+            for(int j = 0; j < this.getLength(); j++)
+            {
+                Advertisement curAd = this.get(j);
+
+                if(curProduct.getProductCode().equals(curAd.getProductCode()))
+                {
+                    countsOfAdsPerProduct[i]++;
+                }
+            }
+        }
+
+        // Print them in descending order
+
+        Arrays.sort(countsOfAdsPerProduct);
+
+        for(int i = 0; i < countsOfAdsPerProduct.length; i++)
+        {
+            System.out.println(countsOfAdsPerProduct[i]);
+        }
+    }
+
+    // TODO
+
+    /*public calculateCostFor(Product product, AdvertisementTypeCollection adTypes)
+    {
+        AdvertisementCollection adsToCalculateCost = this.findAdvertisementsOf(agency, adTypes);
+
+        return this.calculateTotalCostOf(adsToCalculateCost, adTypes);
+    }*/
 }
