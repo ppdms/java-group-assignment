@@ -37,7 +37,7 @@ public class CollectionManager {
         return adsOfAgency;
     }
 
-    public void printAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static void printAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
