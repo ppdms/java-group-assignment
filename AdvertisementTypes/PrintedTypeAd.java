@@ -2,9 +2,9 @@ package AdvertisementTypes;
 
 class PrintedTypeAd extends AdvertisementType{
 
-    public static final String FIRST_PAGE = "1";
-    public static final String MIDDLE_PAGE = "2";
-    public static final String LAST_PAGE = "3";
+    public static final String FIRST_PAGE = "First";
+    public static final String MIDDLE_PAGE = "Middle";
+    public static final String LAST_PAGE = "Last";
 
     private int euroPwFirst; //Price per word on the first page
     private int euroPwMiddle; //Same for the middle

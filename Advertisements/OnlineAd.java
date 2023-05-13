@@ -9,7 +9,7 @@ class OnlineAdvertisement extends Advertisement{
     
     //Getters
     public int getAutoShow() {
-        return autoShow;
+        return getExtraCharacteristic();
     }
 
     public int getExtraCharacteristic()

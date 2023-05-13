@@ -21,8 +21,7 @@ public class AdvertisementCollection {
         advertisements.add(ad);
     }
 
-    public Advertisement get(int index)
-    {
+    public Advertisement get(int index) {
         if(index < 0 || index > this.getLength() - 1)
             return null;
 
@@ -84,9 +83,9 @@ public class AdvertisementCollection {
         }
     }
 
-    private int calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
+    private float calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
     {
-        int totalCost = 0;
+        float totalCost = 0;
 
         for(int i = 0; i < ads.getLength(); i++)
         {
@@ -98,7 +97,11 @@ public class AdvertisementCollection {
 
                 if(curAd.getTypeCode().equals(curType.getAdCode()))
                 {
-                    totalCost += curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
+                    float cost = curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
+
+                    totalCost += cost;
+
+                    System.out.printf("Cost of advertisement %s with type %s is: %f%n", curAd, curType, cost);
                 }
             }
         }
@@ -106,7 +109,7 @@ public class AdvertisementCollection {
         return totalCost;
     }
 
-    public int calculateCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes)
+    public float calculateCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes)
     {
 
         AdvertisementCollection adsToCalculateCost = this.findAdvertisementsOf(agency, adTypes);
@@ -152,12 +155,74 @@ public class AdvertisementCollection {
         }
     }
 
-    // TODO
+    private AdvertisementCollection findAdvertisementsOf(Product product, AdvertisementTypeCollection adTypes) {
 
-    /*public calculateCostFor(Product product, AdvertisementTypeCollection adTypes)
+        AdvertisementCollection adsOfProduct = new AdvertisementCollection();
+
+        for (int i = 0; i < this.getLength(); i++) {
+            
+            Advertisement curAd = this.get(i);
+            
+            if(this.get(i).getProductCode().equals(product.getProductCode())) {
+                // If we find an adType published by our target agency we search in what advertisement
+                // the advertisementType links to
+                adsOfProduct.push(curAd);
+            }
+        }
+
+        return adsOfProduct;
+    }
+
+    public float calculateAdvertisementCostFor(Product product, AdvertisementTypeCollection adTypes)
     {
-        AdvertisementCollection adsToCalculateCost = this.findAdvertisementsOf(agency, adTypes);
+        AdvertisementCollection adsToCalculateCost = this.findAdvertisementsOf(product, adTypes);
 
         return this.calculateTotalCostOf(adsToCalculateCost, adTypes);
-    }*/
+    }
+
+    public void printCostPerProduct(ProductCollection products, AdvertisementTypeCollection adTypes)
+    {
+        float costsPerProduct[] = new float[products.getLength()];
+
+
+        for(int i = 0; i < products.getLength(); i++)
+        {
+            costsPerProduct[i] = 0.0f;
+        }
+
+
+        // Find number of ads per product
+
+        for(int i = 0; i < products.getLength(); i++)
+        {
+            Product curProduct = products.get(i);
+
+            for(int j = 0; j < this.getLength(); j++)
+            {
+                Advertisement curAd = this.get(j);
+
+                if(curProduct.getProductCode().equals(curAd.getProductCode()))
+                {
+                    for(int k = 0; k < adTypes.getLength(); k++)
+                    {
+                        AdvertisementType curType = adTypes.get(k);
+
+                        if(curType.getAdCode().equals(curAd.getTypeCode()))
+                        {
+                            costsPerProduct[i] += curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
+                        }
+                    }
+                }
+            }
+        }
+
+        // Print them in descending order
+
+        Arrays.sort(costsPerProduct);
+
+        for(int i = 0; i < costsPerProduct.length; i++)
+        {
+            System.out.println(costsPerProduct[i]);
+        }
+    }
 }

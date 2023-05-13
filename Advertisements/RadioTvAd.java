@@ -1,19 +1,19 @@
 package Advertisements;
 class RadioTVAdvertisement extends Advertisement{
-    private int duration; //in seconds
+    private int durationSeconds; // Extra characteristic
 
-    public RadioTVAdvertisement(String typeCode, String productCode, int durationInDays, String details, int duration){
+    public RadioTVAdvertisement(String typeCode, String productCode, int durationInDays, String details, int durationSeconds){
         super(typeCode, productCode, durationInDays, details);
-        this.duration = duration;
+        this.durationSeconds = durationSeconds;
     }
     
     //Getters
     public int getDuration(){
-        return duration;
+        return getExtraCharacteristic();
     }
 
     public int getExtraCharacteristic()
     {
-        return duration;
+        return durationSeconds;
     }
 }

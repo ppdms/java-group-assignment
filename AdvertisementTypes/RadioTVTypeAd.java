@@ -1,10 +1,10 @@
 package AdvertisementTypes;
 class RadioTVTypeAd extends AdvertisementType{
 
-    public static final String MORNING = "0";
-    public static final String NOON = "1";
-    public static final String AFTERNOON = "2";
-    public static final String EVENING = "3";
+    public static final String MORNING = "Morning";
+    public static final String NOON = "Noon";
+    public static final String AFTERNOON = "Afternoon";
+    public static final String EVENING = "Evening";
 
     private int euroPsMorning; //Price persecond in the morning
     private int euroPsNoon; //Same for the noon

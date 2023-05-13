@@ -2,9 +2,9 @@ package ComplimentaryClasses;
 public class Product {
     private String productCode;
     private String description;
-    private int supplierTIN;
+    private String supplierTIN;
 
-    public Product(String productCode, String description, int supplierTIN){
+    public Product(String productCode, String description, String supplierTIN){
         this.productCode = productCode;
         this.description = description;
         this.supplierTIN = supplierTIN;
@@ -19,7 +19,7 @@ public class Product {
         return this.description;
     }
 
-    public int getSupplierTIN(){
+    public String getSupplierTIN(){
         return this.supplierTIN;
     }
 }

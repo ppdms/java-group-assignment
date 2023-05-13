@@ -11,8 +11,8 @@ class OnlineTypeAd extends AdvertisementType{
         this.pricePerExtraPage = pricePerExtraPage;
     }
 
-    public float cost(String duration, int autoShow, int extraPages) {
-        int result = pricePerDay * Integer.parseInt(duration) + extraPages * pricePerExtraPage;
+    public float cost(String extraPages, int autoShow, int durationInDays) {
+        int result = pricePerDay * durationInDays + Integer.parseInt(extraPages) * pricePerExtraPage;
 
         if(autoShow == 1)
             result += automaticDisplayCost;
