@@ -20,7 +20,7 @@ public class RadioTVTypeAd extends AdvertisementType{
         this.euroPsEvening = euroPsEvening;
     }
 
-    public float cost(String dayTime , int adDuration, int numDaysPlayed) {
+    public int cost(String dayTime , int adDuration, int numDaysPlayed) {
         int pricePs;
 
         switch(dayTime) {
@@ -58,8 +58,7 @@ public class RadioTVTypeAd extends AdvertisementType{
         return euroPsEvening;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return String.format("{%s, euroPsMorning : %d, euroPsNoon : %d, euroPsAfternoon : %d, euroPsEvening : %d}", super.toString(), this.euroPsMorning, this.euroPsNoon, this.euroPsAfternoon, this.euroPsEvening);
     }
 }

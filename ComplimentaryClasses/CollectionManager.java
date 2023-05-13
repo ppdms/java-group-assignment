@@ -8,8 +8,6 @@ import Advertisements.Advertisement;
 
 import AdvertisementTypes.AdvertisementType;
 
-import java.util.Arrays; // Sort algorithm
-
 public class CollectionManager {
 
     private static AdvertisementCollection findAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads) {
@@ -60,9 +58,9 @@ public class CollectionManager {
         }
     }
 
-    private static float calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
+    private static int calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
     {
-        float totalCost = 0;
+        int totalCost = 0;
 
         for(int i = 0; i < ads.getLength(); i++)
         {
@@ -74,11 +72,12 @@ public class CollectionManager {
 
                 if(curAd.getTypeCode().equals(curType.getAdCode()))
                 {
-                    float cost = curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
+                    int cost = curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
 
                     totalCost += cost;
 
-                    System.out.printf("Cost of advertisement %s with type %s is: %f%n", curAd, curType, cost);
+                    System.out.printf("Cost of advertisement %s with type %s is: %d%n", curAd, curType, cost);
+                    System.out.println();
                 }
             }
         }
@@ -86,12 +85,12 @@ public class CollectionManager {
         return totalCost;
     }
 
-    public static float calculateCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static int printAdvertisementCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
             System.out.printf("Agency is not null %b, AdTypes length %d, Ads length %d%n", agency, adTypes.getLength(), ads.getLength());
-            return 0.0f;
+            return 0;
         }
 
         AdvertisementCollection adsToCalculateCost = CollectionManager.findAdvertisementsOf(agency, adTypes, ads);
@@ -99,7 +98,7 @@ public class CollectionManager {
         if(adsToCalculateCost.getLength() == 0)
         {
             System.out.println("Could not find any advertisements of agent: " + agency);
-            return 0.0f;
+            return 0;
         }
 
         return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
@@ -114,11 +113,13 @@ public class CollectionManager {
         }
 
         int countsOfAdsPerProduct[] = new int[products.getLength()];
+        String productDescriptions[] = new String[products.getLength()];
 
 
         for(int i = 0; i < products.getLength(); i++)
         {
             countsOfAdsPerProduct[i] = 0;
+            productDescriptions[i] = products.get(i).getDescription();
         }
 
 
@@ -139,13 +140,28 @@ public class CollectionManager {
             }
         }
 
-        // Print them in descending order
+        // Sort array
 
-        Arrays.sort(countsOfAdsPerProduct);
+        for(int i = 1; i < countsOfAdsPerProduct.length; i++)
+        {
+            for(int j = i; j < countsOfAdsPerProduct.length; j++)
+            {
+                if(countsOfAdsPerProduct[j] > countsOfAdsPerProduct[j - 1])
+                {
+                    int temp = countsOfAdsPerProduct[j];
+                    countsOfAdsPerProduct[j] = countsOfAdsPerProduct[j - 1];
+                    countsOfAdsPerProduct[j - 1] = temp;
+
+                    String temp2 = productDescriptions[j - 1];
+                    productDescriptions[j - 1] = productDescriptions[j];
+                    productDescriptions[j] = temp2;
+                }
+            }
+        }
 
         for(int i = 0; i < countsOfAdsPerProduct.length; i++)
         {
-            System.out.println(countsOfAdsPerProduct[i]);
+            System.out.printf("Number of Advertisements for Product %s is : %d%n", productDescriptions[i], countsOfAdsPerProduct[i]);
         }
     }
 
@@ -167,13 +183,13 @@ public class CollectionManager {
         return adsOfProduct;
     }
 
-    public static float calculateAdvertisementCostFor(Product product, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static int printAdvertisementCostFor(Product product, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
     {
 
         if(product == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
             System.out.printf("Product is not null %b, AdTypes length %d, Ads length %d%n", product, adTypes.getLength(), ads.getLength());
-            return 0.0f;
+            return 0;
         }
 
         AdvertisementCollection adsToCalculateCost = CollectionManager.findAdvertisementsOf(product, adTypes, ads);
@@ -181,7 +197,7 @@ public class CollectionManager {
         if(adsToCalculateCost.getLength() == 0)
         {
             System.out.println("Could not find any advertisements of product: " + product);
-            return 0.0f;
+            return 0;
         }
 
         return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
@@ -195,12 +211,14 @@ public class CollectionManager {
             return;
         }
 
-        float costsPerProduct[] = new float[products.getLength()];
+        int costsPerProduct[] = new int[products.getLength()];
+        String productDescriptions[] = new String[products.getLength()];
 
 
         for(int i = 0; i < products.getLength(); i++)
         {
-            costsPerProduct[i] = 0.0f;
+            costsPerProduct[i] = 0;
+            productDescriptions[i] = products.get(i).getDescription();
         }
 
 
@@ -229,13 +247,28 @@ public class CollectionManager {
             }
         }
 
-        // Print them in descending order
+        // Sort array
 
-        Arrays.sort(costsPerProduct);
+        for(int i = 1; i < costsPerProduct.length; i++)
+        {
+            for(int j = i; j < costsPerProduct.length; j++)
+            {
+                if(costsPerProduct[j] > costsPerProduct[j - 1])
+                {
+                    int temp = costsPerProduct[j];
+                    costsPerProduct[j] = costsPerProduct[j - 1];
+                    costsPerProduct[j - 1] = temp;
+
+                    String temp2 = productDescriptions[j - 1];
+                    productDescriptions[j - 1] = productDescriptions[j];
+                    productDescriptions[j] = temp2;
+                }
+            }
+        }
 
         for(int i = 0; i < costsPerProduct.length; i++)
         {
-            System.out.println(costsPerProduct[i]);
+            System.out.printf("Cost of Advertisements for Product %s is : %d%n", productDescriptions[i], costsPerProduct[i]);
         }
     }
 }

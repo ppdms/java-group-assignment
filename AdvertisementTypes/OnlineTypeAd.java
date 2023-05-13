@@ -11,7 +11,7 @@ public class OnlineTypeAd extends AdvertisementType{
         this.pricePerExtraPage = pricePerExtraPage;
     }
 
-    public float cost(String extraPages, int autoShow, int durationInDays) {
+    public int cost(String extraPages, int autoShow, int durationInDays) {
         int result = pricePerDay * durationInDays + Integer.parseInt(extraPages) * pricePerExtraPage;
 
         if(autoShow == 1)
@@ -31,8 +31,7 @@ public class OnlineTypeAd extends AdvertisementType{
         return pricePerExtraPage;
     }
 
-    public String toString()
-    {
-        return String.format("{%s, pricePerDay : %d, automaticDisplayCost : %d, pricePerExtraPage : %d}", super.toString(), this.pricePerDay, this.automaticDisplayCost, this.pricePerDay);
+    public String toString() {
+        return String.format("{%s, pricePerDay : %d, automaticDisplayCost : %d, pricePerExtraPage : %d}", super.toString(), this.pricePerDay, this.automaticDisplayCost, this.pricePerExtraPage);
     }
 }

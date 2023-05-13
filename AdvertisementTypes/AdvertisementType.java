@@ -20,7 +20,7 @@ public abstract class AdvertisementType {
     }
 
     // Go to subclasses to see what extraCharacteristic mean for a specific type of advertisement
-    public abstract float cost(String details, int extraCharacteristic, int durationInDays);
+    public abstract int cost(String details, int extraCharacteristic, int durationInDays);
 
     //Getters
 
@@ -34,8 +34,7 @@ public abstract class AdvertisementType {
         return agencyTIN;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return String.format("adCode : %s, description : %s, agencyTIN : %s", this.adCode, this.description, this.agencyTIN);
     }
 }

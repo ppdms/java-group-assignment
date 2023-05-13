@@ -17,7 +17,7 @@ public class PrintedTypeAd extends AdvertisementType{
         this.euroPwLast = euroPwLast;
     }
 
-    public float cost(String pageShowcase, int numWords, int durationInDays) {
+    public int cost(String pageShowcase, int numWords, int durationInDays) {
         int euroPw;
 
         switch(pageShowcase) {
@@ -49,8 +49,7 @@ public class PrintedTypeAd extends AdvertisementType{
         return euroPwLast;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return String.format("{%s, euroPwFirst : %d, euroPwMiddle : %d, euroPwLast : %d}", super.toString(), this.euroPwFirst, this.euroPwMiddle, this.euroPwLast);
     }
 }

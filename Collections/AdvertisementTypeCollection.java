@@ -9,31 +9,26 @@ public class AdvertisementTypeCollection {
     
     private ArrayList<AdvertisementType> advertisementTypes;
 
-    public AdvertisementTypeCollection()
-    {
+    public AdvertisementTypeCollection() {
         advertisementTypes = new ArrayList<AdvertisementType>();
     }
 
-    public void push(AdvertisementType type)
-    {
+    public void push(AdvertisementType type) {
         advertisementTypes.add(type);
     }
 
-    public AdvertisementType get(int index)
-    {
+    public AdvertisementType get(int index) {
         if(index < 0 || index > this.getLength() - 1)
             return null;
 
         return advertisementTypes.get(index);
     }
 
-    public int getLength()
-    {
+    public int getLength() {
         return advertisementTypes.size();
     }
 
-    public String toString()
-    {
+    public String toString() {
         String output = "AdvertisementTypes:\n";
         
         for (AdvertisementType adType : advertisementTypes) {

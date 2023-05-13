@@ -12,8 +12,7 @@ public class RadioTvAd extends Advertisement{
         return getExtraCharacteristic();
     }
 
-    public int getExtraCharacteristic()
-    {
+    public int getExtraCharacteristic() {
         return durationSeconds;
     }
 }

@@ -38,8 +38,7 @@ public abstract class Advertisement{
 
     public abstract int getExtraCharacteristic();
 
-    public String toString()
-    {
+    public String toString() {
         return String.format("{typeCode : %s, productCode : %s, durInDays : %d, details : %s, extraCharacteristic : %d}", this.typeCode, this.productCode, this.durationInDays, this.details, this.getExtraCharacteristic());
     }
 
