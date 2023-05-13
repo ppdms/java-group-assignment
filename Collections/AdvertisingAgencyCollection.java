@@ -12,7 +12,7 @@ public class AdvertisingAgencyCollection {
         advertisingAgencies = new ArrayList<AdvertisingAgency>();
     }
 
-    public void Push(AdvertisingAgency type)
+    public void push(AdvertisingAgency type)
     {
         advertisingAgencies.add(type);
     }
@@ -32,10 +32,10 @@ public class AdvertisingAgencyCollection {
 
     public String toString()
     {
-        String output = "";
+        String output = "Advertising Agencies:\n";
         
         for (AdvertisingAgency adAgency : advertisingAgencies) {
-            output += adAgency.toString() + '\n';
+            output += String.format("   %s,%n", adAgency);
         }
 
         return output;

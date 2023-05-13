@@ -22,4 +22,9 @@ public class Product {
     public String getSupplierTIN(){
         return this.supplierTIN;
     }
+
+    public String toString()
+    {
+        return String.format("{productCode : %s, description : %s, supplierTIN : %s}", this.productCode, this.description, this.supplierTIN);
+    }
 }

@@ -12,7 +12,7 @@ public class ProductCollection {
         products = new ArrayList<Product>();
     }
 
-    public void Push(Product type)
+    public void push(Product type)
     {
         products.add(type);
     }
@@ -32,10 +32,10 @@ public class ProductCollection {
 
     public String toString()
     {
-        String output = "";
+        String output = "Products:\n";
         
-        for (Product adAgency : products) {
-            output += adAgency.toString() + '\n';
+        for (Product product : products) {
+            output += String.format("   %s,%n", product);
         }
 
         return output;

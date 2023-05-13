@@ -57,4 +57,9 @@ public class RadioTVTypeAd extends AdvertisementType{
     public int getEuroPsEvening(){
         return euroPsEvening;
     }
+
+    public String toString()
+    {
+        return String.format("{%s, euroPsMorning : %d, euroPsNoon : %d, euroPsAfternoon : %d, euroPsEvening : %d}", super.toString(), this.euroPsMorning, this.euroPsNoon, this.euroPsAfternoon, this.euroPsEvening);
+    }
 }

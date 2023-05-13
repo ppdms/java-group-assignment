@@ -14,7 +14,7 @@ public class AdvertisementTypeCollection {
         advertisementTypes = new ArrayList<AdvertisementType>();
     }
 
-    public void Push(AdvertisementType type)
+    public void push(AdvertisementType type)
     {
         advertisementTypes.add(type);
     }
@@ -34,10 +34,10 @@ public class AdvertisementTypeCollection {
 
     public String toString()
     {
-        String output = "";
+        String output = "AdvertisementTypes:\n";
         
         for (AdvertisementType adType : advertisementTypes) {
-            output += adType.toString() + '\n';
+            output += String.format("   %s,%n", adType);
         }
 
         return output;

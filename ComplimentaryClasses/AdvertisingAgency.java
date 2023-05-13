@@ -22,4 +22,9 @@ public class AdvertisingAgency {
     public String getBrandName(){
         return this.brandName;
     }
+
+    public String toString()
+    {
+        return String.format("{TIN : %s, brandName : %s}", this.TIN, this.brandName);
+    }
 }

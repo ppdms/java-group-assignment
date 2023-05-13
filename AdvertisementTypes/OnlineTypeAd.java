@@ -30,4 +30,9 @@ public class OnlineTypeAd extends AdvertisementType{
     public int getPricePerExtraPage(){
         return pricePerExtraPage;
     }
+
+    public String toString()
+    {
+        return String.format("{%s, pricePerDay : %d, automaticDisplayCost : %d, pricePerExtraPage : %d}", super.toString(), this.pricePerDay, this.automaticDisplayCost, this.pricePerDay);
+    }
 }

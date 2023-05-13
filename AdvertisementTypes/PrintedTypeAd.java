@@ -48,4 +48,9 @@ public class PrintedTypeAd extends AdvertisementType{
     public int getEuroPwLast(){
         return euroPwLast;
     }
+
+    public String toString()
+    {
+        return String.format("{%s, euroPwFirst : %d, euroPwMiddle : %d, euroPwLast : %d}", super.toString(), this.euroPwFirst, this.euroPwMiddle, this.euroPwLast);
+    }
 }

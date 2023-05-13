@@ -33,4 +33,9 @@ public abstract class AdvertisementType {
     public String getAgencyTIN() {
         return agencyTIN;
     }
+
+    public String toString()
+    {
+        return String.format("adCode : %s, description : %s, agencyTIN : %s", this.adCode, this.description, this.agencyTIN);
+    }
 }

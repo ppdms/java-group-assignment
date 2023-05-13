@@ -30,10 +30,10 @@ public class AdvertisementCollection {
 
     public String toString() {
         
-        String output = "";
+        String output = "Advertisements:\n";
         
         for (Advertisement ad : advertisements) {
-            output += String.format("{ %s }%n", ad);
+            output += String.format("   %s,%n", ad);
         }
 
         return output;
