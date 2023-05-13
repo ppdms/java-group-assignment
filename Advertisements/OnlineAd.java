@@ -1,8 +1,8 @@
 package Advertisements;
-class OnlineAdvertisement extends Advertisement{
+public class OnlineAd extends Advertisement{
     private int autoShow;
 
-    public OnlineAdvertisement(String typeCode, String productCode, int durationInDays, String details, int autoShow){
+    public OnlineAd(String typeCode, String productCode, int durationInDays, String details, int autoShow){
         super(typeCode, productCode, durationInDays, details);
         this.autoShow = autoShow;
     }

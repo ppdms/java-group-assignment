@@ -1,5 +1,5 @@
 package AdvertisementTypes;
-class OnlineTypeAd extends AdvertisementType{
+public class OnlineTypeAd extends AdvertisementType{
     private int pricePerDay;
     private int automaticDisplayCost;
     private int pricePerExtraPage;
