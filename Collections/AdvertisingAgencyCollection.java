@@ -10,13 +10,6 @@ public class AdvertisingAgencyCollection extends Collection<AdvertisingAgency>{
         super();
     }
 
-    public boolean containsTIN(String TIN) {
-        for (AdvertisingAgency adAgency : super.contents) {
-            if (adAgency.getUniqueIdentifier().equals(TIN)) return true;
-        }
-        return false;
-    }
-
     public String toString() {
         String output = "Advertising Agencies:\n";
         

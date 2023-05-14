@@ -9,13 +9,6 @@ public class AdvertisementTypeCollection extends Collection<AdvertisementType>{
         super();
     }
 
-    public boolean containsTypeCode(String typeCode) {
-        for (AdvertisementType adType : super.contents) {
-            if (adType.getAdCode().equals(typeCode)) return true;
-        }
-        return false;
-    }
-
     public AdvertisementType getAdvertisementTypeByTypeCode(String typeCode) {
         for (AdvertisementType adType : super.contents) {
             if (adType.getAdCode().equals(typeCode)) return adType;

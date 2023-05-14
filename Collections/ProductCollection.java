@@ -8,13 +8,6 @@ public class ProductCollection extends Collection<Product> {
         super();
     }
 
-    public boolean containsProductCode(String productCode) {
-        for (Product product : super.contents) {
-            if (product.getProductCode().equals(productCode)) return true;
-        }
-        return false;
-    }
-
     public String toString() {
         String output = "Products:\n";
         

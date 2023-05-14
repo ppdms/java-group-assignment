@@ -9,8 +9,26 @@ public class Collection<T extends Identifiable> {
 		contents = new ArrayList<T>();
 	}
 
-    public void push(T data) {
+    public boolean containsUniqueIdentifier(String uniqueIdentifier) {
+        for (T t : contents) {
+            if (t.getUniqueIdentifier().equals(uniqueIdentifier)) return true;
+        }
+        return false;
+    }
+
+    public T push(T data) {
+        // if contents already contains some T with the same uniqueIdentifier as data,
+        // replace it with data and return the old T.
+
+        for (int i=0; i<contents.size(); i++) {
+                if (contents.get(i).getUniqueIdentifier().equals(data.getUniqueIdentifier())) {
+                    contents.add(0, data);
+                    System.out.println("collision");
+                    return contents.remove(i+1);
+                }
+        }
         contents.add(data);
+        return null;
     }
 
     public T get(int index) {

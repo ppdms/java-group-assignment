@@ -59,7 +59,7 @@ public class App {
 				case 2:
 					do {
 						choices = getManyInputs(new String[]{"Code", "Description", "Agency TIN", "Type (Online/Printed/RadioTV)"});
-					} while (!(choices[3].equals("Online") | choices[3].equals("Printed") | choices[3].equals("RadioTV")) || !(this.AdAgencies.containsTIN(choices[2])));
+					} while (!(choices[3].equals("Online") | choices[3].equals("Printed") | choices[3].equals("RadioTV")) || !(this.AdAgencies.containsUniqueIdentifier(choices[2])));
 					switch (choices[3]) {
 						case "Online":
 							details = getManyInputs(new String[]{"Price per day", "Automatic display cost", "Price per extra page"});
@@ -78,7 +78,7 @@ public class App {
 				case 3:
 					do {
 						choices = getManyInputs(new String[]{"Ad Code", "Product Code", "Duration in days", "Details", "Type (Online/Printed/RadioTV)"});
-					} while (!(choices[4].equals("Online") | choices[4].equals("Printed") | choices[4].equals("RadioTV")) || !(this.AdvertisementTypes.containsTypeCode(choices[0]) & this.Products.containsProductCode(choices[1])) || !(this.AdvertisementTypes.getAdvertisementTypeByTypeCode(choices[0]).getClass().getSimpleName().equals(choices[4]+"TypeAd")));
+					} while (!(choices[4].equals("Online") | choices[4].equals("Printed") | choices[4].equals("RadioTV")) || !(this.AdvertisementTypes.containsUniqueIdentifier(choices[0]) & this.Products.containsUniqueIdentifier(choices[1])) || !(this.AdvertisementTypes.getAdvertisementTypeByTypeCode(choices[0]).getClass().getSimpleName().equals(choices[4]+"TypeAd")));
 					switch (choices[4]) {
 						case "Online":
 							details = getManyInputs(new String[]{"Autoshow"});

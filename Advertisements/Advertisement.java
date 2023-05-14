@@ -27,11 +27,11 @@ public abstract class Advertisement implements Identifiable{
     //Getters
     @Override
     public String getUniqueIdentifier(){
-        return getProductCode();
+        return getTypeCode();
     }
     @Override
     public String getName(){
-        return getDetails();
+        return getProductCode();
     }
 
     public String getTypeCode(){
