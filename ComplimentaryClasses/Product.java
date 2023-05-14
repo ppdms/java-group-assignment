@@ -18,11 +18,11 @@ public class Product implements Identifiable{
 
     @Override
     public String getUniqueIdentifier(){
-        return null;
+        return getProductCode();
     }
     @Override
     public String getName(){
-        return null;
+        return getDescription();
     }
     public String getDescription(){
         return this.description;

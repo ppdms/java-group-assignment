@@ -103,34 +103,16 @@ public class App {
 					CollectionManager.printAdvertisementsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements);
 					break;
 				case 6:
-					for (int i=0; i < this.AdAgencies.getLength(); i++) {
-						System.out.println(i+ ": " + this.AdAgencies.get(i).getUniqueIdentifier() + ": " + this.AdAgencies.get(i).getName());
-					}
-					while (true) {
-						System.out.print("Which one? ");
-						int input = sc.nextInt();
-						if (0 <= input & input < this.AdAgencies.getLength()) {
-							System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.AdAgencies.get(input), this.AdvertisementTypes, this.Advertisements) + "€");
-							break;
-						}
-					}
+					System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements) + "€");
 					break;
 				case 7:
-					for (int i=0; i < this.Products.getLength(); i++) {
-						System.out.println(i+ ": " + this.AdAgencies.get(i).getUniqueIdentifier() + ": " + this.AdAgencies.get(i).getName());
-					}
-					while (true) {
-						System.out.print("Which one? ");
-						int input = sc.nextInt();
-						if (0 <= input & input < this.AdAgencies.getLength()) {
-							System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.AdAgencies.get(input), this.AdvertisementTypes, this.Advertisements) + "€");
-							break;
-						}
-					}
+					CollectionManager.printNumberOfAdsPerProduct(this.Products, this.Advertisements);
 					break;
 				case 8:
+					System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.Products.get(chooseOne(this.Products)), this.AdvertisementTypes, this.Advertisements) + "€");
 					break;
 				case 9:
+					CollectionManager.printCostPerProduct(this.Products, this.AdvertisementTypes, this.Advertisements);
 					break;
 				default:
 					continue repl;
