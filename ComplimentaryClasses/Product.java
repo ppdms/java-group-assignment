@@ -1,5 +1,6 @@
 package ComplimentaryClasses;
-public class Product {
+
+public class Product implements Identifiable{
     private String productCode;
     private String description;
     private String supplierTIN;
@@ -15,6 +16,14 @@ public class Product {
         return this.productCode;
     }
 
+    @Override
+    public String getUniqueIdentifier(){
+        return null;
+    }
+    @Override
+    public String getName(){
+        return null;
+    }
     public String getDescription(){
         return this.description;
     }

@@ -1,37 +1,32 @@
 package Collections;
-
-
 import AdvertisementTypes.AdvertisementType;
 
-import java.util.ArrayList;
-
-public class AdvertisementTypeCollection {
+public class AdvertisementTypeCollection extends Collection<AdvertisementType>{
     
-    private ArrayList<AdvertisementType> advertisementTypes;
+    //TODO: add checks with containsTypeCode to push to assure integrity
 
     public AdvertisementTypeCollection() {
-        advertisementTypes = new ArrayList<AdvertisementType>();
+        super();
     }
 
-    public void push(AdvertisementType type) {
-        advertisementTypes.add(type);
+    public boolean containsTypeCode(String typeCode) {
+        for (AdvertisementType adType : super.contents) {
+            if (adType.getAdCode().equals(typeCode)) return true;
+        }
+        return false;
     }
 
-    public AdvertisementType get(int index) {
-        if(index < 0 || index > this.getLength() - 1)
-            return null;
-
-        return advertisementTypes.get(index);
-    }
-
-    public int getLength() {
-        return advertisementTypes.size();
+    public AdvertisementType getAdvertisementTypeByTypeCode(String typeCode) {
+        for (AdvertisementType adType : super.contents) {
+            if (adType.getAdCode().equals(typeCode)) return adType;
+        }
+        return null;
     }
 
     public String toString() {
         String output = "AdvertisementTypes:\n";
         
-        for (AdvertisementType adType : advertisementTypes) {
+        for (AdvertisementType adType : super.contents) {
             output += String.format("   %s,%n", adType);
         }
 

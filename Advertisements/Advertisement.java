@@ -1,5 +1,7 @@
 package Advertisements;
-public abstract class Advertisement{
+import ComplimentaryClasses.Identifiable;
+
+public abstract class Advertisement implements Identifiable{
     
     // We connect classes Advertisement and AdvertisementType
     // typeCode of Advertisement == adCode of AdvertisementType
@@ -23,6 +25,15 @@ public abstract class Advertisement{
     }
 
     //Getters
+    @Override
+    public String getUniqueIdentifier(){
+        return null;
+    }
+    @Override
+    public String getName(){
+        return null;
+    }
+
     public String getTypeCode(){
         return typeCode;
     }

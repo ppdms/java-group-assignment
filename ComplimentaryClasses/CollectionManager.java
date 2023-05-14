@@ -18,7 +18,7 @@ public class CollectionManager {
             
             AdvertisementType curType = adTypes.get(i);
             
-            if(curType.getAgencyTIN().equals(agency.getTIN())) {
+            if(curType.getAgencyTIN().equals(agency.getUniqueIdentifier())) {
                 // If we find an adType published by our target agency we search in what advertisement
                 // the advertisementType links to
 
@@ -76,8 +76,8 @@ public class CollectionManager {
 
                     totalCost += cost;
 
-                    System.out.printf("Cost of advertisement %s with type %s is: %d%n", curAd, curType, cost);
-                    System.out.println();
+                    //System.out.printf("Cost of advertisement %s with type %s is: %d%n", curAd, curType, cost);
+                    //System.out.println();
                 }
             }
         }

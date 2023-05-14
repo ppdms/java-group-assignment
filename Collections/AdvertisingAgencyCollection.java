@@ -4,32 +4,23 @@ import ComplimentaryClasses.AdvertisingAgency;
 
 import java.util.ArrayList;
 
-public class AdvertisingAgencyCollection {
-    private ArrayList<AdvertisingAgency> advertisingAgencies;
+public class AdvertisingAgencyCollection extends Collection<AdvertisingAgency>{
 
     public AdvertisingAgencyCollection() {
-        advertisingAgencies = new ArrayList<AdvertisingAgency>();
+        super();
     }
 
-    public void push(AdvertisingAgency type) {
-        advertisingAgencies.add(type);
-    }
-
-    public AdvertisingAgency get(int index) {
-        if(index < 0 || index > this.getLength() - 1)
-            return null;
-
-        return advertisingAgencies.get(index);
-    }
-
-    public int getLength() {
-        return advertisingAgencies.size();
+    public boolean containsTIN(String TIN) {
+        for (AdvertisingAgency adAgency : super.contents) {
+            if (adAgency.getUniqueIdentifier().equals(TIN)) return true;
+        }
+        return false;
     }
 
     public String toString() {
         String output = "Advertising Agencies:\n";
         
-        for (AdvertisingAgency adAgency : advertisingAgencies) {
+        for (AdvertisingAgency adAgency : super.contents) {
             output += String.format("   %s,%n", adAgency);
         }
 

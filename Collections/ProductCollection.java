@@ -2,34 +2,23 @@ package Collections;
 
 import ComplimentaryClasses.Product;
 
-import java.util.ArrayList;
-
-public class ProductCollection {
-    private ArrayList<Product> products;
+public class ProductCollection extends Collection<Product> {
 
     public ProductCollection() {
-        products = new ArrayList<Product>();
+        super();
     }
 
-    public void push(Product type) {
-        products.add(type);
-    }
-
-    public Product get(int index) {
-        if(index < 0 || index > this.getLength() - 1)
-            return null;
-
-        return products.get(index);
-    }
-
-    public int getLength() {
-        return products.size();
+    public boolean containsProductCode(String productCode) {
+        for (Product product : super.contents) {
+            if (product.getProductCode().equals(productCode)) return true;
+        }
+        return false;
     }
 
     public String toString() {
         String output = "Products:\n";
         
-        for (Product product : products) {
+        for (Product product : super.contents) {
             output += String.format("   %s,%n", product);
         }
 

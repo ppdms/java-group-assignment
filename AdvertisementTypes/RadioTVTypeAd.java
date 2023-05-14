@@ -6,7 +6,7 @@ public class RadioTVTypeAd extends AdvertisementType{
     public static final String AFTERNOON = "Afternoon";
     public static final String EVENING = "Evening";
 
-    private int euroPsMorning; //Price persecond in the morning
+    private int euroPsMorning; //Price per second in the morning
     private int euroPsNoon; //Same for the noon
     private int euroPsAfternoon; // Same for the afternoon
     private int euroPsEvening; //Same for the evening

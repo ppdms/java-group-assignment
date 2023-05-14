@@ -1,5 +1,5 @@
 package ComplimentaryClasses;
-public class AdvertisingAgency {
+public class AdvertisingAgency implements Identifiable{
 
     // We connect classes AdvertisingAgency and AdvertisementType
     // TIN of AdvertisingAgency == agencyTIN of AdvertisementType
@@ -17,6 +17,15 @@ public class AdvertisingAgency {
     //Getters
     public String getTIN(){
         return this.TIN;
+    }
+
+    @Override
+    public String getUniqueIdentifier(){
+        return this.TIN;
+    }
+    @Override
+    public String getName(){
+        return this.brandName;
     }
 
     public String getBrandName(){
