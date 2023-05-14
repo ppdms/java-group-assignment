@@ -1,6 +1,6 @@
 package AdvertisementTypes;
 
-public class PrintedTypeAd extends AdvertisementType{
+public class PrintedAdType extends AdvertisementType{
 
     public static final String FIRST_PAGE = "First";
     public static final String MIDDLE_PAGE = "Middle";
@@ -10,7 +10,7 @@ public class PrintedTypeAd extends AdvertisementType{
     private int euroPwMiddle; //Same for the middle
     private int euroPwLast;  //Same for the last page
 
-    public PrintedTypeAd(String adCode, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle, int euroPwLast){
+    public PrintedAdType(String adCode, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle, int euroPwLast){
         super(adCode, description, agencyTIN);
         this.euroPwFirst = euroPwFirst;
         this.euroPwMiddle = euroPwMiddle;
@@ -21,13 +21,13 @@ public class PrintedTypeAd extends AdvertisementType{
         int euroPw;
 
         switch(pageShowcase) {
-            case PrintedTypeAd.FIRST_PAGE:
+            case PrintedAdType.FIRST_PAGE:
                 euroPw = euroPwFirst;
                 break;
-            case PrintedTypeAd.MIDDLE_PAGE:
+            case PrintedAdType.MIDDLE_PAGE:
                 euroPw = euroPwMiddle;
                 break;
-            case PrintedTypeAd.LAST_PAGE:
+            case PrintedAdType.LAST_PAGE:
                 euroPw = euroPwLast;
                 break;
             default:

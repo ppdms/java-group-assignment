@@ -27,7 +27,7 @@ public abstract class Advertisement implements Identifiable{
     //Getters
     @Override
     public String getUniqueIdentifier(){
-        return getTypeCode();
+        return Integer.toString(this.hashCode());
     }
     @Override
     public String getName(){

@@ -1,10 +1,10 @@
 package AdvertisementTypes;
-public class OnlineTypeAd extends AdvertisementType{
+public class OnlineAdType extends AdvertisementType{
     private int pricePerDay;
     private int automaticDisplayCost;
     private int pricePerExtraPage;
 
-    public OnlineTypeAd(String adCode, String description, String agencyTIN,int pricePerDay, int automaticDisplayCost, int pricePerExtraPage){
+    public OnlineAdType(String adCode, String description, String agencyTIN,int pricePerDay, int automaticDisplayCost, int pricePerExtraPage){
         super(adCode, description, agencyTIN);
         this.pricePerDay = pricePerDay;
         this.automaticDisplayCost = automaticDisplayCost;

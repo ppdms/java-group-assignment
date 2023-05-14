@@ -3,8 +3,6 @@ import AdvertisementTypes.AdvertisementType;
 
 public class AdvertisementTypeCollection extends Collection<AdvertisementType>{
     
-    //TODO: add checks with containsTypeCode to push to assure integrity
-
     public AdvertisementTypeCollection() {
         super();
     }

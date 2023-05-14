@@ -1,5 +1,5 @@
 package AdvertisementTypes;
-public class RadioTVTypeAd extends AdvertisementType{
+public class RadioTVAdType extends AdvertisementType{
 
     public static final String MORNING = "Morning";
     public static final String NOON = "Noon";
@@ -11,7 +11,7 @@ public class RadioTVTypeAd extends AdvertisementType{
     private int euroPsAfternoon; // Same for the afternoon
     private int euroPsEvening; //Same for the evening
 
-    public RadioTVTypeAd(String adCode, String description, String agencyTIN, int euroPsMorning, int euroPsNoon,
+    public RadioTVAdType(String adCode, String description, String agencyTIN, int euroPsMorning, int euroPsNoon,
     int euroPsAfternoon, int euroPsEvening){
         super(adCode, description, agencyTIN);
         this.euroPsMorning = euroPsMorning;
@@ -24,16 +24,16 @@ public class RadioTVTypeAd extends AdvertisementType{
         int pricePs;
 
         switch(dayTime) {
-            case RadioTVTypeAd.MORNING:
+            case RadioTVAdType.MORNING:
                 pricePs = euroPsMorning;
                 break;
-            case RadioTVTypeAd.NOON:
+            case RadioTVAdType.NOON:
                 pricePs = euroPsNoon;
                 break;
-            case RadioTVTypeAd.AFTERNOON:
+            case RadioTVAdType.AFTERNOON:
                 pricePs = euroPsAfternoon;
                 break;
-            case RadioTVTypeAd.EVENING:
+            case RadioTVAdType.EVENING:
                 pricePs = euroPsEvening;
                 break;
             default:

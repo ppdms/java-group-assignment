@@ -23,7 +23,6 @@ public class Collection<T extends Identifiable> {
         for (int i=0; i<contents.size(); i++) {
                 if (contents.get(i).getUniqueIdentifier().equals(data.getUniqueIdentifier())) {
                     contents.add(0, data);
-                    System.out.println("collision");
                     return contents.remove(i+1);
                 }
         }
