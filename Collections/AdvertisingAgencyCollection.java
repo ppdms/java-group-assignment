@@ -1,8 +1,5 @@
 package Collections;
-
 import ComplimentaryClasses.AdvertisingAgency;
-
-import java.util.ArrayList;
 
 public class AdvertisingAgencyCollection extends Collection<AdvertisingAgency>{
 

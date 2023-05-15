@@ -1,5 +1,4 @@
 package Collections;
-
 import ComplimentaryClasses.Product;
 
 public class ProductCollection extends Collection<Product> {

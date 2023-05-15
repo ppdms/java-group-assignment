@@ -53,9 +53,7 @@ public class App {
 
 	void repl() {
 		Scanner sc = new Scanner(System.in);
-		String choice;
 		String[] choices, details;
-		repl:
 		while (true) {
 			System.out.print("Options:\n"
 							+ "[1] Enter new advertising agency\n"
@@ -67,68 +65,69 @@ public class App {
 							+ "[7] Display amount of advertisements per product\n"
 							+ "[8] Calculate a given product's advertising cost\n"
 							+ "[9] Display cost of advertising per product\n");
-			switch (readNextInteger("Your choice")) {
-				case 1:
-					choices = getManyInputs(new String[]{"TIN", "Brand name"}, new Boolean[]{false, false});
-					this.AdAgencies.push(new AdvertisingAgency(choices[0], choices[1]));
-					break;
-				case 2:
-					do {
-						choices = getManyInputs(new String[]{"Code", "Description", "Agency TIN", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, false, false});
-					} while (!(choices[3].equals("Online") | choices[3].equals("Printed") | choices[3].equals("RadioTV")) || !(this.AdAgencies.containsUniqueIdentifier(choices[2])));
-					switch (choices[3]) {
-						case "Online":
-							details = getManyInputs(new String[]{"Price per day", "Automatic display cost", "Price per extra page"}, new Boolean[]{true, true, true});
-							this.AdvertisementTypes.push(new OnlineAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
-							break;
-						case "Printed":
-							details = getManyInputs(new String[]{"Price per word on the first page", "Price per word in the middle of newspaper", "Price per word on the last page"}, new Boolean[]{true, true, true});
-							this.AdvertisementTypes.push(new PrintedAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
-							break;
-						case "RadioTV":
-							details = getManyInputs(new String[]{"Price per second in the morning", "Price per second at noon", "Price per second in the afternoon", "Price per second in the evening"}, new Boolean[]{true, true, true, true});
-							this.AdvertisementTypes.push(new RadioTVAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3])));
-							break;
-					}
-					break;
-				case 3:
-					do {
-						choices = getManyInputs(new String[]{"Ad Code", "Product Code", "Duration in days", "Details", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, true, false, false});
-					} while (!(choices[4].equals("Online") | choices[4].equals("Printed") | choices[4].equals("RadioTV")) || !(this.AdvertisementTypes.containsUniqueIdentifier(choices[0]) & this.Products.containsUniqueIdentifier(choices[1])) || !(this.AdvertisementTypes.getAdvertisementTypeByTypeCode(choices[0]).getClass().getSimpleName().equals(choices[4]+"AdType")));
-					switch (choices[4]) {
-						case "Online":
-							this.Advertisements.push(new OnlineAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Autoshow")));
-							break;
-						case "Printed":
-							this.Advertisements.push(new PrintedAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Words")));
-							break;
-						case "RadioTV":
-							this.Advertisements.push(new RadioTvAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Duration in seconds")));
-							break;
-					}
-					break;
-				case 4:
-					for (int i=0; i < this.AdAgencies.getLength(); i++) {
-						CollectionManager.printAdvertisementsOf(this.AdAgencies.get(i), this.AdvertisementTypes, this.Advertisements);
-					}
-					break;
-				case 5:
-					CollectionManager.printAdvertisementsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements);
-					break;
-				case 6:
-					System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements) + "€");
-					break;
-				case 7:
-					CollectionManager.printNumberOfAdsPerProduct(this.Products, this.Advertisements);
-					break;
-				case 8:
-					System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.Products.get(chooseOne(this.Products)), this.AdvertisementTypes, this.Advertisements) + "€");
-					break;
-				case 9:
-					CollectionManager.printCostPerProduct(this.Products, this.AdvertisementTypes, this.Advertisements);
-					break;
-				default:
-					continue repl;
+			choice:
+			while (true) {
+				switch (readNextInteger("Your choice")) {
+					case 1:
+						choices = getManyInputs(new String[]{"TIN", "Brand name"}, new Boolean[]{false, false});
+						this.AdAgencies.push(new AdvertisingAgency(choices[0], choices[1]));
+						break choice;
+					case 2:
+						do {
+							choices = getManyInputs(new String[]{"Code", "Description", "Agency TIN", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, false, false});
+						} while (!(choices[3].equals("Online") | choices[3].equals("Printed") | choices[3].equals("RadioTV")) || !(this.AdAgencies.containsUniqueIdentifier(choices[2])));
+						switch (choices[3]) {
+							case "Online":
+								details = getManyInputs(new String[]{"Price per day", "Automatic display cost", "Price per extra page"}, new Boolean[]{true, true, true});
+								this.AdvertisementTypes.push(new OnlineAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
+								break;
+							case "Printed":
+								details = getManyInputs(new String[]{"Price per word on the first page", "Price per word in the middle of newspaper", "Price per word on the last page"}, new Boolean[]{true, true, true});
+								this.AdvertisementTypes.push(new PrintedAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
+								break;
+							case "RadioTV":
+								details = getManyInputs(new String[]{"Price per second in the morning", "Price per second at noon", "Price per second in the afternoon", "Price per second in the evening"}, new Boolean[]{true, true, true, true});
+								this.AdvertisementTypes.push(new RadioTVAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3])));
+								break;
+						}
+						break choice;
+					case 3:
+						do {
+							choices = getManyInputs(new String[]{"Ad Code", "Product Code", "Duration in days", "Details", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, true, false, false});
+						} while (!(choices[4].equals("Online") | choices[4].equals("Printed") | choices[4].equals("RadioTV")) || !(this.AdvertisementTypes.containsUniqueIdentifier(choices[0]) & this.Products.containsUniqueIdentifier(choices[1])) || !(this.AdvertisementTypes.getAdvertisementTypeByTypeCode(choices[0]).getClass().getSimpleName().equals(choices[4]+"AdType")));
+						switch (choices[4]) {
+							case "Online":
+								this.Advertisements.push(new OnlineAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Autoshow")));
+								break;
+							case "Printed":
+								this.Advertisements.push(new PrintedAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Words")));
+								break;
+							case "RadioTV":
+								this.Advertisements.push(new RadioTVAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Duration in seconds")));
+								break;
+						}
+						break choice;
+					case 4:
+						for (int i=0; i < this.AdAgencies.getLength(); i++) {
+							CollectionManager.printAdvertisementsOf(this.AdAgencies.get(i), this.AdvertisementTypes, this.Advertisements);
+						}
+						break choice;
+					case 5:
+						CollectionManager.printAdvertisementsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements);
+						break choice;
+					case 6:
+						System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdvertisementTypes, this.Advertisements) + "€");
+						break choice;
+					case 7:
+						CollectionManager.printNumberOfAdsPerProduct(this.Products, this.Advertisements);
+						break choice;
+					case 8:
+						System.out.println("Cost is: " + CollectionManager.printAdvertisementCostFor(this.Products.get(chooseOne(this.Products)), this.AdvertisementTypes, this.Advertisements) + "€");
+						break choice;
+					case 9:
+						CollectionManager.printCostPerProduct(this.Products, this.AdvertisementTypes, this.Advertisements);
+						break choice;
+				}
 			}
 			System.out.println();
 		}
@@ -172,7 +171,7 @@ public class App {
 			}
 
 			for (String typecode : new String[]{"P1G8TAB8", "O6EIHDNV", "4SCIB0J3"}) {
-				this.Advertisements.push(new RadioTvAd(typecode, this.Products.get(i).getProductCode(), (int) (100*Math.random()), (new String[]{"Morning", "Noon", "Afternoon", "Evening"})[(int) (3*Math.random())], (int) (60*Math.random())));
+				this.Advertisements.push(new RadioTVAd(typecode, this.Products.get(i).getProductCode(), (int) (100*Math.random()), (new String[]{"Morning", "Noon", "Afternoon", "Evening"})[(int) (3*Math.random())], (int) (60*Math.random())));
 			}
 		}
 	}
