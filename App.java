@@ -57,12 +57,12 @@ public class App {
 		while (true) {
 			System.out.print("Options:\n"
 							+ "[1] Enter new advertising agency\n"
-							+ "[2] Enter new Ad type\n"
-							+ "[3] Enter new Ad\n"
-							+ "[4] Display all Ads\n"
-							+ "[5] Display all Ads of a given advertising agency\n"
-							+ "[6] Calculate the costs of a given advertising agency's Ads\n"
-							+ "[7] Display amount of Ads per product\n"
+							+ "[2] Enter new advertisement type\n"
+							+ "[3] Enter new advertisement\n"
+							+ "[4] Display all advertisements\n"
+							+ "[5] Display all advertisements of a given advertising agency\n"
+							+ "[6] Calculate the costs of a given advertising agency's advertisements\n"
+							+ "[7] Display amount of advertisements per product\n"
 							+ "[8] Calculate a given product's advertising cost\n"
 							+ "[9] Display cost of advertising per product\n");
 			choice:
