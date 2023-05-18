@@ -1,15 +1,15 @@
-package Advertisements;
+package Ads;
 import ComplimentaryClasses.Identifiable;
 
-public abstract class Advertisement implements Identifiable{
+public abstract class Ad implements Identifiable{
     
-    // We connect classes Advertisement and AdvertisementType
-    // typeCode of Advertisement == adCode of AdvertisementType
+    // We connect classes Ad and AdType
+    // typeCode of Ad == adCode of AdType
 
     private String typeCode; 
 
-    // We also connect classes Advertisement and Product
-    // productCode in Advertisement == productCode in Product
+    // We also connect classes Ad and Product
+    // productCode in Ad == productCode in Product
 
     private String productCode;
 
@@ -17,7 +17,7 @@ public abstract class Advertisement implements Identifiable{
     private int durationInDays;
     private String details;
 
-    public Advertisement(String typeCode, String productCode, int durationInDays, String details){
+    public Ad(String typeCode, String productCode, int durationInDays, String details){
         this.typeCode = typeCode;
         this.productCode = productCode;
         this.durationInDays = durationInDays;

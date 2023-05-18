@@ -1,30 +1,30 @@
 package ComplimentaryClasses;
 
-import Collections.AdvertisementCollection;
-import Collections.AdvertisementTypeCollection;
+import Collections.AdCollection;
+import Collections.AdTypeCollection;
 import Collections.ProductCollection;
 
-import Advertisements.Advertisement;
+import Ads.Ad;
 
-import AdvertisementTypes.AdvertisementType;
+import AdTypes.AdType;
 
 public class CollectionManager {
 
-    private static AdvertisementCollection findAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads) {
+    private static AdCollection findAdsOf(AdAgency agency, AdTypeCollection adTypes, AdCollection ads) {
 
-        AdvertisementCollection adsOfAgency = new AdvertisementCollection();
+        AdCollection adsOfAgency = new AdCollection();
 
         for (int i = 0; i < adTypes.getLength(); i++) {
             
-            AdvertisementType curType = adTypes.get(i);
+            AdType curType = adTypes.get(i);
             
             if(curType.getAgencyTIN().equals(agency.getUniqueIdentifier())) {
-                // If we find an adType published by our target agency we search in what advertisement
-                // the advertisementType links to
+                // If we find an adType published by our target agency we search in what Ad
+                // the AdType links to
 
                 for(int j = 0; j < ads.getLength(); j++) {
 
-                    Advertisement curAd = ads.get(j);
+                    Ad curAd = ads.get(j);
 
                     if(curType.getAdCode().equals(curAd.getTypeCode())) {
                         // We have found an agency's ad
@@ -37,7 +37,7 @@ public class CollectionManager {
         return adsOfAgency;
     }
 
-    public static void printAdvertisementsOf(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static void printAdsOf(AdAgency agency, AdTypeCollection adTypes, AdCollection ads)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
@@ -45,11 +45,11 @@ public class CollectionManager {
             return;
         }
 
-        AdvertisementCollection adsToPrint = CollectionManager.findAdvertisementsOf(agency, adTypes, ads);
+        AdCollection adsToPrint = CollectionManager.findAdsOf(agency, adTypes, ads);
         
         if(adsToPrint.getLength() == 0)
         {
-            System.out.println("Could not find any advertisements of agent: " + agency);
+            System.out.println("Could not find any Ads of agent: " + agency);
             return;
         }
 
@@ -58,17 +58,17 @@ public class CollectionManager {
         }
     }
 
-    private static int calculateTotalCostOf(AdvertisementCollection ads, AdvertisementTypeCollection adTypes)
+    private static int calculateTotalCostOf(AdCollection ads, AdTypeCollection adTypes)
     {
         int totalCost = 0;
 
         for(int i = 0; i < ads.getLength(); i++)
         {
-            Advertisement curAd = ads.get(i);
+            Ad curAd = ads.get(i);
 
             for(int j = 0; j < adTypes.getLength(); j++)
             {
-                AdvertisementType curType = adTypes.get(j);
+                AdType curType = adTypes.get(j);
 
                 if(curAd.getTypeCode().equals(curType.getAdCode()))
                 {
@@ -76,7 +76,7 @@ public class CollectionManager {
 
                     totalCost += cost;
 
-                    //System.out.printf("Cost of advertisement %s with type %s is: %d%n", curAd, curType, cost);
+                    //System.out.printf("Cost of Ad %s with type %s is: %d%n", curAd, curType, cost);
                     //System.out.println();
                 }
             }
@@ -85,7 +85,7 @@ public class CollectionManager {
         return totalCost;
     }
 
-    public static int printAdvertisementCostFor(AdvertisingAgency agency, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static int printAdCostFor(AdAgency agency, AdTypeCollection adTypes, AdCollection ads)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
@@ -93,18 +93,18 @@ public class CollectionManager {
             return 0;
         }
 
-        AdvertisementCollection adsToCalculateCost = CollectionManager.findAdvertisementsOf(agency, adTypes, ads);
+        AdCollection adsToCalculateCost = CollectionManager.findAdsOf(agency, adTypes, ads);
 
         if(adsToCalculateCost.getLength() == 0)
         {
-            System.out.println("Could not find any advertisements of agent: " + agency);
+            System.out.println("Could not find any Ads of agent: " + agency);
             return 0;
         }
 
         return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
     }
 
-    public static void printNumberOfAdsPerProduct(ProductCollection products, AdvertisementCollection ads)
+    public static void printNumberOfAdsPerProduct(ProductCollection products, AdCollection ads)
     {
         if(products.getLength() == 0 || ads.getLength() == 0)
         {
@@ -131,7 +131,7 @@ public class CollectionManager {
 
             for(int j = 0; j < ads.getLength(); j++)
             {
-                Advertisement curAd = ads.get(j);
+                Ad curAd = ads.get(j);
 
                 if(curProduct.getProductCode().equals(curAd.getProductCode()))
                 {
@@ -161,21 +161,21 @@ public class CollectionManager {
 
         for(int i = 0; i < countsOfAdsPerProduct.length; i++)
         {
-            System.out.printf("Number of Advertisements for Product %s is : %d%n", productDescriptions[i], countsOfAdsPerProduct[i]);
+            System.out.printf("Number of Ads for Product %s is : %d%n", productDescriptions[i], countsOfAdsPerProduct[i]);
         }
     }
 
-    private static AdvertisementCollection findAdvertisementsOf(Product product, AdvertisementTypeCollection adTypes, AdvertisementCollection ads) {
+    private static AdCollection findAdsOf(Product product, AdTypeCollection adTypes, AdCollection ads) {
 
-        AdvertisementCollection adsOfProduct = new AdvertisementCollection();
+        AdCollection adsOfProduct = new AdCollection();
 
         for (int i = 0; i < ads.getLength(); i++) {
             
-            Advertisement curAd = ads.get(i);
+            Ad curAd = ads.get(i);
             
             if(ads.get(i).getProductCode().equals(product.getProductCode())) {
-                // If we find an adType published by our target agency we search in what advertisement
-                // the advertisementType links to
+                // If we find an adType published by our target agency we search in what Ad
+                // the AdType links to
                 adsOfProduct.push(curAd);
             }
         }
@@ -183,7 +183,7 @@ public class CollectionManager {
         return adsOfProduct;
     }
 
-    public static int printAdvertisementCostFor(Product product, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static int printAdCostFor(Product product, AdTypeCollection adTypes, AdCollection ads)
     {
 
         if(product == null || adTypes.getLength() == 0 || ads.getLength() == 0)
@@ -192,18 +192,18 @@ public class CollectionManager {
             return 0;
         }
 
-        AdvertisementCollection adsToCalculateCost = CollectionManager.findAdvertisementsOf(product, adTypes, ads);
+        AdCollection adsToCalculateCost = CollectionManager.findAdsOf(product, adTypes, ads);
 
         if(adsToCalculateCost.getLength() == 0)
         {
-            System.out.println("Could not find any advertisements of product: " + product);
+            System.out.println("Could not find any Ads of product: " + product);
             return 0;
         }
 
         return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
     }
 
-    public static void printCostPerProduct(ProductCollection products, AdvertisementTypeCollection adTypes, AdvertisementCollection ads)
+    public static void printCostPerProduct(ProductCollection products, AdTypeCollection adTypes, AdCollection ads)
     {
         if(products.getLength() == 0 || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
@@ -230,13 +230,13 @@ public class CollectionManager {
 
             for(int j = 0; j < ads.getLength(); j++)
             {
-                Advertisement curAd = ads.get(j);
+                Ad curAd = ads.get(j);
 
                 if(curProduct.getProductCode().equals(curAd.getProductCode()))
                 {
                     for(int k = 0; k < adTypes.getLength(); k++)
                     {
-                        AdvertisementType curType = adTypes.get(k);
+                        AdType curType = adTypes.get(k);
 
                         if(curType.getAdCode().equals(curAd.getTypeCode()))
                         {
@@ -268,7 +268,7 @@ public class CollectionManager {
 
         for(int i = 0; i < costsPerProduct.length; i++)
         {
-            System.out.printf("Cost of Advertisements for Product %s is : %d%n", productDescriptions[i], costsPerProduct[i]);
+            System.out.printf("Cost of Ads for Product %s is : %d%n", productDescriptions[i], costsPerProduct[i]);
         }
     }
 }

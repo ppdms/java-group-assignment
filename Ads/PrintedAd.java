@@ -1,5 +1,5 @@
-package Advertisements;
-public class PrintedAd extends Advertisement{
+package Ads;
+public class PrintedAd extends Ad{
     private int words; // Extra characteristic
     public PrintedAd(String typeCode, String productCode, int durationInDays, String details, int words){
         super(typeCode, productCode, durationInDays, details);

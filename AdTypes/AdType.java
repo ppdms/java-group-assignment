@@ -1,27 +1,27 @@
-package AdvertisementTypes;
+package AdTypes;
 import ComplimentaryClasses.Identifiable;
 
-public abstract class AdvertisementType implements Identifiable {
+public abstract class AdType implements Identifiable {
     
-    // We connect classes AdvertisementType and Advertisement
-    // adCode of AdvertisementType == typeCode of Advertisement
+    // We connect classes AdType and Ad
+    // adCode of AdType == typeCode of Ad
     
     private String adCode;
     
-    // We connect classes AdvertisementType and AdvertisingAgency 
-    // agencyTIN of AdvertisementType == TIN of AdvertisingAgency
+    // We connect classes AdType and AdAgency 
+    // agencyTIN of AdType == TIN of AdAgency
 
     private String agencyTIN;
     
     private String description;
 
-    public AdvertisementType(String adCode, String description, String agencyTIN){
+    public AdType(String adCode, String description, String agencyTIN){
         this.adCode = adCode;
         this.description = description;
         this.agencyTIN = agencyTIN;
     }
 
-    // Go to subclasses to see what extraCharacteristic mean for a specific type of advertisement
+    // Go to subclasses to see what extraCharacteristic mean for a specific type of Ad
     public abstract int cost(String details, int extraCharacteristic, int durationInDays);
 
     //Getters

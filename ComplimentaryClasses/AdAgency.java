@@ -1,18 +1,18 @@
 package ComplimentaryClasses;
-public class AdvertisingAgency implements Identifiable{
+public class AdAgency implements Identifiable{
 
-    // We connect classes AdvertisingAgency and AdvertisementType
-    // TIN of AdvertisingAgency == agencyTIN of AdvertisementType
+    // We connect classes AdAgency and AdType
+    // TIN of AdAgency == agencyTIN of AdType
 
     String TIN;
     String brandName;
 
-    public AdvertisingAgency(String TIN, String brandName){
+    public AdAgency(String TIN, String brandName){
         this.TIN = TIN;
         this.brandName = brandName;
     }
 
-    AdvertisingAgency(){}
+    AdAgency(){}
 
     //Getters
     public String getTIN(){

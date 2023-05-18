@@ -1,5 +1,5 @@
-package Advertisements;
-public class RadioTVAd extends Advertisement{
+package Ads;
+public class RadioTVAd extends Ad{
     private int durationSeconds; // Extra characteristic
 
     public RadioTVAd(String typeCode, String productCode, int durationInDays, String details, int durationSeconds){

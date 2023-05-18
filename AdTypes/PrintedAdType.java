@@ -1,6 +1,6 @@
-package AdvertisementTypes;
+package AdTypes;
 
-public class PrintedAdType extends AdvertisementType{
+public class PrintedAdType extends AdType{
 
     public static final String FIRST_PAGE = "First";
     public static final String MIDDLE_PAGE = "Middle";

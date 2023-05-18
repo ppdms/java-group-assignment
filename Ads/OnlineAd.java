@@ -1,5 +1,5 @@
-package Advertisements;
-public class OnlineAd extends Advertisement{
+package Ads;
+public class OnlineAd extends Ad{
     private int autoShow;
 
     public OnlineAd(String typeCode, String productCode, int durationInDays, String details, int autoShow){

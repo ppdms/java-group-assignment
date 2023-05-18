@@ -1,5 +1,5 @@
-package AdvertisementTypes;
-public class RadioTVAdType extends AdvertisementType{
+package AdTypes;
+public class RadioTVAdType extends AdType{
 
     public static final String MORNING = "Morning";
     public static final String NOON = "Noon";

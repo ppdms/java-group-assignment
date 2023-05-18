@@ -1,16 +1,16 @@
 package Collections;
-import ComplimentaryClasses.AdvertisingAgency;
+import ComplimentaryClasses.AdAgency;
 
-public class AdvertisingAgencyCollection extends Collection<AdvertisingAgency>{
+public class AdAgencyCollection extends Collection<AdAgency>{
 
-    public AdvertisingAgencyCollection() {
+    public AdAgencyCollection() {
         super();
     }
 
     public String toString() {
         String output = "Advertising Agencies:\n";
         
-        for (AdvertisingAgency adAgency : super.contents) {
+        for (AdAgency adAgency : super.contents) {
             output += String.format("   %s,%n", adAgency);
         }
 
