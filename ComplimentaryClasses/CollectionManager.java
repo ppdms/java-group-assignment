@@ -1,8 +1,6 @@
 package ComplimentaryClasses;
 
-import Collections.AdCollection;
-import Collections.AdTypeCollection;
-import Collections.ProductCollection;
+import Collections.Collection;
 
 import Ads.Ad;
 
@@ -10,15 +8,44 @@ import AdTypes.AdType;
 
 public class CollectionManager {
 
-    private static AdCollection findAdsOf(AdAgency agency, AdTypeCollection adTypes, AdCollection ads) {
+    private static Collection<Ad> ads;
+    private static Collection<AdType> adTypes;
+    private static Collection<AdAgency> agencies;
+    private static Collection<Product> products;
 
-        AdCollection adsOfAgency = new AdCollection();
+    // Before using collection manager make sure to bind the collections to it
+    // This is used so we dont have to pass Collections in the functions all the time
+    // Do this once at the start of the program
+
+    // If we want to use different collections we have to bind another collection set for our functions to operate on them
+
+    public static void bind(Collection<Ad> ads, Collection<AdType> adTypes, Collection<AdAgency> agencies, Collection<Product> products)
+    {
+        CollectionManager.ads = ads;
+        CollectionManager.adTypes = adTypes;
+        CollectionManager.agencies = agencies;
+        CollectionManager.products = products;
+    }
+
+    public static AdType getAdTypeByTypeCode(String typeCode) {
+
+        for(int i = 0; i < adTypes.getLength(); i++)
+        {
+            if(adTypes.get(i).getAdCode().equals(typeCode)) return adTypes.get(i);
+        }
+        
+        return null;
+    }
+
+    private static Collection<Ad> findAdsOf(AdAgency agency) {
+
+        Collection<Ad> adsOfAgency = new Collection<Ad>(Ad.class);
 
         for (int i = 0; i < adTypes.getLength(); i++) {
             
             AdType curType = adTypes.get(i);
             
-            if(curType.getAgencyTIN().equals(agency.getUniqueIdentifier())) {
+            if(curType.getAgencyTIN().equals(agency.getTIN())) {
                 // If we find an adType published by our target agency we search in what Ad
                 // the AdType links to
 
@@ -37,7 +64,7 @@ public class CollectionManager {
         return adsOfAgency;
     }
 
-    public static void printAdsOf(AdAgency agency, AdTypeCollection adTypes, AdCollection ads)
+    public static void printAdsOf(AdAgency agency)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
@@ -45,7 +72,7 @@ public class CollectionManager {
             return;
         }
 
-        AdCollection adsToPrint = CollectionManager.findAdsOf(agency, adTypes, ads);
+        Collection<Ad> adsToPrint = CollectionManager.findAdsOf(agency);
         
         if(adsToPrint.getLength() == 0)
         {
@@ -57,14 +84,14 @@ public class CollectionManager {
             System.out.println(adsToPrint.get(i));
         }
     }
-
-    private static int calculateTotalCostOf(AdCollection ads, AdTypeCollection adTypes)
+    // 💀
+    private static int calculateTotalCostOf(Collection<Ad> m_ads)
     {
         int totalCost = 0;
 
-        for(int i = 0; i < ads.getLength(); i++)
+        for(int i = 0; i < m_ads.getLength(); i++)
         {
-            Ad curAd = ads.get(i);
+            Ad curAd = m_ads.get(i);
 
             for(int j = 0; j < adTypes.getLength(); j++)
             {
@@ -85,7 +112,7 @@ public class CollectionManager {
         return totalCost;
     }
 
-    public static int printAdCostFor(AdAgency agency, AdTypeCollection adTypes, AdCollection ads)
+    public static int printAdCostFor(AdAgency agency)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
@@ -93,7 +120,7 @@ public class CollectionManager {
             return 0;
         }
 
-        AdCollection adsToCalculateCost = CollectionManager.findAdsOf(agency, adTypes, ads);
+        Collection<Ad> adsToCalculateCost = CollectionManager.findAdsOf(agency);
 
         if(adsToCalculateCost.getLength() == 0)
         {
@@ -101,10 +128,10 @@ public class CollectionManager {
             return 0;
         }
 
-        return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
+        return CollectionManager.calculateTotalCostOf(adsToCalculateCost);
     }
 
-    public static void printNumberOfAdsPerProduct(ProductCollection products, AdCollection ads)
+    public static void printNumberOfAdsPerProduct()
     {
         if(products.getLength() == 0 || ads.getLength() == 0)
         {
@@ -140,7 +167,7 @@ public class CollectionManager {
             }
         }
 
-        // Sort array
+        // Sort array 💀
 
         for(int i = 1; i < countsOfAdsPerProduct.length; i++)
         {
@@ -165,9 +192,9 @@ public class CollectionManager {
         }
     }
 
-    private static AdCollection findAdsOf(Product product, AdTypeCollection adTypes, AdCollection ads) {
+    private static Collection<Ad> findAdsOf(Product product) {
 
-        AdCollection adsOfProduct = new AdCollection();
+        Collection<Ad> adsOfProduct = new Collection<Ad>(Ad.class);
 
         for (int i = 0; i < ads.getLength(); i++) {
             
@@ -183,7 +210,7 @@ public class CollectionManager {
         return adsOfProduct;
     }
 
-    public static int printAdCostFor(Product product, AdTypeCollection adTypes, AdCollection ads)
+    public static int printAdCostFor(Product product)
     {
 
         if(product == null || adTypes.getLength() == 0 || ads.getLength() == 0)
@@ -192,7 +219,7 @@ public class CollectionManager {
             return 0;
         }
 
-        AdCollection adsToCalculateCost = CollectionManager.findAdsOf(product, adTypes, ads);
+        Collection<Ad> adsToCalculateCost = CollectionManager.findAdsOf(product);
 
         if(adsToCalculateCost.getLength() == 0)
         {
@@ -200,10 +227,10 @@ public class CollectionManager {
             return 0;
         }
 
-        return CollectionManager.calculateTotalCostOf(adsToCalculateCost, adTypes);
+        return CollectionManager.calculateTotalCostOf(adsToCalculateCost);
     }
 
-    public static void printCostPerProduct(ProductCollection products, AdTypeCollection adTypes, AdCollection ads)
+    public static void printCostPerProduct()
     {
         if(products.getLength() == 0 || adTypes.getLength() == 0 || ads.getLength() == 0)
         {

@@ -5,9 +5,23 @@ import java.util.ArrayList;
 public class Collection<T extends Identifiable> {
 	protected ArrayList<T> contents;
 
-	Collection() {
+    private int sequenceNumber;
+    private Class<T> itemsClassType;
+
+	public Collection(Class<T> itemsClassType) {
 		contents = new ArrayList<T>();
+        this.itemsClassType = itemsClassType;
+        this.sequenceNumber = 0;
 	}
+
+    public String getSequenceNumber()
+    {
+        String current = Integer.toString(sequenceNumber);
+
+        sequenceNumber++;
+
+        return current;
+    }
 
     public boolean containsUniqueIdentifier(String uniqueIdentifier) {
         for (T t : contents) {
@@ -41,4 +55,13 @@ public class Collection<T extends Identifiable> {
         return contents.size();
     }
 
+    public String toString() {
+        String output = itemsClassType.getName() + "(s):\n";
+        
+        for (T item : contents) {
+            output += String.format("   %s,%n", item.toString());
+        }
+
+        return output;
+    }
 }

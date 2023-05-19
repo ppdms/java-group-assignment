@@ -8,20 +8,58 @@
 
 import Ads.*;
 import AdTypes.*;
-import Collections.*;
+import Collections.Collection;
 import ComplimentaryClasses.*;
 import java.lang.Math;
 import java.util.Scanner;
 
 public class mainApp {
-	public AdAgencyCollection AdAgencies;
-	public ProductCollection Products;
-	public AdTypeCollection AdTypes;
-	public AdCollection Ads;
+
+	private static final int ONLINE = 0;
+	private static final int PRINTED = 1;
+	private static final int RADIO_TV = 2;
+
+
+	public Collection<AdAgency> AdAgencies;
+	public Collection<Product> Products;
+	public Collection<AdType> AdTypes;
+	public Collection<Ad> Ads;
 
 	public static Scanner sc;
 
-	public static int readNextInteger(String prompt) {
+	public static int randomInteger(int min, int max)
+	{
+        if(min > max)
+        {
+            System.out.println("Error: Minimum bigger than maximum returning 0");
+            return 0;
+        }
+		// math.random = 0.0 to 0.999 
+		// 
+		// if max = 10 and min = 3
+		// max - min + 1 = 8 
+		// thus we get a random number from 0.0 to 0.99999 and 
+		// get it to the range 0.0 to 7.999
+		// then add minimum = 3 
+		// our final number is in range 3.0 to 10.999
+		// in the end we floor the value and we get a value from min = 3.0 to max = 10.0 
+		return (int)(Math.random() * (max + 1 - min) + min);
+	}
+
+	public static int randomInteger(int max)
+	{
+		return randomInteger(0, max);
+	}
+
+	public static int randomInteger()
+	{
+		return randomInteger(0, 1);
+	}
+
+	// Reads an integer with a prompt text
+	// if a non integer is given then we retry getting input again with the same prompt
+
+	public static int readNextIntegerWithPrompt(String prompt) {
 
 		while (true) {
 			try {
@@ -33,12 +71,19 @@ public class mainApp {
 		}
 	}
 
+	// Get a string list of inputs we also pass isNumerical boolean list
+	// to indicate what each of the inputs should be
+	// if an element of isNumerical is true then that means we need to get an Integer value 
+	// thus we call function readNextInteger which ensures we get an integer for input and convert it to String
+	// else it gets a string for input
+
 	String[] getManyInputs(String[] prompts, Boolean[] isNumerical) {
 
 		String[] results = new String[prompts.length];
 		for (int i=0; i<prompts.length; i++) {
 			if (isNumerical[i]) {
-				results[i] = Integer.toString(readNextInteger(prompts[i]));
+
+				results[i] = Integer.toString(readNextIntegerWithPrompt(prompts[i]));
 				continue;
 			} else {
 				System.out.print("\n" + prompts[i]+": ");
@@ -48,20 +93,75 @@ public class mainApp {
 		return results;
 	}
 
-	int chooseOne(Collection options) {
+	
+	// Choose one item from a collecion eg an agent from agent collections or a product from products collection
+	// Returns -1 if options is empty or null
+	int chooseOne(Collection<?> options) {
 		
 		for (int i=0; i < options.getLength(); i++) {
-						System.out.println(i+ ": " + options.get(i).getUniqueIdentifier() + ": " + options.get(i).getName());
-					}
-					while (true) {
-						System.out.print("Which one? ");
-						int input = sc.nextInt();
-						if (0 <= input & input < options.getLength()) return input;						
-					}
+			System.out.println(i+ ": " + options.get(i).getUniqueIdentifier() + ": " + options.get(i).getName());
+		}
+
+		if(options == null || options.getLength() == 0) {
+			System.out.println("Collection is empty or null.");
+			return -1;
+		}
+
+		while (true) {
+			System.out.print("Which one? ");
+			int input = Integer.parseInt(sc.nextLine());
+			if (0 <= input & input < options.getLength()) return input;						
+		}
+	}
+
+	// Prints a menu prompt and asks the user to select one of the many options
+
+	int menuPrompt(String[] prompts)
+	{
+		System.out.println("Choose an option!");
+
+		for (int i=0; i<prompts.length; i++) {
+			System.out.printf("[%d] %s", i, prompts[i]);
+		}
+
+		int choiceIndex = -1;
+
+		do {
+			try {
+				System.out.print("Which one? ");
+				choiceIndex = Integer.parseInt(sc.nextLine());
+
+			} catch (NumberFormatException e) {
+				continue;
+			}
+		} while(choiceIndex < 0 || choiceIndex > prompts.length - 1);
+
+		return choiceIndex;
+	}
+
+	boolean isTypeChoiceValid(int typeChoice)
+	{
+		return typeChoice == ONLINE || typeChoice == PRINTED || typeChoice == RADIO_TV;
 	}
 
 	void repl() {
-		String[] choices, details;
+		String[] choices = null;
+		String[] details = null;
+
+		boolean caseExit = false;
+
+		int adChoiceIndex = 0;
+		int adTypeChoiceIndex = 0;
+		int agentChoiceIndex = 0;
+		int productChoiceIndex = 0;
+
+		String adChoiceCode = "";
+		String adTypeChoiceCode = "";
+		String agentChoiceCode = "";
+		String productChoiceCode = "";
+
+		int typeChoice = 0;
+
 		while (true) {
 			System.out.print("Options:\n"
 							+ "[1] Enter new advertising agency\n"
@@ -75,65 +175,126 @@ public class mainApp {
 							+ "[9] Display cost of advertising per product\n");
 			choice:
 			while (true) {
-				switch (readNextInteger("Your choice")) {
+				switch (readNextIntegerWithPrompt("Your choice")) {
 					case 1:
-						choices = getManyInputs(new String[]{"TIN", "Brand name"}, new Boolean[]{false, false});
-						this.AdAgencies.push(new AdAgency(choices[0], choices[1]));
+						choices = getManyInputs(new String[]{"Brand name"}, new Boolean[]{false});
+						this.AdAgencies.push(new AdAgency(this.AdAgencies.getSequenceNumber(), choices[0]));
 						break choice;
 					case 2:
+						
 						do {
-							choices = getManyInputs(new String[]{"Code", "Description", "Agency TIN", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, false, false});
-						} while (!(choices[3].equals("Online") | choices[3].equals("Printed") | choices[3].equals("RadioTV")) || !(this.AdAgencies.containsUniqueIdentifier(choices[2])));
-						switch (choices[3]) {
-							case "Online":
+							System.out.print("Enter advertisement type Details:\n");
+
+							//Select ad for this ad type
+							adChoiceIndex = chooseOne(Ads);
+
+							if(adChoiceIndex == -1)
+							{
+								System.out.println("There are no ads to connect this AdType to...");
+								caseExit = true;
+								break;
+							}	
+							
+							adChoiceCode = Ads.get(adChoiceIndex).getUniqueIdentifier();
+
+
+							// Select agent for this ad type
+							adTypeChoiceIndex = chooseOne(AdAgencies);
+
+							if(adTypeChoiceIndex == -1)
+							{
+								System.out.println("There are no ad agencies to connect this AdType to...");
+								caseExit = true;
+								break;
+							}
+
+							agentChoiceCode = AdAgencies.get(adTypeChoiceIndex).getUniqueIdentifier();
+
+							// Select description for this ad type
+							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false});
+							
+							// Select ad type to create
+							typeChoice = menuPrompt(new String[]{"Online", "Printed", "RadioTV"});
+						} while (!isTypeChoiceValid(typeChoice));
+						
+						if(caseExit)
+						{
+							break choice;
+						}
+
+						switch (typeChoice) {
+							case ONLINE:
 								details = getManyInputs(new String[]{"Price per day", "Automatic display cost", "Price per extra page"}, new Boolean[]{true, true, true});
-								this.AdTypes.push(new OnlineAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
+								this.AdTypes.push(new OnlineAdType(adChoiceCode, choices[0], agentChoiceCode, Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
 								break;
-							case "Printed":
+							case PRINTED:
 								details = getManyInputs(new String[]{"Price per word on the first page", "Price per word in the middle of newspaper", "Price per word on the last page"}, new Boolean[]{true, true, true});
-								this.AdTypes.push(new PrintedAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
+								this.AdTypes.push(new PrintedAdType(adChoiceCode, choices[0], agentChoiceCode, Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2])));
 								break;
-							case "RadioTV":
+							case RADIO_TV:
 								details = getManyInputs(new String[]{"Price per second in the morning", "Price per second at noon", "Price per second in the afternoon", "Price per second in the evening"}, new Boolean[]{true, true, true, true});
-								this.AdTypes.push(new RadioTVAdType(choices[0], choices[1], choices[2], Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3])));
+								this.AdTypes.push(new RadioTVAdType(adChoiceCode, choices[0], agentChoiceCode, Integer.parseInt(details[0]), Integer.parseInt(details[1]), Integer.parseInt(details[2]), Integer.parseInt(details[3])));
 								break;
 						}
 						break choice;
 					case 3:
 						do {
-							choices = getManyInputs(new String[]{"Ad Code", "Product Code", "Duration in days", "Details", "Type (Online/Printed/RadioTV)"}, new Boolean[]{false, false, true, false, false});
-						} while (!(choices[4].equals("Online") | choices[4].equals("Printed") | choices[4].equals("RadioTV")) || !(this.AdTypes.containsUniqueIdentifier(choices[0]) & this.Products.containsUniqueIdentifier(choices[1])) || !(this.AdTypes.getAdTypeByTypeCode(choices[0]).getClass().getSimpleName().equals(choices[4]+"AdType")));
-						switch (choices[4]) {
-							case "Online":
-								this.Ads.push(new OnlineAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Autoshow")));
+							// Select Product for this ad
+							productChoiceIndex = chooseOne(Products);
+
+							if(productChoiceIndex == -1)
+							{
+								System.out.println("There are no Products to connect this Ad to...");
+								caseExit = true;
 								break;
-							case "Printed":
-								this.Ads.push(new PrintedAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Words")));
+							}
+
+							productChoiceCode = Products.get(productChoiceIndex).getProductCode();
+
+							// Select properties of this ad
+							choices = getManyInputs(new String[]{"Duration in days", "Details"}, new Boolean[]{true, false});
+							
+							// Select ad type to create
+							typeChoice = menuPrompt(new String[]{"Online", "Printed", "RadioTV"});
+
+						} while (!isTypeChoiceValid(typeChoice));
+
+						if(caseExit)
+						{
+							break choice;
+						}
+
+						switch (typeChoice) {
+							case ONLINE:
+								this.Ads.push(new OnlineAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Autoshow")));
 								break;
-							case "RadioTV":
-								this.Ads.push(new RadioTVAd(choices[0], choices[1], Integer.parseInt(choices[2]), choices[3], readNextInteger("Duration in seconds")));
+							case PRINTED:
+								this.Ads.push(new PrintedAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Words")));
+								break;
+							case RADIO_TV:
+								this.Ads.push(new RadioTVAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Duration in seconds")));
 								break;
 						}
 						break choice;
 					case 4:
 						for (int i=0; i < this.AdAgencies.getLength(); i++) {
-							CollectionManager.printAdsOf(this.AdAgencies.get(i), this.AdTypes, this.Ads);
+							CollectionManager.printAdsOf(this.AdAgencies.get(i));
 						}
 						break choice;
 					case 5:
-						CollectionManager.printAdsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdTypes, this.Ads);
+						CollectionManager.printAdsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)));
 						break choice;
 					case 6:
-						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies)), this.AdTypes, this.Ads) + "€");
+						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies))) + "€");
 						break choice;
 					case 7:
-						CollectionManager.printNumberOfAdsPerProduct(this.Products, this.Ads);
+						CollectionManager.printNumberOfAdsPerProduct();
 						break choice;
 					case 8:
-						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products)), this.AdTypes, this.Ads) + "€");
+						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products))) + "€");
 						break choice;
 					case 9:
-						CollectionManager.printCostPerProduct(this.Products, this.AdTypes, this.Ads);
+						CollectionManager.printCostPerProduct();
 						break choice;
 				}
 			}
@@ -142,10 +303,12 @@ public class mainApp {
 	}
 	
 	mainApp() {
-		this.AdAgencies = new AdAgencyCollection();
-		this.Products = new ProductCollection();
-		this.AdTypes = new AdTypeCollection();
-		this.Ads = new AdCollection();
+		this.AdAgencies = new Collection<AdAgency>(AdAgency.class);
+		this.Products = new Collection<Product>(Product.class);
+		this.AdTypes = new Collection<AdType>(AdType.class);
+		this.Ads = new Collection<Ad>(Ad.class);
+
+		CollectionManager.bind(Ads, AdTypes, AdAgencies, Products);
 
 		this.AdAgencies.push(new AdAgency("WGFR5A8A", "McCann"));
 		this.AdAgencies.push(new AdAgency("HOXLK9ZB", "Wunderman Thompson"));
@@ -163,7 +326,7 @@ public class mainApp {
 		
 		this.AdTypes.push(new PrintedAdType("9JDKMAV5", "Full Page", "BUQPVZJL", 100, 20, 80));
 		this.AdTypes.push(new PrintedAdType("QYIESEYR", "Quarter Page", "HOXLK9ZB", 25, 5, 20));
-		AdTypes.push(new PrintedAdType("H50PQI23", "Tenth page", "HOXLK9ZB", 10, 2, 8));
+		this.AdTypes.push(new PrintedAdType("H50PQI23", "Tenth page", "HOXLK9ZB", 10, 2, 8));
 
 		this.AdTypes.push(new RadioTVAdType("P1G8TAB8", "Product placement", "VYC28ZZO", 3, 7, 3, 5));
 		this.AdTypes.push(new RadioTVAdType("O6EIHDNV", "Live endorsement", "WGFR5A8A", 12, 7, 10, 5));
@@ -171,21 +334,39 @@ public class mainApp {
 
 		for (int i=0; i < this.Products.getLength(); i++) {
 			for (String typecode : new String[]{"KPA3CO2G", "Y7LG6JPZ", "KHY4HM8I"}) {
-				this.Ads.push(new OnlineAd(typecode, this.Products.get(i).getProductCode(), (int) (100*Math.random()), Integer.toString((int)(10*Math.random())), (int) (Math.random())));
+				this.Ads.push(new OnlineAd(typecode, 
+										   this.Products.get(i).getProductCode(), 
+										   randomInteger(100), 
+										   Integer.toString(randomInteger(10)), 
+										   randomInteger(1)));
 			}
 
 			for (String typecode : new String[]{"9JDKMAV5", "QYIESEYR", "H50PQI23"}) {
-				this.Ads.push(new PrintedAd(typecode, this.Products.get(i).getProductCode(), (int) (100*Math.random()), (new String[]{"First", "Middle", "Last"})[(int) (2*Math.random())], (int) (Math.random())));
+				this.Ads.push(new PrintedAd(typecode, 
+											this.Products.get(i).getProductCode(), 
+											randomInteger(100), 
+											(new String[]{PrintedAdType.FIRST_PAGE, 
+														  PrintedAdType.MIDDLE_PAGE, 
+														  PrintedAdType.LAST_PAGE})[randomInteger(2)], 
+											randomInteger(60)));
 			}
 
 			for (String typecode : new String[]{"P1G8TAB8", "O6EIHDNV", "4SCIB0J3"}) {
-				this.Ads.push(new RadioTVAd(typecode, this.Products.get(i).getProductCode(), (int) (100*Math.random()), (new String[]{"Morning", "Noon", "Afternoon", "Evening"})[(int) (3*Math.random())], (int) (60*Math.random())));
+				this.Ads.push(new RadioTVAd(typecode, 
+											this.Products.get(i).getProductCode(), 
+											randomInteger(100),
+											(new String[]{RadioTVAdType.MORNING, 
+														  RadioTVAdType.NOON, 
+														  RadioTVAdType.AFTERNOON, 
+														  RadioTVAdType.EVENING})[randomInteger( 3)], 
+											randomInteger(60)));
 			}
 		}
 	}
 	
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
+
 		mainApp app = new mainApp();
 		app.repl();
 
