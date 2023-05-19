@@ -1,3 +1,11 @@
+/*
+ * OMADA 069
+ * 
+ * MATSAS MARIO			p3220120
+ * PAPADHMAS BALISLEIOS p3220150
+ * TOMARAS NIKOLAOS 	p3220202
+ */
+
 import Ads.*;
 import AdTypes.*;
 import Collections.*;
@@ -5,14 +13,16 @@ import ComplimentaryClasses.*;
 import java.lang.Math;
 import java.util.Scanner;
 
-public class App {
+public class mainApp {
 	public AdAgencyCollection AdAgencies;
 	public ProductCollection Products;
 	public AdTypeCollection AdTypes;
 	public AdCollection Ads;
 
+	public static Scanner sc;
+
 	public static int readNextInteger(String prompt) {
-    	Scanner sc = new Scanner(System.in);
+
 		while (true) {
 			try {
 				System.out.print("\n" + prompt + ": ");
@@ -24,7 +34,7 @@ public class App {
 	}
 
 	String[] getManyInputs(String[] prompts, Boolean[] isNumerical) {
-		Scanner sc = new Scanner(System.in);
+
 		String[] results = new String[prompts.length];
 		for (int i=0; i<prompts.length; i++) {
 			if (isNumerical[i]) {
@@ -39,7 +49,6 @@ public class App {
 	}
 
 	int chooseOne(Collection options) {
-		Scanner sc = new Scanner(System.in);
 		
 		for (int i=0; i < options.getLength(); i++) {
 						System.out.println(i+ ": " + options.get(i).getUniqueIdentifier() + ": " + options.get(i).getName());
@@ -52,7 +61,6 @@ public class App {
 	}
 
 	void repl() {
-		Scanner sc = new Scanner(System.in);
 		String[] choices, details;
 		while (true) {
 			System.out.print("Options:\n"
@@ -133,7 +141,7 @@ public class App {
 		}
 	}
 	
-	App() {
+	mainApp() {
 		this.AdAgencies = new AdAgencyCollection();
 		this.Products = new ProductCollection();
 		this.AdTypes = new AdTypeCollection();
@@ -177,7 +185,10 @@ public class App {
 	}
 	
 	public static void main(String[] args) {
-		App app = new App();
+		sc = new Scanner(System.in);
+		mainApp app = new mainApp();
 		app.repl();
+
+		sc.close();
 	}
 }
