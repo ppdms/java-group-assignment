@@ -375,7 +375,7 @@ public class mainApp {
 		this.AdTypes.push(new PrintedAdType("3", "Full Page", "3", 100, 20, 80));
 		this.AdTypes.push(new PrintedAdType("4", "Quarter Page", "1", 25, 5, 20));
 		this.AdTypes.push(new PrintedAdType("5", "Tenth page", "1", 10, 2, 8));
-
+ 
 		this.AdTypes.push(new RadioTVAdType("6", "Product placement", "2", 3, 7, 3, 5));
 		this.AdTypes.push(new RadioTVAdType("7", "Live endorsement", "0", 12, 7, 10, 5));
 		this.AdTypes.push(new RadioTVAdType("8", "First ad in queue", "3", 15, 9, 20, 5));
