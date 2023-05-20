@@ -78,7 +78,6 @@ public class mainApp {
 	// else it gets a string for input
 
 	String[] getManyInputs(String[] prompts, Boolean[] isNumerical) {
-
 		String[] results = new String[prompts.length];
 		for (int i=0; i<prompts.length; i++) {
 			if (isNumerical[i]) {
@@ -99,7 +98,7 @@ public class mainApp {
 	int chooseOne(Collection<?> options) {
 		
 		for (int i=0; i < options.getLength(); i++) {
-			System.out.println(i+ ": " + options.get(i).getUniqueIdentifier() + ": " + options.get(i).getName());
+			System.out.println(options.get(i).getUniqueIdentifier() + ": " + options.get(i).getName());
 		}
 
 		if(options == null || options.getLength() == 0) {
@@ -109,8 +108,25 @@ public class mainApp {
 
 		while (true) {
 			System.out.print("Which one? ");
-			int input = Integer.parseInt(sc.nextLine());
-			if (0 <= input & input < options.getLength()) return input;						
+			int indexFound = -1;
+			//Get the chosen code
+			int givenCode = sc.nextInt();
+
+			//Go through all the options in the Collection in order to find which option actually has this code
+			for (int i=0; i<options.getLength(); i++){
+				String codeToCheck = options.get(i).getUniqueIdentifier();
+				
+				//Check if the tin matches
+				if (Integer.valueOf(codeToCheck) == givenCode){
+					indexFound = i;
+					break; 
+				}
+			}
+
+			//if (0 <= input & input < options.getLength()) return input;	
+			if (indexFound!=-1){
+				return indexFound;
+			}					
 		}
 	}
 
@@ -183,7 +199,7 @@ public class mainApp {
 					case 2:
 						
 						do {
-							System.out.print("Enter advertisement type Details:\n");
+							System.out.print("Enter advertisement type Details:\n\n");
 
 							//Select ad for this ad type
 							adChoiceIndex = chooseOne(Ads);
@@ -211,6 +227,7 @@ public class mainApp {
 							agentChoiceCode = AdAgencies.get(adTypeChoiceIndex).getUniqueIdentifier();
 
 							// Select description for this ad type
+							sc.nextLine();
 							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false});
 							
 							// Select ad type to create
@@ -239,6 +256,17 @@ public class mainApp {
 						break choice;
 					case 3:
 						do {
+							//Select the AdType of this ad
+							adTypeChoiceIndex = chooseOne(AdTypes);
+
+							if(adTypeChoiceIndex == -1)
+							{
+								System.out.println("There are no AdTypes to connect this Ad to...");
+								caseExit = true;
+								break;
+							}
+
+							adTypeChoiceCode = AdTypes.get(adTypeChoiceIndex).getUniqueIdentifier();
 							// Select Product for this ad
 							productChoiceIndex = chooseOne(Products);
 
@@ -252,6 +280,7 @@ public class mainApp {
 							productChoiceCode = Products.get(productChoiceIndex).getProductCode();
 
 							// Select properties of this ad
+							sc.nextLine();
 							choices = getManyInputs(new String[]{"Duration in days", "Details"}, new Boolean[]{true, false});
 							
 							// Select ad type to create
@@ -266,13 +295,14 @@ public class mainApp {
 
 						switch (typeChoice) {
 							case ONLINE:
-								this.Ads.push(new OnlineAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Autoshow")));
+								this.Ads.push(new OnlineAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Autoshow (1. Yes - 2. No)")));
 								break;
 							case PRINTED:
-								this.Ads.push(new PrintedAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Words")));
+								this.Ads.push(new PrintedAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Words")));
 								break;
 							case RADIO_TV:
-								this.Ads.push(new RadioTVAd(Ads.getSequenceNumber(), productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Duration in seconds")));
+							//Ads.getSequenceNumber()
+								this.Ads.push(new RadioTVAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), choices[1], readNextIntegerWithPrompt("Duration in seconds")));
 								break;
 						}
 						break choice;
@@ -310,30 +340,30 @@ public class mainApp {
 
 		CollectionManager.bind(Ads, AdTypes, AdAgencies, Products);
 
-		this.AdAgencies.push(new AdAgency("WGFR5A8A", "McCann"));
-		this.AdAgencies.push(new AdAgency("HOXLK9ZB", "Wunderman Thompson"));
-		this.AdAgencies.push(new AdAgency("VYC28ZZO", "Ogilvy"));
-		this.AdAgencies.push(new AdAgency("BUQPVZJL", "Sterling Cooper"));
+		this.AdAgencies.push(new AdAgency("10000001", "McCann"));
+		this.AdAgencies.push(new AdAgency("10000002", "Wunderman Thompson"));
+		this.AdAgencies.push(new AdAgency("10000003", "Ogilvy"));
+		this.AdAgencies.push(new AdAgency("10000004", "Sterling Cooper"));
 
-		this.Products.push(new Product("UBOO6R30", "GeForce RTX 3060 Ti", "Q12J0SS4"));
-		this.Products.push(new Product("LPNE6GOD", "Delonghi Dedica Pump", "0IHLDONQ"));
-		this.Products.push(new Product("4IKX92ZL", "AMD Ryzen 7 5700G", "UZP71ZMA"));
-		this.Products.push(new Product("9EP2ZTWP", "Osprey Rook 50", "YQ40SMX6"));
+		this.Products.push(new Product("10000011", "GeForce RTX 3060 Ti", "Q12J0SS4"));
+		this.Products.push(new Product("10000012", "Delonghi Dedica Pump", "0IHLDONQ"));
+		this.Products.push(new Product("10000013", "AMD Ryzen 7 5700G", "UZP71ZMA"));
+		this.Products.push(new Product("10000014", "Osprey Rook 50", "YQ40SMX6"));
 
-		this.AdTypes.push(new OnlineAdType("KPA3CO2G", "Banner", "WGFR5A8A", 25, 50, 5));
-		this.AdTypes.push(new OnlineAdType("Y7LG6JPZ", "Pop-up", "HOXLK9ZB", 50, 70, 30));
-		this.AdTypes.push(new OnlineAdType("KHY4HM8I", "YouTube Unskippable", "VYC28ZZO", 40, 0, 90));
+		this.AdTypes.push(new OnlineAdType("10000021", "Banner", "10000001", 25, 50, 5));
+		this.AdTypes.push(new OnlineAdType("10000022", "Pop-up", "10000002", 50, 70, 30));
+		this.AdTypes.push(new OnlineAdType("10000023", "YouTube Unskippable", "10000003", 40, 0, 90));
 		
-		this.AdTypes.push(new PrintedAdType("9JDKMAV5", "Full Page", "BUQPVZJL", 100, 20, 80));
-		this.AdTypes.push(new PrintedAdType("QYIESEYR", "Quarter Page", "HOXLK9ZB", 25, 5, 20));
-		this.AdTypes.push(new PrintedAdType("H50PQI23", "Tenth page", "HOXLK9ZB", 10, 2, 8));
+		this.AdTypes.push(new PrintedAdType("10000031", "Full Page", "10000004", 100, 20, 80));
+		this.AdTypes.push(new PrintedAdType("10000032", "Quarter Page", "10000002", 25, 5, 20));
+		this.AdTypes.push(new PrintedAdType("10000033", "Tenth page", "10000002", 10, 2, 8));
 
-		this.AdTypes.push(new RadioTVAdType("P1G8TAB8", "Product placement", "VYC28ZZO", 3, 7, 3, 5));
-		this.AdTypes.push(new RadioTVAdType("O6EIHDNV", "Live endorsement", "WGFR5A8A", 12, 7, 10, 5));
-		this.AdTypes.push(new RadioTVAdType("4SCIB0J3", "First ad in queue", "BUQPVZJL", 15, 9, 20, 5));
+		this.AdTypes.push(new RadioTVAdType("10000041", "Product placement", "10000003", 3, 7, 3, 5));
+		this.AdTypes.push(new RadioTVAdType("10000042", "Live endorsement", "10000001", 12, 7, 10, 5));
+		this.AdTypes.push(new RadioTVAdType("10000043", "First ad in queue", "10000004", 15, 9, 20, 5));
 
 		for (int i=0; i < this.Products.getLength(); i++) {
-			for (String typecode : new String[]{"KPA3CO2G", "Y7LG6JPZ", "KHY4HM8I"}) {
+			for (String typecode : new String[]{"10000021", "10000022", "10000023"}) {
 				this.Ads.push(new OnlineAd(typecode, 
 										   this.Products.get(i).getProductCode(), 
 										   randomInteger(100), 
@@ -341,7 +371,7 @@ public class mainApp {
 										   randomInteger(1)));
 			}
 
-			for (String typecode : new String[]{"9JDKMAV5", "QYIESEYR", "H50PQI23"}) {
+			for (String typecode : new String[]{"10000031", "10000032", "10000033"}) {
 				this.Ads.push(new PrintedAd(typecode, 
 											this.Products.get(i).getProductCode(), 
 											randomInteger(100), 
@@ -351,7 +381,7 @@ public class mainApp {
 											randomInteger(60)));
 			}
 
-			for (String typecode : new String[]{"P1G8TAB8", "O6EIHDNV", "4SCIB0J3"}) {
+			for (String typecode : new String[]{"10000041", "10000042", "10000043"}) {
 				this.Ads.push(new RadioTVAd(typecode, 
 											this.Products.get(i).getProductCode(), 
 											randomInteger(100),
