@@ -2,11 +2,12 @@ package AdTypes;
 import ComplimentaryClasses.Identifiable;
 
 public abstract class AdType implements Identifiable {
-    
-    // We connect classes AdType and Ad
-    // adCode of AdType == typeCode of Ad
-    
-    private String adCode;
+
+    public static final int ONLINE = 0;
+    public static final int PRINTED = 1;
+	public static final int RADIO_TV = 2;
+
+
     
     // We connect classes AdType and AdAgency 
     // agencyTIN of AdType == TIN of AdAgency
@@ -15,8 +16,11 @@ public abstract class AdType implements Identifiable {
     
     private String description;
 
-    public AdType(String adCode, String description, String agencyTIN){
-        this.adCode = adCode;
+    private String UID;
+    protected String name;
+
+    public AdType(String UID, String description, String agencyTIN){
+        this.UID = UID;
         this.description = description;
         this.agencyTIN = agencyTIN;
     }
@@ -27,16 +31,13 @@ public abstract class AdType implements Identifiable {
     //Getters
     @Override
     public String getUniqueIdentifier(){
-        return getAdCode();
+        return this.UID;
     }
     @Override
     public String getName(){
-        return getDescription();
+        return this.name;
     }
 
-    public String getAdCode(){
-        return this.adCode;
-    }
     public String getDescription() {
         return description;
     }
@@ -45,6 +46,8 @@ public abstract class AdType implements Identifiable {
     }
 
     public String toString() {
-        return String.format("adCode : %s, description : %s, agencyTIN : %s", this.adCode, this.description, this.agencyTIN);
+        return String.format("UID : %s, description : %s, agencyTIN : %s", this.UID, this.description, this.agencyTIN);
     }
+
+    public abstract int getTYPE();
 }

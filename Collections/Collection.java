@@ -18,8 +18,6 @@ public class Collection<T extends Identifiable> {
     {
         String current = Integer.toString(sequenceNumber);
 
-        sequenceNumber++;
-
         return current;
     }
 
@@ -34,12 +32,13 @@ public class Collection<T extends Identifiable> {
         // if contents already contains some T with the same uniqueIdentifier as data,
         // replace it with data and return the old T.
 
-        for (int i=0; i<contents.size(); i++) {
+        /*for (int i=0; i<contents.size(); i++) {
                 if (contents.get(i).getUniqueIdentifier().equals(data.getUniqueIdentifier())) {
                     contents.add(0, data);
                     return contents.remove(i+1);
                 }
-        }
+        }*/
+        sequenceNumber++;
         contents.add(data);
         return null;
     }

@@ -4,12 +4,18 @@ public class AdAgency implements Identifiable{
     // We connect classes AdAgency and AdType
     // TIN of AdAgency == agencyTIN of AdType
 
-    String TIN;
-    String brandName;
+    private String TIN;
+    private String brandName;
+
+    private String UID;
+    private String name;
 
     public AdAgency(String TIN, String brandName){
         this.TIN = TIN;
         this.brandName = brandName;
+
+        this.UID = TIN;
+        this.name = "Agency " + brandName;
     }
 
     AdAgency(){}
@@ -21,11 +27,11 @@ public class AdAgency implements Identifiable{
 
     @Override
     public String getUniqueIdentifier(){
-        return this.TIN;
+        return this.UID;
     }
     @Override
     public String getName(){
-        return this.brandName;
+        return this.name;
     }
 
     public String getBrandName(){

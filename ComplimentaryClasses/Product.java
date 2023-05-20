@@ -5,10 +5,16 @@ public class Product implements Identifiable{
     private String description;
     private String supplierTIN;
 
+    private String UID;
+    private String name;
+
     public Product(String productCode, String description, String supplierTIN){
         this.productCode = productCode;
         this.description = description;
         this.supplierTIN = supplierTIN;
+
+        this.UID = productCode;
+        this.name = "Product " + description;
     }
 
     //Getters
@@ -18,11 +24,11 @@ public class Product implements Identifiable{
 
     @Override
     public String getUniqueIdentifier(){
-        return getProductCode();
+        return this.UID;
     }
     @Override
     public String getName(){
-        return getDescription();
+        return this.name;
     }
     public String getDescription(){
         return this.description;

@@ -31,7 +31,7 @@ public class CollectionManager {
 
         for(int i = 0; i < adTypes.getLength(); i++)
         {
-            if(adTypes.get(i).getAdCode().equals(typeCode)) return adTypes.get(i);
+            if(adTypes.get(i).getUniqueIdentifier().equals(typeCode)) return adTypes.get(i);
         }
         
         return null;
@@ -53,7 +53,7 @@ public class CollectionManager {
 
                     Ad curAd = ads.get(j);
 
-                    if(curType.getAdCode().equals(curAd.getTypeCode())) {
+                    if(curType.getUniqueIdentifier().equals(curAd.getAdTypeCode())) {
                         // We have found an agency's ad
                         adsOfAgency.push(curAd);
                     }
@@ -97,7 +97,7 @@ public class CollectionManager {
             {
                 AdType curType = adTypes.get(j);
 
-                if(curAd.getTypeCode().equals(curType.getAdCode()))
+                if(curAd.getAdTypeCode().equals(curType.getUniqueIdentifier()))
                 {
                     int cost = curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
 
@@ -265,7 +265,7 @@ public class CollectionManager {
                     {
                         AdType curType = adTypes.get(k);
 
-                        if(curType.getAdCode().equals(curAd.getTypeCode()))
+                        if(curType.getUniqueIdentifier().equals(curAd.getAdTypeCode()))
                         {
                             costsPerProduct[i] += curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
                         }

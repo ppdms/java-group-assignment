@@ -6,7 +6,7 @@ public abstract class Ad implements Identifiable{
     // We connect classes Ad and AdType
     // typeCode of Ad == adCode of AdType
 
-    private String typeCode; 
+    private String adTypeCode; 
 
     // We also connect classes Ad and Product
     // productCode in Ad == productCode in Product
@@ -17,25 +17,31 @@ public abstract class Ad implements Identifiable{
     private int durationInDays;
     private String details;
 
-    public Ad(String typeCode, String productCode, int durationInDays, String details){
-        this.typeCode = typeCode;
+    private String UID;
+    private String name;
+
+    public Ad(String UID, String adTypeCode, String productCode, int durationInDays, String details){
+        this.UID = UID;
+        this.adTypeCode = adTypeCode;
         this.productCode = productCode;
         this.durationInDays = durationInDays;
         this.details = details;
+
+        this.name = "Ad " + UID;
     }
 
     //Getters
     @Override
     public String getUniqueIdentifier(){
-        return Integer.toString(this.hashCode());
+        return this.UID;
     }
     @Override
     public String getName(){
-        return getProductCode();
+        return this.name;
     }
 
-    public String getTypeCode(){
-        return typeCode;
+    public String getAdTypeCode(){
+        return adTypeCode;
     }
     public String getProductCode(){
         return productCode;
@@ -50,7 +56,7 @@ public abstract class Ad implements Identifiable{
     public abstract int getExtraCharacteristic();
 
     public String toString() {
-        return String.format("{typeCode : %s, productCode : %s, durInDays : %d, details : %s, extraCharacteristic : %d}", this.typeCode, this.productCode, this.durationInDays, this.details, this.getExtraCharacteristic());
+        return String.format("{UID: %s, adTypeCode : %s, productCode : %s, durInDays : %d, details : %s, extraCharacteristic : %d}", this.UID, this.adTypeCode, this.productCode, this.durationInDays, this.details, this.getExtraCharacteristic());
     }
 
 }
