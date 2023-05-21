@@ -105,7 +105,7 @@ public class mainApp {
 			System.out.print("Which one? ");
 			int indexFound = -1;
 			//Get the chosen code
-			int givenCode = sc.nextInt();
+			int givenCode = Integer.parseInt(sc.nextLine());
 
 			//Go through all the options in the Collection in order to find which option actually has this code
 			for (int i=0; i<options.getLength(); i++){
@@ -211,7 +211,6 @@ public class mainApp {
 							agentChoiceCode = AdAgencies.get(agentChoiceIndex).getUniqueIdentifier();
 
 							// Select description for this ad type
-							sc.nextLine();
 							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false});
 							
 							// Select ad type to create
