@@ -105,7 +105,7 @@ public class mainApp {
 			System.out.print("Which one? ");
 			int indexFound = -1;
 			//Get the chosen code
-			int givenCode = Integer.parseInt(sc.nextLine());
+			int givenCode = sc.nextInt();
 
 			//Go through all the options in the Collection in order to find which option actually has this code
 			for (int i=0; i<options.getLength(); i++){
@@ -193,8 +193,7 @@ public class mainApp {
 						choices = getManyInputs(new String[]{"Brand name"}, new Boolean[]{false});
 						this.AdAgencies.push(new AdAgency(this.AdAgencies.getSequenceNumber(), choices[0]));
 						break choice;
-					case 2:
-						
+					case 2:						
 						do {
 							System.out.print("Enter advertisement type Details:\n\n");
 
@@ -211,6 +210,7 @@ public class mainApp {
 							agentChoiceCode = AdAgencies.get(agentChoiceIndex).getUniqueIdentifier();
 
 							// Select description for this ad type
+							sc.nextLine();
 							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false});
 							
 							// Select ad type to create
@@ -262,20 +262,7 @@ public class mainApp {
 
 							productChoiceCode = Products.get(productChoiceIndex).getUniqueIdentifier();
 
-							// Select Ad Type for this ad
-
-							adTypeChoiceIndex = chooseOne(AdTypes);
-							
-							if(adTypeChoiceIndex == -1)
-							{
-								System.out.println("There are no ad types to connect this ad to.");
-								caseExit = true;
-								break;
-							}
-
-							adTypeChoiceCode = AdTypes.get(adTypeChoiceIndex).getUniqueIdentifier();
-
-
+							sc.nextLine();
 							// Select properties of this ad
 							choices = getManyInputs(new String[]{"Duration in days"}, new Boolean[]{true});
 							// Select ad type to create
@@ -294,7 +281,7 @@ public class mainApp {
 
 								String[] extraPages = getManyInputs(new String[]{"Extra pages"}, new Boolean[]{true});
 
-								this.Ads.push(new OnlineAd(this.Ads.getSequenceNumber(), adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), extraPages[0], readNextIntegerWithPrompt("Autoshow")));
+								this.Ads.push(new OnlineAd(this.Ads.getSequenceNumber(), adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), extraPages[0], readNextIntegerWithPrompt("Autoshow ( [0] No [1] Yes )")));
 								break;
 							case AdType.PRINTED:
 								// Get Page Showcase
@@ -330,15 +317,18 @@ public class mainApp {
 						break choice;
 					case 5:
 						CollectionManager.printAdsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)));
+						sc.nextLine();
 						break choice;
 					case 6:
 						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies))) + " EURO");
+						sc.nextLine();
 						break choice;
 					case 7:
 						CollectionManager.printNumberOfAdsPerProduct();
 						break choice;
 					case 8:
 						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products))) + " EURO");
+						sc.nextLine();
 						break choice;
 					case 9:
 						CollectionManager.printCostPerProduct();
@@ -427,3 +417,4 @@ public class mainApp {
 		sc.close();
 	}
 }
+
