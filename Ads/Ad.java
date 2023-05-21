@@ -56,7 +56,17 @@ public abstract class Ad implements Identifiable{
     public abstract int getExtraCharacteristic();
 
     public String toString() {
-        return String.format("{UID: %s, adTypeCode : %s, productCode : %s, durInDays : %d, details : %s, extraCharacteristic : %d}", this.UID, this.adTypeCode, this.productCode, this.durationInDays, this.details, this.getExtraCharacteristic());
+        String extraCharacteristic;
+        if (this instanceof OnlineAd){
+            extraCharacteristic = "Autoshow (0->off | 1->on)";
+        }
+        else if (this instanceof PrintedAd){
+            extraCharacteristic = "Words";
+        }
+        else{
+            extraCharacteristic = "Duration in seconds";
+        }
+        return String.format("{Ad type code : %s ,  Product code : %s ,  Duration in days : %d ,  Details : %s ,  %s : %d}", this.adTypeCode, this.productCode, this.durationInDays, this.details, extraCharacteristic, this.getExtraCharacteristic());
     }
 
 }
