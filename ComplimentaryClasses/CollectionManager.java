@@ -116,7 +116,7 @@ public class CollectionManager {
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
-            System.out.printf("Agency is not null %b, AdTypes length %d, Ads length %d%n", agency, adTypes.getLength(), ads.getLength());
+            //System.out.printf("Agency is not null %b, AdTypes length %d, Ads length %d%n", agency, adTypes.getLength(), ads.getLength());
             return 0;
         }
 
@@ -124,7 +124,7 @@ public class CollectionManager {
 
         if(adsToCalculateCost.getLength() == 0)
         {
-            System.out.println("Could not find any Ads of agent: " + agency);
+            //System.out.println("Could not find any Ads of agent: " + agency);
             return 0;
         }
 
@@ -215,7 +215,7 @@ public class CollectionManager {
 
         if(product == null || adTypes.getLength() == 0 || ads.getLength() == 0)
         {
-            System.out.printf("Product is not null %b, AdTypes length %d, Ads length %d%n", product, adTypes.getLength(), ads.getLength());
+            //System.out.printf("Product is not null %b, AdTypes length %d, Ads length %d%n", product, adTypes.getLength(), ads.getLength());
             return 0;
         }
 
@@ -223,7 +223,7 @@ public class CollectionManager {
 
         if(adsToCalculateCost.getLength() == 0)
         {
-            System.out.println("Could not find any Ads of product: " + product);
+            //System.out.println("Could not find any Ads of product: " + product);
             return 0;
         }
 
