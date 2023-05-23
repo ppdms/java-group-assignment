@@ -17,27 +17,25 @@ public abstract class Ad implements Identifiable{
     private int durationInDays;
     private String details;
 
-    private String UID;
     private String name;
 
-    public Ad(String UID, String adTypeCode, String productCode, int durationInDays, String details){
-        this.UID = UID;
+    public Ad(String adTypeCode, String productCode, int durationInDays, String details){
         this.adTypeCode = adTypeCode;
         this.productCode = productCode;
         this.durationInDays = durationInDays;
         this.details = details;
-
-        this.name = "Ad " + UID;
     }
 
     //Getters
+
+    //this are here just to make sure Identifiable works
     @Override
     public String getUniqueIdentifier(){
-        return this.UID;
+        return Integer.toString(this.hashCode());
     }
     @Override
     public String getName(){
-        return this.name;
+        return Integer.toString(this.hashCode());
     }
 
     public String getAdTypeCode(){

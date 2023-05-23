@@ -13,15 +13,13 @@ public class RadioTVAdType extends AdType{
     private int euroPsAfternoon; // Same for the afternoon
     private int euroPsEvening; //Same for the evening
 
-    public RadioTVAdType(String UID, String description, String agencyTIN, int euroPsMorning, int euroPsNoon,
+    public RadioTVAdType(String adCode, String description, String agencyTIN, int euroPsMorning, int euroPsNoon,
     int euroPsAfternoon, int euroPsEvening){
-        super(UID, description, agencyTIN);
+        super(adCode, description, agencyTIN);
         this.euroPsMorning = euroPsMorning;
         this.euroPsNoon = euroPsNoon;
         this.euroPsAfternoon = euroPsAfternoon;
         this.euroPsEvening = euroPsEvening;
-
-        super.name = "RADIOTV AdType " + description;
     }
 
     public int cost(String dayTime , int adDuration, int numDaysPlayed) {

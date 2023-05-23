@@ -26,7 +26,7 @@ public class mainApp {
 	{
         if(min > max)
         {
-            System.out.println("Error: Minimum bigger than maximum returning 0");
+            System.out.println("Error: Minimum bigger than maximum returning 0"); //TODO: Consider printing all error messages to STDERR
             return 0;
         }
 		// math.random = 0.0 to 0.999 
@@ -281,7 +281,7 @@ public class mainApp {
 
 								String[] extraPages = getManyInputs(new String[]{"Extra pages"}, new Boolean[]{true});
 
-								this.Ads.push(new OnlineAd(this.Ads.getSequenceNumber(), adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), extraPages[0], readNextIntegerWithPrompt("Autoshow ( [0] No [1] Yes )")));
+								this.Ads.push(new OnlineAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), extraPages[0], readNextIntegerWithPrompt("Autoshow ( [0] No [1] Yes )")));
 								break;
 							case AdType.PRINTED:
 								// Get Page Showcase
@@ -292,7 +292,7 @@ public class mainApp {
 
 								index = menuPrompt(prompts);
 
-								this.Ads.push(new PrintedAd(this.Ads.getSequenceNumber(), adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), prompts[index], readNextIntegerWithPrompt("Words")));
+								this.Ads.push(new PrintedAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), prompts[index], readNextIntegerWithPrompt("Words")));
 								
 								break;
 							case AdType.RADIO_TV:
@@ -305,7 +305,7 @@ public class mainApp {
 								
 								index = menuPrompt(prompts);
 
-								this.Ads.push(new RadioTVAd(this.Ads.getSequenceNumber(), adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), prompts[index], readNextIntegerWithPrompt("Duration in seconds")));
+								this.Ads.push(new RadioTVAd(adTypeChoiceCode, productChoiceCode, Integer.parseInt(choices[0]), prompts[index], readNextIntegerWithPrompt("Duration in seconds")));
 								
 								break;
 						}
@@ -373,8 +373,7 @@ public class mainApp {
 
 			// 3 online ads for product i
 			for (String typecode : new String[]{"0", "1", "2"}) {
-				this.Ads.push(new OnlineAd(Ads.getSequenceNumber(),
-										   typecode, 
+				this.Ads.push(new OnlineAd(typecode, 
 										   this.Products.get(i).getProductCode(), 
 										   randomInteger(100), 
 										   Integer.toString(randomInteger(10)), 
@@ -383,8 +382,7 @@ public class mainApp {
 
 			// 3 printed ads for product i
 			for (String typecode : new String[]{"3", "4", "5"}) {
-				this.Ads.push(new PrintedAd(Ads.getSequenceNumber(),
-											typecode, 
+				this.Ads.push(new PrintedAd(typecode, 
 											this.Products.get(i).getProductCode(), 
 											randomInteger(100), 
 											(new String[]{PrintedAdType.FIRST_PAGE, 
@@ -395,8 +393,7 @@ public class mainApp {
 
 			// 3 radio tv ads for product i
 			for (String typecode : new String[]{"6", "7", "8"}) {
-				this.Ads.push(new RadioTVAd(Ads.getSequenceNumber(),
-											typecode, 
+				this.Ads.push(new RadioTVAd(typecode, 
 											this.Products.get(i).getProductCode(), 
 											randomInteger(100),
 											(new String[]{RadioTVAdType.MORNING, 

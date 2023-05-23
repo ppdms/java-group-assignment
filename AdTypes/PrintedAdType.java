@@ -10,13 +10,11 @@ public class PrintedAdType extends AdType{
     private int euroPwMiddle; //Same for the middle
     private int euroPwLast;  //Same for the last page
 
-    public PrintedAdType(String UID, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle, int euroPwLast){
-        super(UID, description, agencyTIN);
+    public PrintedAdType(String adCode, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle, int euroPwLast){
+        super(adCode, description, agencyTIN);
         this.euroPwFirst = euroPwFirst;
         this.euroPwMiddle = euroPwMiddle;
         this.euroPwLast = euroPwLast;
-
-        super.name = "PRINTED AdType " + description;
     }
 
     public int cost(String pageShowcase, int numWords, int durationInDays) {

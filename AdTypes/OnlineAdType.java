@@ -5,13 +5,11 @@ public class OnlineAdType extends AdType{
     private int automaticDisplayCost;
     private int pricePerExtraPage;
 
-    public OnlineAdType(String UID, String description, String agencyTIN,int pricePerDay, int automaticDisplayCost, int pricePerExtraPage){
-        super(UID, description, agencyTIN);
+    public OnlineAdType(String adCode, String description, String agencyTIN,int pricePerDay, int automaticDisplayCost, int pricePerExtraPage){
+        super(adCode, description, agencyTIN);
         this.pricePerDay = pricePerDay;
         this.automaticDisplayCost = automaticDisplayCost;
         this.pricePerExtraPage = pricePerExtraPage;
-
-        super.name = "ONLINE AdType " + description;
     }
 
     public int cost(String extraPages, int autoShow, int durationInDays) {

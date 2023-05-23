@@ -13,14 +13,11 @@ public abstract class AdType implements Identifiable {
     // agencyTIN of AdType == TIN of AdAgency
 
     private String agencyTIN;
-    
+    private String adCode;
     private String description;
 
-    private String UID;
-    protected String name;
-
-    public AdType(String UID, String description, String agencyTIN){
-        this.UID = UID;
+    public AdType(String adCode, String description, String agencyTIN){
+        this.adCode = adCode;
         this.description = description;
         this.agencyTIN = agencyTIN;
     }
@@ -31,13 +28,16 @@ public abstract class AdType implements Identifiable {
     //Getters
     @Override
     public String getUniqueIdentifier(){
-        return this.UID;
+        return getAdCode();
     }
     @Override
     public String getName(){
-        return this.name;
+        return getDescription();
     }
 
+    public String getAdCode(){
+        return this.adCode;
+    }
     public String getDescription() {
         return description;
     }
@@ -46,7 +46,7 @@ public abstract class AdType implements Identifiable {
     }
 
     public String toString() {
-        return String.format("UID : %s, description : %s, agencyTIN : %s", this.UID, this.description, this.agencyTIN);
+        return String.format("adCode : %s, description : %s, agencyTIN : %s", this.adCode, this.description, this.agencyTIN);
     }
 
     public abstract int getTYPE();
