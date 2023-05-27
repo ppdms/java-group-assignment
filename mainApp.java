@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class mainApp {
 
-	public static Collection<AdAgency> AdAgencies;
+	public Collection<AdAgency> AdAgencies;
 	public Collection<Product> Products;
 	public Collection<AdType> AdTypes;
 	public Collection<Ad> Ads;
@@ -151,25 +151,29 @@ public class mainApp {
 		}
 
 		while (true) {
-			System.out.print("Which one? ");
-			int indexFound = -1;
-			//Get the chosen code
-			int givenCode = sc.nextInt();
-
-			//Go through all the options in the Collection in order to find which option actually has this code
-			for (int i=0; i<options.getLength(); i++){
-				String codeToCheck = options.get(i).getUniqueIdentifier();
-				
-				//Check if the tin matches
-				if (Integer.valueOf(codeToCheck) == givenCode){
-					indexFound = i;
-					break; 
+			System.out.print("\nWhich one? ");
+			int indexFound = -1;			
+			try {
+				//Check if the passed value is a number
+				int givenCode = Integer.parseInt(sc.nextLine());
+				//Go through all the options in the Collection in order to find which option actually has this code
+				for (int i=0; i<options.getLength(); i++){
+					String codeToCheck = options.get(i).getUniqueIdentifier();
+					
+					//Check if the tin matches
+					if (Integer.valueOf(codeToCheck) == givenCode){
+						indexFound = i;
+						break; 
+					}
 				}
-			}
 
-			//if (0 <= input & input < options.getLength()) return input;	
-			if (indexFound!=-1){
-				return indexFound;
+				//if (0 <= input & input < options.getLength()) return input;	
+				if (indexFound!=-1){
+					return indexFound;
+				}
+			} 
+			catch (NumberFormatException e) {
+				continue;
 			}					
 		}
 	}
@@ -365,18 +369,15 @@ public class mainApp {
 						break choice;
 					case 5:
 						CollectionManager.printAdsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)));
-						sc.nextLine();
 						break choice;
 					case 6:
 						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies))) + " EURO");
-						sc.nextLine();
 						break choice;
 					case 7:
 						CollectionManager.printNumberOfAdsPerProduct();
 						break choice;
 					case 8:
 						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products))) + " EURO");
-						sc.nextLine();
 						break choice;
 					case 9:
 						CollectionManager.printCostPerProduct();
@@ -462,4 +463,3 @@ public class mainApp {
 		sc.close();
 	}
 }
-
