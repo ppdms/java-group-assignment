@@ -262,8 +262,7 @@ public class mainApp {
 							agentChoiceCode = AdAgencies.get(agentChoiceIndex).getUniqueIdentifier();
 
 							// Select description for this ad type
-							sc.nextLine();
-							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false},1, 0);
+							choices = getManyInputs(new String[]{"Description"}, new Boolean[]{false},0, 0);
 							
 							// Select ad type to create
 							typeChoice = menuPrompt(new String[]{"Online", "Printed", "RadioTV"});
@@ -314,7 +313,6 @@ public class mainApp {
 
 							productChoiceCode = Products.get(productChoiceIndex).getUniqueIdentifier();
 
-							sc.nextLine();
 							// Select properties of this ad
 							choices = getManyInputs(new String[]{"Duration in days"}, new Boolean[]{true}, 0, 0);
 							// Select ad type to create
@@ -371,13 +369,13 @@ public class mainApp {
 						CollectionManager.printAdsOf(this.AdAgencies.get(chooseOne(this.AdAgencies)));
 						break choice;
 					case 6:
-						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies))) + " EURO");
+						System.out.println("The total cost will be the sum of all the above.\nSo the total cost is: " + CollectionManager.printAdCostFor(this.AdAgencies.get(chooseOne(this.AdAgencies))) + " EURO");
 						break choice;
 					case 7:
 						CollectionManager.printNumberOfAdsPerProduct();
 						break choice;
 					case 8:
-						System.out.println("Cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products))) + " EURO");
+						System.out.println("The total cost will be the sum of all the above.\nSo the total cost is: " + CollectionManager.printAdCostFor(this.Products.get(chooseOne(this.Products))) + " EURO");
 						break choice;
 					case 9:
 						CollectionManager.printCostPerProduct();
