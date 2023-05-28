@@ -34,8 +34,9 @@ public class PrintedAdType extends AdType{
                 System.out.println("ERROR: WRONG pageShowcase passed to Cost function!");
                 euroPw = 0;
         }
-
-        return numWords * euroPw * durationInDays;
+        int res = numWords * euroPw * durationInDays;
+        System.out.println(numWords+" * "+ euroPw +" * "+ durationInDays+" = "+res);
+        return res;
     }
 
     //Getters
