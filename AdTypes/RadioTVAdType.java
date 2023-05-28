@@ -42,8 +42,9 @@ public class RadioTVAdType extends AdType{
                 System.out.println("ERROR: WRONG dayTime passed to Cost function!");
                 pricePs = 0;
         }
-
-        return adDuration * pricePs * numDaysPlayed;
+        int res = adDuration * pricePs * numDaysPlayed;
+        System.out.println(adDuration+" * "+pricePs+" * "+numDaysPlayed+" = "+res);
+        return res;
     }
 
     //Getters
