@@ -4,13 +4,14 @@ import Collections.Collection;
 
 import Ads.Ad;
 
-import AdTypes.AdType;
+import AdTypes.*;
+//import AdTypes.AdType;
 
 public class CollectionManager {
 
     private static Collection<Ad> ads;
     private static Collection<AdType> adTypes;
-    private static Collection<AdAgency> agencies;
+    //private static Collection<AdAgency> agencies;
     private static Collection<Product> products;
 
     // Before using collection manager make sure to bind the collections to it
@@ -23,7 +24,7 @@ public class CollectionManager {
     {
         CollectionManager.ads = ads;
         CollectionManager.adTypes = adTypes;
-        CollectionManager.agencies = agencies;
+        //CollectionManager.agencies = agencies;
         CollectionManager.products = products;
     }
 
@@ -98,13 +99,11 @@ public class CollectionManager {
                 AdType curType = adTypes.get(j);
 
                 if(curAd.getAdTypeCode().equals(curType.getUniqueIdentifier()))
-                {
+                {   
+                    System.out.print("Ad :["+curAd.getUniqueIdentifier()+"] with the following cost: ");
                     int cost = curType.cost(curAd.getDetails(), curAd.getExtraCharacteristic(), curAd.getDurationInDays());
 
                     totalCost += cost;
-
-                    //System.out.printf("Cost of Ad %s with type %s is: %d%n", curAd, curType, cost);
-                    //System.out.println();
                 }
             }
         }
@@ -252,8 +251,9 @@ public class CollectionManager {
         // Find number of ads per product
 
         for(int i = 0; i < products.getLength(); i++)
-        {
+        {   
             Product curProduct = products.get(i);
+            System.out.println("The cost of "+curProduct.getDescription()+" is the sum of all the following:");
 
             for(int j = 0; j < ads.getLength(); j++)
             {
@@ -272,6 +272,7 @@ public class CollectionManager {
                     }
                 }
             }
+            System.out.println("\n");
         }
 
         // Sort array
