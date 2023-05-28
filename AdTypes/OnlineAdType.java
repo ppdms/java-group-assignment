@@ -18,6 +18,7 @@ public class OnlineAdType extends AdType{
         if(autoShow == 1)
             result += automaticDisplayCost;
         
+        System.out.println(pricePerDay +" * "+ durationInDays +" + "+autoShow +" * "+ automaticDisplayCost +" + "+ Integer.parseInt(extraPages) +" * "+ pricePerExtraPage+" = "+result);
         return result;
     }
 
