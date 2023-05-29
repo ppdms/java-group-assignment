@@ -105,7 +105,6 @@ public class mainApp {
 							tins.add(AdAgencies.get(j).getUniqueIdentifier());
 						}
 						//Check if the input contains only numerical values
-						//!choice.isEmpty() && 
 						boolean isValid = choice.matches("[0-9]+") &&
 						choice.length() == 9 && !tins.contains(choice);
 						if (isValid){
@@ -166,8 +165,7 @@ public class mainApp {
 						break; 
 					}
 				}
-
-				//if (0 <= input & input < options.getLength()) return input;	
+	
 				if (indexFound!=-1){
 					return indexFound;
 				}
@@ -242,7 +240,6 @@ public class mainApp {
 				switch (readNextIntegerWithPrompt("Your choice", 0)) {
 					case 1:
 						choices = getManyInputs(new String[]{"TIN","Brand name"}, new Boolean[]{false, false}, 1, 0);
-						//this.AdAgencies.getSequenceNumber()
 						this.AdAgencies.push(new AdAgency(choices[0], choices[1]));
 						break choice;
 					case 2:						
@@ -316,7 +313,7 @@ public class mainApp {
 							// Select properties of this ad
 							choices = getManyInputs(new String[]{"Duration in days"}, new Boolean[]{true}, 0, 0);
 							// Select ad type to create
-							typeChoice = AdTypes.get(adTypeChoiceIndex).getTYPE();//menuPrompt(new String[]{"Online", "Printed", "RadioTV"});
+							typeChoice = AdTypes.get(adTypeChoiceIndex).getTYPE();
 
 						} while (!isTypeChoiceValid(typeChoice));
 
@@ -399,10 +396,10 @@ public class mainApp {
 		this.AdAgencies.push(new AdAgency("100000002", "Ogilvy"));
 		this.AdAgencies.push(new AdAgency("100000003", "Sterling Cooper"));
 
-		this.Products.push(new Product("0", "GeForce RTX 3060 Ti", "0"));
-		this.Products.push(new Product("1", "Delonghi Dedica Pump", "1"));
-		this.Products.push(new Product("2", "AMD Ryzen 7 5700G", "2"));
-		this.Products.push(new Product("3", "Osprey Rook 50", "3"));
+		this.Products.push(new Product("0", "GeForce RTX 3060 Ti", "000000000"));
+		this.Products.push(new Product("1", "Delonghi Dedica Pump", "000000001"));
+		this.Products.push(new Product("2", "AMD Ryzen 7 5700G", "000000002"));
+		this.Products.push(new Product("3", "Osprey Rook 50", "000000003"));
 
 		this.AdTypes.push(new OnlineAdType("0", "Banner", "100000000", 25, 50, 5));
 		this.AdTypes.push(new OnlineAdType("1", "Pop-up", "100000001", 50, 70, 30));
