@@ -17,8 +17,6 @@ public abstract class Ad implements Identifiable{
     private int durationInDays;
     private String details;
 
-    private String name;
-
     public Ad(String adTypeCode, String productCode, int durationInDays, String details){
         this.adTypeCode = adTypeCode;
         this.productCode = productCode;
