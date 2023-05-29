@@ -5,7 +5,6 @@ import Collections.Collection;
 import Ads.Ad;
 
 import AdTypes.*;
-//import AdTypes.AdType;
 
 public class CollectionManager {
 
@@ -38,6 +37,7 @@ public class CollectionManager {
         return null;
     }
 
+    //Finds the ads of the specified Agency
     private static Collection<Ad> findAdsOf(AdAgency agency) {
 
         Collection<Ad> adsOfAgency = new Collection<Ad>(Ad.class);
@@ -65,6 +65,7 @@ public class CollectionManager {
         return adsOfAgency;
     }
 
+    //Prints the ads of the specified agency
     public static void printAdsOf(AdAgency agency)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
@@ -85,7 +86,7 @@ public class CollectionManager {
             System.out.println(adsToPrint.get(i));
         }
     }
-    // 💀
+    // Calculate the total cost of the ads
     private static int calculateTotalCostOf(Collection<Ad> m_ads)
     {
         int totalCost = 0;
@@ -97,7 +98,8 @@ public class CollectionManager {
             for(int j = 0; j < adTypes.getLength(); j++)
             {
                 AdType curType = adTypes.get(j);
-
+                
+                //If the current Ad is of this AdType, then add it's cost to the totalCost
                 if(curAd.getAdTypeCode().equals(curType.getUniqueIdentifier()))
                 {   
                     System.out.print("Ad :["+curAd.getUniqueIdentifier()+"] with the following cost: ");
@@ -111,6 +113,7 @@ public class CollectionManager {
         return totalCost;
     }
 
+    //Print the cost of a specified agency
     public static int printAdCostFor(AdAgency agency)
     {
         if(agency == null || adTypes.getLength() == 0 || ads.getLength() == 0)
@@ -166,7 +169,7 @@ public class CollectionManager {
             }
         }
 
-        // Sort array 💀
+        // Sort array
 
         for(int i = 1; i < countsOfAdsPerProduct.length; i++)
         {
@@ -209,6 +212,7 @@ public class CollectionManager {
         return adsOfProduct;
     }
 
+    //Prints the cost of all the Ads referencing the specified Produt
     public static int printAdCostFor(Product product)
     {
 
