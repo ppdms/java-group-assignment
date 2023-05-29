@@ -28,7 +28,7 @@ public abstract class Ad implements Identifiable{
 
     //Getters
 
-    //this are here just to make sure Identifiable works
+    //these are here just to make sure Identifiable works
     @Override
     public String getUniqueIdentifier(){
         return Integer.toString(this.hashCode());
