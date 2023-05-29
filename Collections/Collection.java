@@ -27,22 +27,15 @@ public class Collection<T extends Identifiable> {
         }
         return false;
     }
-
+	
+//Add the Object to the Collection
     public T push(T data) {
-        // if contents already contains some T with the same uniqueIdentifier as data,
-        // replace it with data and return the old T.
-
-        /*for (int i=0; i<contents.size(); i++) {
-                if (contents.get(i).getUniqueIdentifier().equals(data.getUniqueIdentifier())) {
-                    contents.add(0, data);
-                    return contents.remove(i+1);
-                }
-        }*/
         sequenceNumber++;
         contents.add(data);
         return null;
     }
-
+	
+//Get index of Object
     public T get(int index) {
         if (index < 0 || index > this.getLength() - 1)
             return null;
