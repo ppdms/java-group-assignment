@@ -6,10 +6,6 @@
 * TOMARAS NIKOLAOS 	p3220202
 */
 
-import Ads.*;
-import AdTypes.*;
-import Collections.Collection;
-import ComplimentaryClasses.*;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Scanner;

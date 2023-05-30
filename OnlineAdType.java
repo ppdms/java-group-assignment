@@ -1,4 +1,3 @@
-package AdTypes;
 public class OnlineAdType extends AdType{
 
     private int pricePerDay;

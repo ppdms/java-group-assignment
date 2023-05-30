@@ -1,5 +1,3 @@
-package AdTypes;
-
 public class PrintedAdType extends AdType{
 
     public static final String FIRST_PAGE = "First";

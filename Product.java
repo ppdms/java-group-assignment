@@ -1,5 +1,3 @@
-package ComplimentaryClasses;
-
 public class Product implements Identifiable{
     private String productCode;
     private String description;

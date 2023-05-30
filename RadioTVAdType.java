@@ -1,4 +1,3 @@
-package AdTypes;
 public class RadioTVAdType extends AdType{
 
     public static final int TYPE = RADIO_TV;

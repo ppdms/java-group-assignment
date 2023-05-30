@@ -1,4 +1,3 @@
-package Ads;
 public class OnlineAd extends Ad{
     private int autoShow;
 

@@ -1,6 +1,3 @@
-package Ads;
-import ComplimentaryClasses.Identifiable;
-
 public abstract class Ad implements Identifiable{
     
     // We connect classes Ad and AdType

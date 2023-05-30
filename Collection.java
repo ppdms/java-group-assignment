@@ -1,5 +1,3 @@
-package Collections;
-import ComplimentaryClasses.Identifiable;
 import java.util.ArrayList;
 
 public class Collection<T extends Identifiable> {

@@ -1,11 +1,3 @@
-package ComplimentaryClasses;
-
-import Collections.Collection;
-
-import Ads.Ad;
-
-import AdTypes.*;
-
 public class CollectionManager {
 
     private static Collection<Ad> ads;

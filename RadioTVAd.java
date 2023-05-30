@@ -1,4 +1,3 @@
-package Ads;
 public class RadioTVAd extends Ad{
     private int durationSeconds; // Extra characteristic
 

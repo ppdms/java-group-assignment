@@ -1,4 +1,3 @@
-package ComplimentaryClasses;
 public class AdAgency implements Identifiable{
 
     // We connect classes AdAgency and AdType

@@ -1,6 +1,3 @@
-package AdTypes;
-import ComplimentaryClasses.Identifiable;
-
 public abstract class AdType implements Identifiable {
 
     public static final int ONLINE = 0;
