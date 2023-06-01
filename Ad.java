@@ -1,48 +1,51 @@
-public abstract class Ad implements Identifiable{
-    
+public abstract class Ad implements Identifiable {
+
     // We connect classes Ad and AdType
     // typeCode of Ad == adCode of AdType
 
-    private String adTypeCode; 
+    private String adTypeCode;
 
     // We also connect classes Ad and Product
     // productCode in Ad == productCode in Product
 
     private String productCode;
 
-
     private int durationInDays;
     private String details;
 
-    public Ad(String adTypeCode, String productCode, int durationInDays, String details){
+    public Ad(String adTypeCode, String productCode, int durationInDays, String details) {
         this.adTypeCode = adTypeCode;
         this.productCode = productCode;
         this.durationInDays = durationInDays;
         this.details = details;
     }
 
-    //Getters
+    // Getters
 
-    //these are here just to make sure Identifiable works
+    // these are here just to make sure Identifiable works
     @Override
-    public String getUniqueIdentifier(){
-        return Integer.toString(this.hashCode());
-    }
-    @Override
-    public String getName(){
+    public String getUniqueIdentifier() {
         return Integer.toString(this.hashCode());
     }
 
-    public String getAdTypeCode(){
+    @Override
+    public String getName() {
+        return Integer.toString(this.hashCode());
+    }
+
+    public String getAdTypeCode() {
         return adTypeCode;
     }
-    public String getProductCode(){
+
+    public String getProductCode() {
         return productCode;
     }
-    public int getDurationInDays(){
+
+    public int getDurationInDays() {
         return durationInDays;
     }
-    public String getDetails(){
+
+    public String getDetails() {
         return details;
     }
 
@@ -50,16 +53,17 @@ public abstract class Ad implements Identifiable{
 
     public String toString() {
         String extraCharacteristic;
-        if (this instanceof OnlineAd){
+        if (this instanceof OnlineAd) {
             extraCharacteristic = "Autoshow (0->off | 1->on)";
-        }
-        else if (this instanceof PrintedAd){
+        } else if (this instanceof PrintedAd) {
             extraCharacteristic = "Words";
-        }
-        else{
+        } else {
             extraCharacteristic = "Duration in seconds";
         }
-        return String.format("{Ad type code : %s ,  Product code : %s ,  Duration in days : %d ,  Details : %s ,  %s : %d}", this.adTypeCode, this.productCode, this.durationInDays, this.details, extraCharacteristic, this.getExtraCharacteristic());
+        return String.format(
+                "{Ad type code : %s ,  Product code : %s ,  Duration in days : %d ,  Details : %s ,  %s : %d}",
+                this.adTypeCode, this.productCode, this.durationInDays, this.details, extraCharacteristic,
+                this.getExtraCharacteristic());
     }
 
 }

@@ -1,14 +1,15 @@
-public class PrintedAdType extends AdType{
+public class PrintedAdType extends AdType {
 
     public static final String FIRST_PAGE = "First";
     public static final String MIDDLE_PAGE = "Middle";
     public static final String LAST_PAGE = "Last";
 
-    private int euroPwFirst; //Price per word on the first page
-    private int euroPwMiddle; //Same for the middle
-    private int euroPwLast;  //Same for the last page
+    private int euroPwFirst; // Price per word on the first page
+    private int euroPwMiddle; // Same for the middle
+    private int euroPwLast; // Same for the last page
 
-    public PrintedAdType(String adCode, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle, int euroPwLast){
+    public PrintedAdType(String adCode, String description, String agencyTIN, int euroPwFirst, int euroPwMiddle,
+            int euroPwLast) {
         super(adCode, description, agencyTIN);
         this.euroPwFirst = euroPwFirst;
         this.euroPwMiddle = euroPwMiddle;
@@ -18,7 +19,7 @@ public class PrintedAdType extends AdType{
     public int cost(String pageShowcase, int numWords, int durationInDays) {
         int euroPw;
 
-        switch(pageShowcase) {
+        switch (pageShowcase) {
             case PrintedAdType.FIRST_PAGE:
                 euroPw = euroPwFirst;
                 break;
@@ -33,27 +34,29 @@ public class PrintedAdType extends AdType{
                 euroPw = 0;
         }
         int res = numWords * euroPw * durationInDays;
-        System.out.println(numWords+" * "+ euroPw +" * "+ durationInDays+" = "+res);
+        System.out.println(numWords + " * " + euroPw + " * " + durationInDays + " = " + res);
         return res;
     }
 
-    //Getters
-    public int getEuroPwFirst(){
+    // Getters
+    public int getEuroPwFirst() {
         return euroPwFirst;
     }
-    public int getEuroPwMiddle(){
+
+    public int getEuroPwMiddle() {
         return euroPwMiddle;
     }
-    public int getEuroPwLast(){
+
+    public int getEuroPwLast() {
         return euroPwLast;
     }
 
     public String toString() {
-        return String.format("{%s, euroPwFirst : %d, euroPwMiddle : %d, euroPwLast : %d}", super.toString(), this.euroPwFirst, this.euroPwMiddle, this.euroPwLast);
+        return String.format("{%s, euroPwFirst : %d, euroPwMiddle : %d, euroPwLast : %d}", super.toString(),
+                this.euroPwFirst, this.euroPwMiddle, this.euroPwLast);
     }
 
-    public int getTYPE()
-    {
+    public int getTYPE() {
         return PRINTED;
     }
 }

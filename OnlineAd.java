@@ -1,12 +1,12 @@
-public class OnlineAd extends Ad{
+public class OnlineAd extends Ad {
     private int autoShow;
 
-    public OnlineAd(String typeCode, String productCode, int durationInDays, String details, int autoShow){
+    public OnlineAd(String typeCode, String productCode, int durationInDays, String details, int autoShow) {
         super(typeCode, productCode, durationInDays, details);
         this.autoShow = autoShow;
     }
-    
-    //Getters
+
+    // Getters
     public int getAutoShow() {
         return getExtraCharacteristic();
     }
