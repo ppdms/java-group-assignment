@@ -1,0 +1,96 @@
+ADVTYPE_LIST
+{
+ADVTYPE
+{
+      tYPE web
+	  code 0
+	  DESCR “Banner”
+	  AFM 100000000
+      c1 25
+	  c2 50
+	  c3 5
+}
+ADVTYPE
+{
+      tYPE web
+	  code 1
+	  DESCR “Pop-up”
+	  AFM 100000001
+      c1 50
+	  c2 70
+	  c3 30
+}
+ADVTYPE
+{
+      tYPE web
+	  code 2
+	  DESCR “YouTube Unskippable”
+	  AFM 100000002
+      c1 40
+	  c2 0
+	  c3 90
+}
+ADVTYPE
+{
+      tYPE PRint
+	  code 3
+	  DESCR “Full Page”
+	  AFM 100000003
+      c1 100
+	  c2 20
+	  c3 80
+}
+ADVTYPE
+{
+      tYPE PRint
+	  code 4
+	  DESCR “Quarter Page”
+	  AFM 100000001
+      c1 25
+	  c2 5
+	  c3 20
+}
+ADVTYPE
+{
+      tYPE PRint
+	  code 5
+	  DESCR “Tenth Page”
+	  AFM 100000001
+      c1 10
+	  c2 2
+	  c3 8
+}
+ADVTYPE
+{
+      tYPE Media
+	  code 6
+	  DESCR “Product placement”
+	  AFM 100000002
+      c1 3
+	  c2 7
+	  c3 3
+	  c4 5
+}
+ADVTYPE
+{
+      tYPE Media
+	  code 7
+	  DESCR “Live endorsement”
+	  AFM 100000000
+      c1 12
+	  c2 7
+	  c3 10
+	  c4 5
+}
+ADVTYPE
+{
+      tYPE Media
+	  code 8
+	  DESCR “First ad in queue”
+	  AFM 100000003
+      c1 15
+	  c2 9
+	  c3 20
+	  c4 5
+}
+}

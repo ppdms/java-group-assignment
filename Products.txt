@@ -1,0 +1,27 @@
+ITEM_LIST
+{
+item
+{
+      AFM 000000000
+      DESCR “GeForce RTX 3060 Ti”
+      code 0 
+}
+item
+{
+      AFM 000000001
+      DESCR “Delonghi Dedica Pump”
+      code 1
+} 
+item
+{
+      AFM 000000002
+      DESCR “AMD Ryzen 7 5700G”
+      code 2 
+} 
+item
+{
+      AFM 000000003
+      DESCR “Osprey Rook 50”
+      code 3 
+} 
+} 

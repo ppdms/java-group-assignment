@@ -411,62 +411,57 @@ public class mainApp {
 
 		CollectionManager.bind(Ads, AdTypes, AdAgencies, Products);
 
-		this.AdAgencies.push(new AdAgency("100000000", "McCann"));
-		this.AdAgencies.push(new AdAgency("100000001", "Wunderman Thompson"));
-		this.AdAgencies.push(new AdAgency("100000002", "Ogilvy"));
-		this.AdAgencies.push(new AdAgency("100000003", "Sterling Cooper"));
+		this.AdAgencies.populateFromFile("AdAgencies.txt");
+		this.Products.populateFromFile("Products.txt");
+		this.AdTypes.populateFromFile("AdTypes.txt");
+		this.Ads.populateFromFile("Ads.txt");
 
-		this.Products.push(new Product("0", "GeForce RTX 3060 Ti", "000000000"));
-		this.Products.push(new Product("1", "Delonghi Dedica Pump", "000000001"));
-		this.Products.push(new Product("2", "AMD Ryzen 7 5700G", "000000002"));
-		this.Products.push(new Product("3", "Osprey Rook 50", "000000003"));
-
-		this.AdTypes.push(new OnlineAdType("0", "Banner", "100000000", 25, 50, 5));
-		this.AdTypes.push(new OnlineAdType("1", "Pop-up", "100000001", 50, 70, 30));
-		this.AdTypes.push(new OnlineAdType("2", "YouTube Unskippable", "100000002", 40, 0, 90));
-
-		this.AdTypes.push(new PrintedAdType("3", "Full Page", "100000003", 100, 20, 80));
-		this.AdTypes.push(new PrintedAdType("4", "Quarter Page", "100000001", 25, 5, 20));
-		this.AdTypes.push(new PrintedAdType("5", "Tenth page", "100000001", 10, 2, 8));
-
-		this.AdTypes.push(new RadioTVAdType("6", "Product placement", "100000002", 3, 7, 3, 5));
-		this.AdTypes.push(new RadioTVAdType("7", "Live endorsement", "100000000", 12, 7, 10, 5));
-		this.AdTypes.push(new RadioTVAdType("8", "First ad in queue", "100000003", 15, 9, 20, 5));
-
-		for (int i = 0; i < this.Products.getLength(); i++) {
+		/*for (int i = 0; i < this.Products.getLength(); i++) {
 
 			// 3 online ads for product i
 			for (String typecode : new String[] { "0", "1", "2" }) {
-				this.Ads.push(new OnlineAd(typecode,
-						this.Products.get(i).getProductCode(),
-						randomInteger(100),
-						Integer.toString(randomInteger(10)),
-						randomInteger(1)));
+				System.out.println("ADV\n"
+				+"{\n"
+				+"TYPE web\n"
+				+"ADVTYPE_CODE " +typecode
+				+"\nITEM_CODE "+this.Products.get(i).getProductCode()
+				+"\nDURATION "+randomInteger(100)
+				+"\nJustification “"+Integer.toString(randomInteger(10))+"”\n"
+				+"c "+randomInteger(1)
+				+"\n}");
 			}
 
 			// 3 printed ads for product i
 			for (String typecode : new String[] { "3", "4", "5" }) {
-				this.Ads.push(new PrintedAd(typecode,
-						this.Products.get(i).getProductCode(),
-						randomInteger(100),
-						(new String[] { PrintedAdType.FIRST_PAGE,
+				System.out.println("ADV\n"
+				+"{\n"
+				+"TYPE Print\n"
+				+"ADVTYPE_CODE " +typecode
+				+"\nITEM_CODE "+this.Products.get(i).getProductCode()
+				+"\nDURATION "+randomInteger(100)
+				+"\nJustification “"+(new String[] { PrintedAdType.FIRST_PAGE,
 								PrintedAdType.MIDDLE_PAGE,
-								PrintedAdType.LAST_PAGE })[randomInteger(2)],
-						randomInteger(60)));
+								PrintedAdType.LAST_PAGE })[randomInteger(2)]+"”\n"
+				+"c "+randomInteger(60)
+				+"\n}");
 			}
 
 			// 3 radio tv ads for product i
 			for (String typecode : new String[] { "6", "7", "8" }) {
-				this.Ads.push(new RadioTVAd(typecode,
-						this.Products.get(i).getProductCode(),
-						randomInteger(100),
-						(new String[] { RadioTVAdType.MORNING,
+				System.out.println("ADV\n"
+				+"{\n"
+				+"TYPE Media\n"
+				+"ADVTYPE_CODE " +typecode
+				+"\nITEM_CODE "+this.Products.get(i).getProductCode()
+				+"\nDURATION "+randomInteger(100)
+				+"\nJustification “"+(new String[] { RadioTVAdType.MORNING,
 								RadioTVAdType.NOON,
 								RadioTVAdType.AFTERNOON,
-								RadioTVAdType.EVENING })[randomInteger(3)],
-						randomInteger(60)));
+								RadioTVAdType.EVENING })[randomInteger(3)]+"”\n"
+				+"c "+randomInteger(60)
+				+"\n}");
 			}
-		}
+		}*/
 	}
 
 	public static void main(String[] args) {
