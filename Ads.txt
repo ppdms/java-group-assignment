@@ -1,327 +1,336 @@
 ADV_LIST
 {
-ADV
-{
-TYPE web
-ADVTYPE_CODE 0
-ITEM_CODE 0
-DURATION 82
-Justification “0”
-c 0
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 1
-ITEM_CODE 0
-DURATION 38
-Justification “4”
-c 1
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 2
-ITEM_CODE 0
-DURATION 37
-Justification “7”
-c 1
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 3
-ITEM_CODE 0
-DURATION 67
-Justification “First”
-c 15
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 4
-ITEM_CODE 0
-DURATION 96
-Justification “First”
-c 1
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 5
-ITEM_CODE 0
-DURATION 94
-Justification “Last”
-c 21
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 6
-ITEM_CODE 0
-DURATION 43
-Justification “Evening”
-c 10
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 7
-ITEM_CODE 0
-DURATION 44
-Justification “Noon”
-c 21
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 8
-ITEM_CODE 0
-DURATION 32
-Justification “Evening”
-c 37
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 0
-ITEM_CODE 1
-DURATION 72
-Justification “3”
-c 1
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 1
-ITEM_CODE 1
-DURATION 29
-Justification “4”
-c 0
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 2
-ITEM_CODE 1
-DURATION 27
-Justification “1”
-c 1
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 3
-ITEM_CODE 1
-DURATION 64
-Justification “Last”
-c 3
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 4
-ITEM_CODE 1
-DURATION 42
-Justification “Middle”
-c 0
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 5
-ITEM_CODE 1
-DURATION 10
-Justification “Middle”
-c 39
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 6
-ITEM_CODE 1
-DURATION 7
-Justification “Evening”
-c 17
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 7
-ITEM_CODE 1
-DURATION 85
-Justification “Noon”
-c 15
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 8
-ITEM_CODE 1
-DURATION 91
-Justification “Evening”
-c 49
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 0
-ITEM_CODE 2
-DURATION 84
-Justification “8”
-c 0
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 1
-ITEM_CODE 2
-DURATION 75
-Justification “4”
-c 0
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 2
-ITEM_CODE 2
-DURATION 10
-Justification “7”
-c 1
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 3
-ITEM_CODE 2
-DURATION 45
-Justification “Last”
-c 14
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 4
-ITEM_CODE 2
-DURATION 27
-Justification “Middle”
-c 2
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 5
-ITEM_CODE 2
-DURATION 2
-Justification “First”
-c 59
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 6
-ITEM_CODE 2
-DURATION 76
-Justification “Morning”
-c 18
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 7
-ITEM_CODE 2
-DURATION 7
-Justification “Afternoon”
-c 46
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 8
-ITEM_CODE 2
-DURATION 92
-Justification “Morning”
-c 49
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 0
-ITEM_CODE 3
-DURATION 53
-Justification “2”
-c 1
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 1
-ITEM_CODE 3
-DURATION 37
-Justification “9”
-c 1
-}
-ADV
-{
-TYPE web
-ADVTYPE_CODE 2
-ITEM_CODE 3
-DURATION 52
-Justification “2”
-c 1
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 3
-ITEM_CODE 3
-DURATION 43
-Justification “Last”
-c 13
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 4
-ITEM_CODE 3
-DURATION 61
-Justification “First”
-c 2
-}
-ADV
-{
-TYPE Print
-ADVTYPE_CODE 5
-ITEM_CODE 3
-DURATION 55
-Justification “First”
-c 45
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 6
-ITEM_CODE 3
-DURATION 81
-Justification “Afternoon”
-c 24
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 7
-ITEM_CODE 3
-DURATION 1
-Justification “Morning”
-c 36
-}
-ADV
-{
-TYPE Media
-ADVTYPE_CODE 8
-ITEM_CODE 3
-DURATION 90
-Justification “Noon”
-c 4
-}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 0
+		ITEM_CODE 0
+		DURATION 82
+		JUSTIFICATION “0”
+		C 0
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 1
+		ITEM_CODE 0
+		DURATION 38
+		JUSTIFICATION “4”
+		C 1
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 2
+		ITEM_CODE 0
+		DURATION 37
+		JUSTIFICATION “7”
+		C 1
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 3
+		ITEM_CODE 0
+		DURATION 67
+		JUSTIFICATION “First”
+		C 15
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 4
+		ITEM_CODE 0
+		DURATION 96
+		JUSTIFICATION “First”
+		C 1
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 5
+		ITEM_CODE 0
+		DURATION 94
+		JUSTIFICATION “Last”
+		C 21
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 6
+		ITEM_CODE 0
+		DURATION 43
+		JUSTIFICATION “Evening”
+		C 10
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 7
+		ITEM_CODE 0
+		DURATION 44
+		JUSTIFICATION “Noon”
+		C 21
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 8
+		ITEM_CODE 0
+		DURATION 32
+		JUSTIFICATION “Evening”
+		C 37
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 0
+		ITEM_CODE 1
+		DURATION 72
+		JUSTIFICATION “3”
+		C 1
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 1
+		ITEM_CODE 1
+		DURATION 29
+		JUSTIFICATION “4”
+		C 0
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 2
+		ITEM_CODE 1
+		DURATION 27
+		JUSTIFICATION “1”
+		C 1
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 3
+		ITEM_CODE 1
+		DURATION 64
+		JUSTIFICATION “Last”
+		C 3
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 4
+		ITEM_CODE 1
+		DURATION 42
+		JUSTIFICATION “Middle”
+		C 0
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 5
+		ITEM_CODE 1
+		DURATION 10
+		JUSTIFICATION “Middle”
+		C 39
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 6
+		ITEM_CODE 1
+		DURATION 7
+		JUSTIFICATION “Evening”
+		C 17
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 7
+		ITEM_CODE 1
+		DURATION 85
+		JUSTIFICATION “Noon”
+		C 15
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 8
+		ITEM_CODE 1
+		DURATION 91
+		JUSTIFICATION “Evening”
+		C 49
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 0
+		ITEM_CODE 2
+		DURATION 84
+		JUSTIFICATION “8”
+		C 0
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 1
+		ITEM_CODE 2
+		DURATION 75
+		JUSTIFICATION “4”
+		C 0
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 2
+		ITEM_CODE 2
+		DURATION 10
+		JUSTIFICATION “7”
+		C 1
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 3
+		ITEM_CODE 2
+		DURATION 45
+		JUSTIFICATION “Last”
+		C 14
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 4
+		ITEM_CODE 2
+		DURATION 27
+		JUSTIFICATION “Middle”
+		C 2
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 5
+		ITEM_CODE 2
+		DURATION 2
+		JUSTIFICATION “First”
+		C 59
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 6
+		ITEM_CODE 2
+		DURATION 76
+		JUSTIFICATION “Morning”
+		C 18
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 7
+		ITEM_CODE 2
+		DURATION 7
+		JUSTIFICATION “Afternoon”
+		C 46
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 8
+		ITEM_CODE 2
+		DURATION 92
+		JUSTIFICATION “Morning”
+		C 49
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 0
+		ITEM_CODE 3
+		DURATION 53
+		JUSTIFICATION “2”
+		C 1
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 1
+		ITEM_CODE 3
+		DURATION 37
+		JUSTIFICATION “9”
+		C 1
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 2
+		ITEM_CODE 3
+		DURATION 52
+		JUSTIFICATION “2”
+		C 1
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 3
+		ITEM_CODE 3
+		DURATION 43
+		JUSTIFICATION “Last”
+		C 13
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 4
+		ITEM_CODE 3
+		DURATION 61
+		JUSTIFICATION “First”
+		C 2
+	}
+	ADV
+	{
+		TYPE Print
+		ADVTYPE_CODE 5
+		ITEM_CODE 3
+		DURATION 55
+		JUSTIFICATION “First”
+		C 45
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 6
+		ITEM_CODE 3
+		DURATION 81
+		JUSTIFICATION “Afternoon”
+		C 24
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 7
+		ITEM_CODE 3
+		DURATION 1
+		JUSTIFICATION “Morning”
+		C 36
+	}
+	ADV
+	{
+		TYPE Media
+		ADVTYPE_CODE 8
+		ITEM_CODE 3
+		DURATION 90
+		JUSTIFICATION “Noon”
+		C 4
+	}
+	ADV
+	{
+		TYPE Web
+		ADVTYPE_CODE 9
+		ITEM_CODE 3
+		DURATION 2
+		JUSTIFICATION “4”
+		C 1
+	}
 }

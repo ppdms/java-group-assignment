@@ -234,7 +234,11 @@ public class mainApp {
 					+ "[0] Exit\n");
 			choice: while (true) {
 				switch (readNextIntegerWithPrompt("Your choice", 0)) {
-					case 0:
+					case 0:					
+					AdAgencies.saveInfo("Ads.txt", Ads, AdTypes, AdAgencies, Products);
+					AdAgencies.saveInfo("AdTypes.txt", Ads, AdTypes, AdAgencies, Products);
+					AdAgencies.saveInfo("AdAgencies.txt", Ads, AdTypes, AdAgencies, Products);
+					AdAgencies.saveInfo("Products.txt", Ads, AdTypes, AdAgencies, Products);
 						System.exit(0);
 					case 1:
 						choices = getManyInputs(new String[] { "TIN", "Brand name" }, new Boolean[] { false, false }, 1,
@@ -415,6 +419,8 @@ public class mainApp {
 		this.Products.populateFromFile("Products.txt");
 		this.AdTypes.populateFromFile("AdTypes.txt");
 		this.Ads.populateFromFile("Ads.txt");
+		
+		
 
 		/*for (int i = 0; i < this.Products.getLength(); i++) {
 
@@ -471,5 +477,6 @@ public class mainApp {
 		app.repl();
 
 		sc.close();
+		
 	}
 }

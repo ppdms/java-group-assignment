@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.StringTokenizer;
 
 public class Collection<T extends Identifiable> {
@@ -84,14 +86,16 @@ public class Collection<T extends Identifiable> {
                                             name = ((name == null) ? "" : name) + c;
                                         } else if (c == '“') state = true;
                                     }
-                                }
+                                }//
                             } while (!(line.trim().equals("}")));
                             if (!(TIN==null || name==null || invalid) && isNumeric(TIN)) {
                                 this.push(this.itemsClassType.getDeclaredConstructor(new Class[]{String.class, String.class}).newInstance(TIN, name));
                             }
+                            else System.out.println("data corruption!+agency");
                             line = br.readLine();
                         } while (!(line.trim().equals("}")));
                     }
+                    br.close();
                     break;
                 case "Product":
                     while (br.ready()) {
@@ -115,10 +119,10 @@ public class Collection<T extends Identifiable> {
                                 if (token.equalsIgnoreCase("AFM")) {
                                     if (TIN != null) invalid = true;
                                     TIN = tokens.nextToken();
-                                } else if (token.equalsIgnoreCase("code")) {
+                                } else if (token.equalsIgnoreCase("CODE")) {
                                     if (code != null) invalid = true;
                                     code = tokens.nextToken();
-                                } else if (token.equalsIgnoreCase("descr")) {
+                                } else if (token.equalsIgnoreCase("DESCR")) {
                                     if (desc != null) invalid = true;
                                     desc = tokens.nextToken();
                                     if (!(desc.charAt(0)=='“')) continue;
@@ -132,18 +136,22 @@ public class Collection<T extends Identifiable> {
                                     }
                                 }
                             } while (!(line.trim().equals("}")));
-                            
+                            //
                             if (!(TIN==null || desc==null || code == null || invalid) && isNumeric(TIN) && isNumeric(code)) {
                                 this.push(this.itemsClassType.getDeclaredConstructor(new Class[]{String.class, String.class, String.class}).newInstance(code, desc, TIN));
                             }
+                            else System.out.println("data corruption!+prouct");
                             line = br.readLine();
                         } while (!(line.trim().equals("}")));
                     }
+                    br.close();
                     break;
                 case "AdType":
                     while (br.ready()) {
                         line = br.readLine();
                         if (!line.trim().equalsIgnoreCase("ADVTYPE_LIST")) continue;
+                        line = br.readLine();
+                        if (!line.trim().equals("")) continue;
                         line = br.readLine();
                         if (!line.trim().equals("{")) continue;
                         line = br.readLine();
@@ -227,6 +235,7 @@ public class Collection<T extends Identifiable> {
                             line = br.readLine();
                         } while (!(line.trim().equals("}")));
                     }
+                    br.close();
                     break;
                 case "Ad":
                     while (br.ready()) {
@@ -292,16 +301,149 @@ public class Collection<T extends Identifiable> {
                             } while (!(line.trim().equals("}")));
                             if (!(type == null || advtype_code==null || item_code==null || duration==null || justification == null || c == null || invalid) && isNumeric(advtype_code) && isNumeric(item_code) && (type.equalsIgnoreCase("Print") || type.equalsIgnoreCase("Media") || type.equalsIgnoreCase("wEB"))) {
                                 if (type.equalsIgnoreCase("Print")) this.push((T) new PrintedAd(advtype_code, item_code, duration, justification, c)); else if (type.equalsIgnoreCase("Media")) this.push((T) new RadioTVAd(advtype_code, item_code, duration, justification, c)); else if (type.equalsIgnoreCase("WEB")) this.push((T) new OnlineAd(advtype_code, item_code, duration, justification, c));
-                            } else System.out.println("data corruption!");
+                            } else System.out.println("data corruption!+bbbb");
                             line = br.readLine();
                         } while (!(line.trim().equals("}")));
                     }
+                    br.close();
                 break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return;
+    }
+
+    public void saveInfo(String fileName, Collection<Ad> ads, Collection<AdType> adTypes, Collection<AdAgency> adAgencies, Collection<Product> products){
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+
+            if (fileName.equals("Ads.txt")){
+                writer.write("ADV_LIST\n");
+                writer.write("{\n");
+                for (int i=0; i<ads.getLength(); i++){
+                    String avdType ="";
+                    writer.write("\tADV\n");
+                    writer.write("\t{\n");
+                    String adTypeCode = ads.get(i).getAdTypeCode();
+                    //Get the type of the specific Ad
+                    for (int j=0; j<adTypes.getLength(); j++){
+                        if (adTypes.get(j).getAdCode().equals(adTypeCode)){
+                            switch(adTypes.get(j).getTYPE()){
+                                case 0:
+                                    avdType = "Web";
+                                    break;
+                                case 1:
+                                    avdType = "Print";
+                                    break;
+                                case 2:
+                                    avdType = "Media";
+                                    break;
+                            }
+                        }
+                    }
+                    writer.write("\t\tTYPE "+avdType+"\n");
+                    writer.write("\t\tADVTYPE_CODE "+ads.get(i).getAdTypeCode()+"\n");
+                    writer.write("\t\tITEM_CODE "+ads.get(i).getProductCode()+"\n");
+                    writer.write("\t\tDURATION "+ads.get(i).getDurationInDays()+"\n");
+                    writer.write("\t\tJUSTIFICATION “"+ads.get(i).getDetails()+"”\n");
+                    writer.write("\t\tC "+ads.get(i).getExtraCharacteristic()+"\n");
+                    writer.write("\t}\n");
+                }
+                writer.write("}");
+                writer.close();
+            }
+            else if (fileName.equals("AdTypes.txt")){
+                writer.write("ADVTYPE_LIST\n\n");
+                writer.write("{\n");
+                String type = null;
+                String code = null;
+                String desc = null;
+                String TIN = null;
+                //values/class: online               printed      radio
+                Integer c1 = null;//pricePerDay          euroPwFirst  euroPsMorning
+                Integer c2 = null;//automaticDisplayCost euroPwMiddle euroPsNoon
+                Integer c3 = null;//pricePerExtraPage    euroPwFLast  euroPsAfternoon
+                Integer c4 = null;//THIS IS ONLY FOR RADIO (euroPsEvening)
+
+                //Get the needed info depending on the adType
+                for (int i=0; i<adTypes.getLength(); i++){
+                    //These are the characteristics shared among all the AdTypes
+                    code = adTypes.get(i).getAdCode();
+                    desc = adTypes.get(i).getDescription();
+                    TIN = adTypes.get(i).getAgencyTIN();
+                    if (adTypes.get(i) instanceof OnlineAdType){
+                        //These are the unique characteristics
+                        type = "Web";
+                        c1 = ((OnlineAdType)adTypes.get(i)).getPricePerDay();
+                        c2 = ((OnlineAdType)adTypes.get(i)).getAutomaticDisplayCost();
+                        c3 = ((OnlineAdType)adTypes.get(i)).getPricePerExtraPage();                        
+                    }
+                    else if (adTypes.get(i) instanceof PrintedAdType){
+                        //These are the unique characteristics
+                        type = "Print";
+                        c1 = ((PrintedAdType)adTypes.get(i)).getEuroPwFirst();
+                        c2 = ((PrintedAdType)adTypes.get(i)).getEuroPwMiddle();
+                        c3 = ((PrintedAdType)adTypes.get(i)).getEuroPwLast();
+                    }
+                    else{
+                        //These are the unique characteristics
+                        type = "Media";
+                        c1 = ((RadioTVAdType)adTypes.get(i)).getEuroPsMorning();
+                        c2 = ((RadioTVAdType)adTypes.get(i)).getEuroPsNoon();
+                        c3 = ((RadioTVAdType)adTypes.get(i)).getEuroPsAfternoon();
+                        c4 = ((RadioTVAdType)adTypes.get(i)).getEuroPsEvening();
+                    }
+
+                    writer.write("\tADVTYPE\n");
+                    writer.write("\t{\n");
+                    writer.write("\t\tTYPE "+type+"\n");
+                    writer.write("\t\tCODE "+code+"\n");
+                    writer.write("\t\tDESCR “"+desc+"”\n");
+                    writer.write("\t\tAFM "+TIN+"\n");
+                    writer.write("\t\tc1 "+c1+"\n");
+                    writer.write("\t\tc2 "+c2+"\n");
+                    writer.write("\t\tc3 "+c3+"\n");
+                    if (c4 != null){
+                        writer.write("\t\tc4 "+c4+"\n");
+                    }
+                    writer.write("\t}\n");                    
+                }                
+                writer.write("}");
+                writer.close();
+            }
+            else if (fileName.equals("AdAgencies.txt")){
+                writer.write("COMPANY_LIST\n");
+                writer.write("{\n");
+                for (int i=0; i<adAgencies.getLength(); i++){
+                    writer.write("\tCOMPANY\n");
+                    writer.write("\t{\n");
+                    writer.write("\t\tAFM "+adAgencies.get(i).getTIN()+"\n");
+                    writer.write("\t\tNAME “"+adAgencies.get(i).getBrandName()+"”\n");
+                    writer.write("\t}\n");
+                }
+                writer.write("}");
+                writer.close();
+            } 
+            else{
+                writer.write("ITEM_LIST\n");
+                writer.write("{\n");
+                for (int i=0; i<products.getLength(); i++){
+                    writer.write("\tITEM\n");
+                    writer.write("\t{\n");
+                    writer.write("\t\tCODE "+products.get(i).getProductCode()+"\n");
+                    writer.write("\t\tDESCR “"+products.get(i).getDescription()+"”\n");
+                    writer.write("\t\tAFM "+products.get(i).getSupplierTIN()+"\n");
+                    writer.write("\t}\n");
+                }
+                writer.write("}");
+                writer.close();
+            }       
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        
     }
 
     // Add the Object to the Collection
