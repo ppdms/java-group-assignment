@@ -182,7 +182,8 @@ public class Collection<T extends Identifiable> {
                                 } else if (token.equalsIgnoreCase("code")) {
                                     if (code != null) invalid = true;
                                     code = tokens.nextToken();
-                                } else if (token.equalsIgnoreCase("c1")) {
+                                    //c1
+                                } else if (token.equalsIgnoreCase("PRICE_PER_DAY") || token.equalsIgnoreCase("EURO_PW_FIRST") || token.equalsIgnoreCase("EURO_PW_MORNING")) {
                                     if (c1 != null) invalid = true;
                                     token = tokens.nextToken();
                                     if (!isNumeric(token)) {
@@ -190,7 +191,8 @@ public class Collection<T extends Identifiable> {
                                         continue;
                                     }
                                     c1 = Integer.parseInt(token);
-                                } else if (token.equalsIgnoreCase("c2")) {
+                                    //c2
+                                } else if (token.equalsIgnoreCase("AUTOMATIC_DISPLAY_COST") || token.equalsIgnoreCase("EURO_PW_MIDDLE") || token.equalsIgnoreCase("EURO_PW_NOON")) {
                                     if (c2 != null) invalid = true;
                                     token = tokens.nextToken();
                                     if (!isNumeric(token)) {
@@ -198,7 +200,8 @@ public class Collection<T extends Identifiable> {
                                         continue;
                                     }
                                     c2 = Integer.parseInt(token);
-                                } else if (token.equalsIgnoreCase("c3")) {
+                                    //c3
+                                } else if (token.equalsIgnoreCase("PRICE_PER_EXTRA_PAGE") || token.equalsIgnoreCase("EURO_PW_LAST") || token.equalsIgnoreCase("EURO_PW_AFTERNOON")) {
                                     if (c3 != null) invalid = true;
                                     token = tokens.nextToken();
                                     if (!isNumeric(token)) {
@@ -206,7 +209,7 @@ public class Collection<T extends Identifiable> {
                                         continue;
                                     }
                                     c3 = Integer.parseInt(token);
-                                } else if (token.equalsIgnoreCase("c4")) {
+                                } else if (token.equalsIgnoreCase("EURO_PW_EVENING")) {
                                     if (c4 != null) invalid = true;
                                     token = tokens.nextToken();
                                     if (!isNumeric(token)) {
@@ -231,7 +234,7 @@ public class Collection<T extends Identifiable> {
                             } while (!(line.trim().equals("}")));
                             if (!(TIN==null || type==null || desc==null || code == null || invalid) && isNumeric(TIN) && isNumeric(code) && (type.equalsIgnoreCase("Print") || (type.equalsIgnoreCase("Media") && c4 != null) || type.equalsIgnoreCase("web"))) {
                                 if (type.equalsIgnoreCase("Print")) this.push((T) new PrintedAdType(code, desc, TIN, c1, c2, c3)); else if (type.equalsIgnoreCase("Media")) this.push((T) new RadioTVAdType(code, desc, TIN, c1, c2, c3, c4)); else if (type.equalsIgnoreCase("web")) this.push((T) new OnlineAdType(code, desc, TIN, c1, c2, c3));
-                            } else System.out.println("data corruption!"+code+desc+TIN+type+c1+c2+c3);
+                            } else System.out.println("data corruption!"+code+desc+TIN+type+c1+c2+c3+c4);
                             line = br.readLine();
                         } while (!(line.trim().equals("}")));
                     }
@@ -277,7 +280,8 @@ public class Collection<T extends Identifiable> {
                                         continue;
                                     }
                                     duration = Integer.parseInt(token);
-                                } else if (token.equalsIgnoreCase("c")) {
+                                    //c
+                                } else if (token.equalsIgnoreCase("AUTO_SHOW") || token.equalsIgnoreCase("WORDS") || token.equalsIgnoreCase("DURATION_SECONDS")) {
                                     if (c != null) invalid = true;
                                     token = tokens.nextToken();
                                     if (!isNumeric(token)) {
@@ -314,7 +318,7 @@ public class Collection<T extends Identifiable> {
         return;
     }
 
-    public void saveInfo(String fileName, Collection<Ad> ads, Collection<AdType> adTypes, Collection<AdAgency> adAgencies, Collection<Product> products){
+    public static void saveInfo(String fileName, Collection<Ad> ads, Collection<AdType> adTypes, Collection<AdAgency> adAgencies, Collection<Product> products){
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
 
@@ -326,18 +330,22 @@ public class Collection<T extends Identifiable> {
                     writer.write("\tADV\n");
                     writer.write("\t{\n");
                     String adTypeCode = ads.get(i).getAdTypeCode();
+                    String characteristic="";
                     //Get the type of the specific Ad
                     for (int j=0; j<adTypes.getLength(); j++){
                         if (adTypes.get(j).getAdCode().equals(adTypeCode)){
                             switch(adTypes.get(j).getTYPE()){
                                 case 0:
                                     avdType = "Web";
+                                    characteristic = "AUTO_SHOW";
                                     break;
                                 case 1:
                                     avdType = "Print";
+                                    characteristic = "WORDS";
                                     break;
                                 case 2:
                                     avdType = "Media";
+                                    characteristic = "DURATION_SECONDS";
                                     break;
                             }
                         }
@@ -347,7 +355,7 @@ public class Collection<T extends Identifiable> {
                     writer.write("\t\tITEM_CODE "+ads.get(i).getProductCode()+"\n");
                     writer.write("\t\tDURATION "+ads.get(i).getDurationInDays()+"\n");
                     writer.write("\t\tJUSTIFICATION “"+ads.get(i).getDetails()+"”\n");
-                    writer.write("\t\tC "+ads.get(i).getExtraCharacteristic()+"\n");
+                    writer.write("\t\t"+characteristic+" "+ads.get(i).getExtraCharacteristic()+"\n");
                     writer.write("\t}\n");
                 }
                 writer.write("}");
@@ -366,8 +374,12 @@ public class Collection<T extends Identifiable> {
                 Integer c3 = null;//pricePerExtraPage    euroPwFLast  euroPsAfternoon
                 Integer c4 = null;//THIS IS ONLY FOR RADIO (euroPsEvening)
 
+
                 //Get the needed info depending on the adType
                 for (int i=0; i<adTypes.getLength(); i++){
+                    String char1 = "";
+                    String char2 = "";
+                    String char3 = "";
                     //These are the characteristics shared among all the AdTypes
                     code = adTypes.get(i).getAdCode();
                     desc = adTypes.get(i).getDescription();
@@ -377,7 +389,10 @@ public class Collection<T extends Identifiable> {
                         type = "Web";
                         c1 = ((OnlineAdType)adTypes.get(i)).getPricePerDay();
                         c2 = ((OnlineAdType)adTypes.get(i)).getAutomaticDisplayCost();
-                        c3 = ((OnlineAdType)adTypes.get(i)).getPricePerExtraPage();                        
+                        c3 = ((OnlineAdType)adTypes.get(i)).getPricePerExtraPage(); 
+                        char1 = "PRICE_PER_DAY";
+                        char2 = "AUTOMATIC_DISPLAY_COST";
+                        char3 = "PRICE_PER_EXTRA_PAGE";                       
                     }
                     else if (adTypes.get(i) instanceof PrintedAdType){
                         //These are the unique characteristics
@@ -385,6 +400,9 @@ public class Collection<T extends Identifiable> {
                         c1 = ((PrintedAdType)adTypes.get(i)).getEuroPwFirst();
                         c2 = ((PrintedAdType)adTypes.get(i)).getEuroPwMiddle();
                         c3 = ((PrintedAdType)adTypes.get(i)).getEuroPwLast();
+                        char1 = "EURO_PW_FIRST";
+                        char2 = "EURO_PW_MIDDLE";
+                        char3 = "EURO_PW_LAST";
                     }
                     else{
                         //These are the unique characteristics
@@ -393,6 +411,9 @@ public class Collection<T extends Identifiable> {
                         c2 = ((RadioTVAdType)adTypes.get(i)).getEuroPsNoon();
                         c3 = ((RadioTVAdType)adTypes.get(i)).getEuroPsAfternoon();
                         c4 = ((RadioTVAdType)adTypes.get(i)).getEuroPsEvening();
+                        char1 = "EURO_PW_MORNING";
+                        char2 = "EURO_PW_NOON";
+                        char3 = "EURO_PW_AFTERNOON";
                     }
 
                     writer.write("\tADVTYPE\n");
@@ -401,11 +422,11 @@ public class Collection<T extends Identifiable> {
                     writer.write("\t\tCODE "+code+"\n");
                     writer.write("\t\tDESCR “"+desc+"”\n");
                     writer.write("\t\tAFM "+TIN+"\n");
-                    writer.write("\t\tc1 "+c1+"\n");
-                    writer.write("\t\tc2 "+c2+"\n");
-                    writer.write("\t\tc3 "+c3+"\n");
+                    writer.write("\t\t"+char1+" "+c1+"\n");
+                    writer.write("\t\t"+char2+" "+c2+"\n");
+                    writer.write("\t\t"+char3+" "+c3+"\n");
                     if (c4 != null){
-                        writer.write("\t\tc4 "+c4+"\n");
+                        writer.write("\t\tEURO_PW_EVENING "+c4+"\n");
                     }
                     writer.write("\t}\n");                    
                 }                

@@ -236,10 +236,10 @@ public class mainApp {
 			choice: while (true) {
 				switch (readNextIntegerWithPrompt("Your choice", 0)) {
 					case 0:					
-					AdAgencies.saveInfo("Ads.txt", Ads, AdTypes, AdAgencies, Products);
-					AdAgencies.saveInfo("AdTypes.txt", Ads, AdTypes, AdAgencies, Products);
-					AdAgencies.saveInfo("AdAgencies.txt", Ads, AdTypes, AdAgencies, Products);
-					AdAgencies.saveInfo("Products.txt", Ads, AdTypes, AdAgencies, Products);
+					Collection.saveInfo("Ads.txt", Ads, AdTypes, AdAgencies, Products);
+					Collection.saveInfo("AdTypes.txt", Ads, AdTypes, AdAgencies, Products);
+					Collection.saveInfo("AdAgencies.txt", Ads, AdTypes, AdAgencies, Products);
+					Collection.saveInfo("Products.txt", Ads, AdTypes, AdAgencies, Products);
 						System.exit(0);
 					case 1:
 						choices = getManyInputs(new String[] { "TIN", "Brand name" }, new Boolean[] { false, false }, 1,
