@@ -6,6 +6,7 @@
 * TOMARAS NIKOLAOS 	p3220202
 */
 
+import java.io.File;
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -415,12 +416,43 @@ public class mainApp {
 
 		CollectionManager.bind(Ads, AdTypes, AdAgencies, Products);
 
-		this.AdAgencies.populateFromFile("AdAgencies.txt");
-		this.Products.populateFromFile("Products.txt");
-		this.AdTypes.populateFromFile("AdTypes.txt");
-		this.Ads.populateFromFile("Ads.txt");
-		
-		
+		try{
+			File adFile = new File("Ads.txt");
+			File adTypeFile = new File("AdTypes.txt");
+			File agencyFile = new File("AdAgencies.txt");
+			File productFile = new File("Products.txt");
+
+			if(!adFile.exists()){ //If the file doesnt exist, create it
+				adFile.createNewFile();
+			}
+			else{
+				this.Ads.populateFromFile("Ads.txt");
+			}
+
+			if(!adTypeFile.exists()){ //If the file doesnt exist, create it
+				adTypeFile.createNewFile();
+			}
+			else{
+				this.AdTypes.populateFromFile("AdTypes.txt");
+			}
+
+			if(!agencyFile.exists()){ //If the file doesnt exist, create it
+				agencyFile.createNewFile();
+			}
+			else{
+				this.AdAgencies.populateFromFile("AdAgencies.txt");
+			}
+
+			if(!productFile.exists()){ //If the file doesnt exist, create it
+				productFile.createNewFile();
+			}
+			else{
+				this.Products.populateFromFile("Products.txt");
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 
 		/*for (int i = 0; i < this.Products.getLength(); i++) {
 
