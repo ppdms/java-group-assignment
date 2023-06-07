@@ -9,15 +9,12 @@ COMPANY_LIST
 	{
 		AFM 100000001
 		NAME “Wunderman Thompson”
-
-
 	}
 	COMPANY
 	{
 		AFM 100000002
 		NAME “Ogilvy”
 	}
-	
 	COMPANY
 	{
 		AFM 100000003
@@ -27,5 +24,10 @@ COMPANY_LIST
 	{
 		AFM 000000011
 		NAME “marios pizza”
+	}
+	COMPANY
+	{
+		AFM 123456712
+		NAME “nikos soublaki place”
 	}
 }

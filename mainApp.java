@@ -199,6 +199,13 @@ public class mainApp {
 		return choiceIndex;
 	}
 
+	void saveData(){
+		Collection.saveInfo("Ads.txt", Ads, AdTypes, AdAgencies, Products);
+		Collection.saveInfo("AdTypes.txt", Ads, AdTypes, AdAgencies, Products);
+		Collection.saveInfo("AdAgencies.txt", Ads, AdTypes, AdAgencies, Products);
+		Collection.saveInfo("Products.txt", Ads, AdTypes, AdAgencies, Products);	
+	}
+
 	boolean isTypeChoiceValid(int typeChoice) {
 		return typeChoice == AdType.ONLINE || typeChoice == AdType.PRINTED || typeChoice == AdType.RADIO_TV;
 	}
@@ -222,7 +229,8 @@ public class mainApp {
 		int typeChoice = 0;
 
 		while (true) {
-			System.out.print("Options:\n"
+			System.out.print("\nOptions:\n"
+					+ "[0] Exit\n"
 					+ "[1] Enter new advertising agency\n"
 					+ "[2] Enter new advertisement type\n"
 					+ "[3] Enter new advertisement\n"
@@ -232,14 +240,11 @@ public class mainApp {
 					+ "[7] Display amount of advertisements per product\n"
 					+ "[8] Calculate a given product's advertising cost\n"
 					+ "[9] Display cost of advertising per product\n"
-					+ "[0] Exit\n");
+					+ "[10] Save Data\n");
 			choice: while (true) {
 				switch (readNextIntegerWithPrompt("Your choice", 0)) {
 					case 0:					
-					Collection.saveInfo("Ads.txt", Ads, AdTypes, AdAgencies, Products);
-					Collection.saveInfo("AdTypes.txt", Ads, AdTypes, AdAgencies, Products);
-					Collection.saveInfo("AdAgencies.txt", Ads, AdTypes, AdAgencies, Products);
-					Collection.saveInfo("Products.txt", Ads, AdTypes, AdAgencies, Products);
+						saveData();
 						System.exit(0);
 					case 1:
 						choices = getManyInputs(new String[] { "TIN", "Brand name" }, new Boolean[] { false, false }, 1,
@@ -401,6 +406,9 @@ public class mainApp {
 						break choice;
 					case 9:
 						CollectionManager.printCostPerProduct();
+						break choice;
+					case 10:
+						saveData();
 						break choice;
 				}
 			}

@@ -140,10 +140,11 @@ public class Collection<T extends Identifiable> {
                             if (!(TIN==null || name==null || invalid) && isNumeric(TIN)) {
                                 this.push(this.itemsClassType.getDeclaredConstructor(new Class[]{String.class, String.class}).newInstance(TIN, name));
                             }
-                            else System.out.println("data corruption!+agency");
+                            else System.out.println("data corruption!");
                             token = ts.nextToken();
                         } while (!token.equals("}"));
                     }
+                    System.out.println(filename+" has been read successfully.");
                     break;
                 
                 case "Product":
@@ -175,10 +176,11 @@ public class Collection<T extends Identifiable> {
                             if (!(TIN==null || desc==null || code == null || invalid) && isNumeric(TIN) && isNumeric(code)) {
                                 this.push(this.itemsClassType.getDeclaredConstructor(new Class[]{String.class, String.class, String.class}).newInstance(code, desc, TIN));
                             }
-                            else System.out.println("data corruption!+prouct");
+                            else System.out.println("data corruption!");
                             token = ts.nextToken();
                         } while (!token.equals("}"));
                     }
+                    System.out.println(filename+" has been read successfully.");
                     break;
                 
                 case "AdType":
@@ -254,10 +256,11 @@ public class Collection<T extends Identifiable> {
                             } while (!token.equals("}"));
                             if (!(TIN==null || type==null || desc==null || code == null || invalid) && isNumeric(TIN) && isNumeric(code) && (type.equalsIgnoreCase("Print") || (type.equalsIgnoreCase("Media") && c4 != null) || type.equalsIgnoreCase("web"))) {
                                 if (type.equalsIgnoreCase("Print")) this.push((T) new PrintedAdType(code, desc, TIN, c1, c2, c3)); else if (type.equalsIgnoreCase("Media")) this.push((T) new RadioTVAdType(code, desc, TIN, c1, c2, c3, c4)); else if (type.equalsIgnoreCase("web")) this.push((T) new OnlineAdType(code, desc, TIN, c1, c2, c3));
-                            } else System.out.println("data corruption!"+code+desc+TIN+type+c1+c2+c3+c4);
+                            } else System.out.println("data corruption!");
                             token = ts.nextToken();
                         } while (!token.equals("}"));
                     }
+                    System.out.println(filename+" has been read successfully.");
                     break;
                 
                 case "Ad":
@@ -312,10 +315,11 @@ public class Collection<T extends Identifiable> {
                             } while (!token.equals("}"));
                             if (!(type == null || advtype_code==null || item_code==null || duration==null || justification == null || c == null || invalid) && isNumeric(advtype_code) && isNumeric(item_code) && (type.equalsIgnoreCase("Print") || type.equalsIgnoreCase("Media") || type.equalsIgnoreCase("wEB"))) {
                                 if (type.equalsIgnoreCase("Print")) this.push((T) new PrintedAd(advtype_code, item_code, duration, justification, c)); else if (type.equalsIgnoreCase("Media")) this.push((T) new RadioTVAd(advtype_code, item_code, duration, justification, c)); else if (type.equalsIgnoreCase("WEB")) this.push((T) new OnlineAd(advtype_code, item_code, duration, justification, c));
-                            } else System.out.println("data corruption!+bbbb");
+                            } else System.out.println("data corruption!");
                             token = ts.nextToken();
                         } while (!token.equals("}"));
                     }
+                System.out.println(filename+" has been read successfully.");
                 break;
                 
             }
@@ -367,6 +371,7 @@ public class Collection<T extends Identifiable> {
                 }
                 writer.write("}");
                 writer.close();
+                System.out.println("Data has been successfully saved in "+fileName+".");
             }
             else if (fileName.equals("AdTypes.txt")){
                 writer.write("ADVTYPE_LIST\n\n");
@@ -439,6 +444,7 @@ public class Collection<T extends Identifiable> {
                 }                
                 writer.write("}");
                 writer.close();
+                System.out.println("Data has been successfully saved in "+fileName+".");
             }
             else if (fileName.equals("AdAgencies.txt")){
                 writer.write("COMPANY_LIST\n");
@@ -452,6 +458,7 @@ public class Collection<T extends Identifiable> {
                 }
                 writer.write("}");
                 writer.close();
+                System.out.println("Data has been successfully saved in "+fileName+".");
             } 
             else{
                 writer.write("ITEM_LIST\n");
@@ -466,6 +473,7 @@ public class Collection<T extends Identifiable> {
                 }
                 writer.write("}");
                 writer.close();
+                System.out.println("Data has been successfully saved in "+fileName+".");
             }       
         }
         catch(IOException e){
