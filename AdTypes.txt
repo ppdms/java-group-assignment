@@ -1,3 +1,5 @@
+
+
 ADVTYPE_LIST
 
 {
@@ -5,7 +7,10 @@ ADVTYPE_LIST
 	{
 		TYPE Web
 		CODE 0
-		DESCR “hehe”
+		DESCR 
+		
+		“hehe”
+
 		AFM 000000011
 		PRICE_PER_DAY 7
 		AUTOMATIC_DISPLAY_COST 7
@@ -16,6 +21,8 @@ ADVTYPE_LIST
 		TYPE Print
 		CODE 1
 		DESCR “bbb”
+
+		
 		AFM 100000000
 		EURO_PW_FIRST 5
 		EURO_PW_MIDDLE 5
